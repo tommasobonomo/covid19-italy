@@ -22,17 +22,19 @@ def formatter(name: str) -> str:
 
 data = get_data()
 
-st.sidebar.markdown("# Possible comparisons")
+st.sidebar.markdown("# Possibili visualizzazioni")
 st.sidebar.markdown(
-    "Choose if you want to see the total value corresponding to a specific date or if you would like to see instead the increase/decrease compared to the previous day:"
+    "Scegli se preferisci visualizzare il dato totale o il relativo cambiamento rispetto al giorno precedente:"
 )
-choice = st.sidebar.radio(label="Possible comparisons", options=["total", "day-to-day"])
+choice = st.sidebar.radio(
+    label="Possibili visualizzazioni", options=["totale", "giorno per giorno"]
+)
 
-st.title("COVID-19 in Italy")
-is_log = st.checkbox(label="Logarithmic scale", value=False)
+st.title("COVID-19 in Italia")
+is_log = st.checkbox(label="Scala logaritmica", value=False)
 scale = alt.Scale(type="symlog") if is_log else alt.Scale(type="linear")
 
-st.markdown("What feature would you like to explore?")
+st.markdown("Che dato vorresti visualizzare?")
 features = [
     "ricoverati_con_sintomi",
     "terapia_intensiva",
@@ -46,14 +48,14 @@ features = [
     "tamponi",
 ]
 feature = st.selectbox(
-    label="Feature...", options=features, format_func=formatter, index=8
+    label="Scegli...", options=features, format_func=formatter, index=8
 )
 
 # %%
 # TOTAL NUMBERS
-if choice == "total":
-    st.markdown("## Total numbers")
-    st.markdown("### General trend")
+if choice == "totale":
+    st.markdown("## Dato totale")
+    st.markdown("### Trend in tutta Italia")
 
     general = data.groupby("data", as_index=False).sum()
 
@@ -61,11 +63,11 @@ if choice == "total":
         alt.Chart(general)
         .mark_line(point=True)
         .encode(
-            x=alt.X("monthdate(data)", title="Day and month"),
+            x=alt.X("monthdate(data)", title="Mese e giorno"),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
             tooltip=[
                 alt.Tooltip(f"{feature}", title=formatter(feature)),
-                alt.Tooltip("data", title="Date", type="temporal"),
+                alt.Tooltip("data", title="Data", type="temporal"),
             ],
         )
         .properties(width=500, height=1000)
@@ -73,10 +75,10 @@ if choice == "total":
     )
 
     # %%
-    st.markdown("### Regional trend")
+    st.markdown("### Divisione per regione")
     region_options = data["denominazione_regione"].unique().tolist()
     regions = st.multiselect(
-        label="Selectable regions",
+        label="Regioni",
         options=region_options,
         default=["Lombardia", "Veneto", "Emilia Romagna", "Trento"],
     )
@@ -89,21 +91,21 @@ if choice == "total":
         alt.Chart(final)
         .mark_line(point=True)
         .encode(
-            x=alt.X("monthdate(data)", title="Day and month"),
+            x=alt.X("monthdate(data)", title="Mese e giorno"),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
             color="denominazione_regione:N",
             tooltip=[
-                alt.Tooltip("denominazione_regione", title="Region"),
+                alt.Tooltip("denominazione_regione", title="Regione"),
                 alt.Tooltip(f"{feature}", title=formatter(feature)),
-                alt.Tooltip("data", title="Date", type="temporal"),
+                alt.Tooltip("data", title="Data", type="temporal"),
             ],
         )
         .properties(width=500, height=1000)
         .interactive()
     )
 else:
-    st.markdown("## Day-to-day variation")
-    st.markdown("### All of Italy")
+    st.markdown("## Variazione giorno-per-giorno")
+    st.markdown("### Trend in tutta Italia")
 
     general = data.groupby("data", as_index=False).sum()
     general[f"{feature}"] = general[f"{feature}"].diff()
@@ -113,11 +115,11 @@ else:
         alt.Chart(general)
         .mark_line(point=True)
         .encode(
-            x=alt.X("monthdate(data)", title="Day and month"),
-            y=alt.Y(f"{feature}:Q", title="Day-to-day change", scale=scale),
+            x=alt.X("monthdate(data)", title="Mese e giorno"),
+            y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
             tooltip=[
-                alt.Tooltip(f"{feature}", title="Day-to-day change"),
-                alt.Tooltip("data", title="Date", type="temporal"),
+                alt.Tooltip(f"{feature}", title=formatter(feature)),
+                alt.Tooltip("data", title="Data", type="temporal"),
             ],
         )
         .properties(width=500, height=1000)
@@ -125,7 +127,7 @@ else:
     )
 
     # %%
-    st.markdown("### Regional trend")
+    st.markdown("### Divisione per regione")
     region_options = data["denominazione_regione"].unique().tolist()
     regions = st.multiselect(
         label="Selectable regions",
@@ -148,14 +150,14 @@ else:
         alt.Chart(final)
         .mark_line(point=True)
         .encode(
-            x=alt.X("monthdate(data)", title="Day and month"),
-            y=alt.Y("change:Q", title="Day-to-day change", scale=scale),
+            x=alt.X("monthdate(data)", title="Mese e giorno"),
+            y=alt.Y("change:Q", title=formatter(feature), scale=scale),
             color="denominazione_regione:N",
             tooltip=[
                 alt.Tooltip("denominazione_regione", title="Region"),
-                alt.Tooltip("change", title="Day-to-day change"),
-                alt.Tooltip(f"{feature}", title=formatter(feature)),
-                alt.Tooltip("data", title="Date", type="temporal"),
+                alt.Tooltip("change", title=f"{formatter(feature)} giorno-per-giorno"),
+                alt.Tooltip(f"{feature}", title=f"{formatter(feature)} totale"),
+                alt.Tooltip("data", title="Data", type="temporal"),
             ],
         )
         .properties(width=500, height=1000)
