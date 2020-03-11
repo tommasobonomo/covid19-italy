@@ -6,5 +6,5 @@ Check out this [link](http://covid19italy.herokuapp.com/), it is quite a bit slo
 
 ## Install and run
 - Clone the repository
-- `pip install -f requirements.txt`
+- `pip install -r requirements.txt`
 - `streamlit run app.py`
