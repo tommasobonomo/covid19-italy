@@ -13,6 +13,10 @@ def get_data() -> pd.DataFrame:
     data = pd.read_csv(
         "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni.csv"
     )
+    # Remove the time and just focus on the date
+    data["data"] = pd.to_datetime(
+        pd.to_datetime(data["data"]).apply(lambda x: x.date())
+    )
     return data
 
 
@@ -63,7 +67,7 @@ if choice == "totale":
         alt.Chart(general)
         .mark_line(point=True)
         .encode(
-            x=alt.X("monthdate(data)", title="Mese e giorno"),
+            x=alt.X("data:T", title="Mese e giorno"),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
             tooltip=[
                 alt.Tooltip(f"{feature}", title=formatter(feature)),
@@ -91,7 +95,7 @@ if choice == "totale":
         alt.Chart(final)
         .mark_line(point=True)
         .encode(
-            x=alt.X("monthdate(data)", title="Mese e giorno"),
+            x=alt.X("data:T", title="Mese e giorno"),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
             color="denominazione_regione:N",
             tooltip=[
@@ -115,7 +119,7 @@ else:
         alt.Chart(general)
         .mark_line(point=True)
         .encode(
-            x=alt.X("monthdate(data)", title="Mese e giorno"),
+            x=alt.X("data:T", title="Mese e giorno"),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
             tooltip=[
                 alt.Tooltip(f"{feature}", title=formatter(feature)),
@@ -150,7 +154,7 @@ else:
         alt.Chart(final)
         .mark_line(point=True)
         .encode(
-            x=alt.X("monthdate(data)", title="Mese e giorno"),
+            x=alt.X("data:T", title="Mese e giorno"),
             y=alt.Y("change:Q", title=formatter(feature), scale=scale),
             color="denominazione_regione:N",
             tooltip=[
