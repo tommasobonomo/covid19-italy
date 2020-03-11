@@ -84,7 +84,7 @@ if choice == "totale":
     regions = st.multiselect(
         label="Regioni",
         options=region_options,
-        default=["Lombardia", "Veneto", "Emilia Romagna", "Trento"],
+        default=["Lombardia", "Veneto", "Emilia Romagna"],
     )
     # %%
     final_all = data.groupby(["data", "denominazione_regione"], as_index=False).sum()
