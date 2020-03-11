@@ -167,3 +167,8 @@ else:
         .properties(width=500, height=1000)
         .interactive()
     )
+
+st.markdown(
+    "All the data displayed in this dashboard is provided by the Italian Ministry of Health (Ministero della Salute) and elaborated by Dipartimento della Protezione Civile. This work is therefore a derivative of [COVID-19 Italia - Monitoraggio situazione](https://github.com/pcm-dpc/COVID-19) licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
+)
+
