@@ -1,4 +1,5 @@
 import pandas as pd
+import altair as alt
 from typing import List
 
 
@@ -18,16 +19,7 @@ def get_features(data: pd.DataFrame) -> List[str]:
     """
     Gets features from data, i.e. all columns except data, stato, codice_regione, denominazione_regione, lat, long
     """
-    feature_data = data.drop(
-        columns=[
-            "data",
-            "stato",
-            "codice_regione",
-            "denominazione_regione",
-            "lat",
-            "long",
-        ]
-    )
+    feature_data = data.drop(columns=["data", "stato", "codice_regione", "denominazione_regione", "lat", "long"])
     return feature_data.columns.tolist()
 
 
@@ -56,9 +48,69 @@ def dataframe_translator(data: pd.DataFrame) -> pd.DataFrame:
         "tamponi": "total_tests",
     }
 
-    data.columns = [
-        feature_mapping[feature] if feature in feature_mapping else feature
-        for feature in data.columns
-    ]
+    data.columns = [feature_mapping[feature] if feature in feature_mapping else feature for feature in data.columns]
 
     return data
+
+
+def calculate_growth_factor(data: pd.DataFrame, features: List[str]):
+    for feature in features:
+        data[f"crescita_{feature}"] = data[f"{feature}"].pct_change() + 1
+
+
+def generate_global_chart(
+    data: pd.DataFrame,
+    feature: str,
+    scale: alt.Scale,
+    title: str,
+    padding: int = 5,
+    width: int = 700,
+    height: int = 500,
+):
+    return (
+        alt.Chart(data)
+        .mark_line(point=True)
+        .encode(
+            x=alt.X("data:T", title=title),
+            y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
+            tooltip=[
+                alt.Tooltip(f"{feature}", title=formatter(feature)),
+                alt.Tooltip("data", title="Data", type="temporal"),
+            ],
+        )
+        .configure_scale(continuousPadding=padding)
+        .properties(width=width, height=height)
+        .interactive()
+    )
+
+
+def generate_regional_chart(
+    data: pd.DataFrame,
+    feature: str,
+    scale: alt.Scale,
+    title: str,
+    alt_title: str,
+    padding: int = 5,
+    width: int = 700,
+    height: int = 500,
+):
+    return (
+        alt.Chart(data)
+        .mark_line(point=True)
+        .encode(
+            x=alt.X("data:T", title=title),
+            y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
+            color=alt.Color("denominazione_regione:N", title=alt_title),
+            tooltip=[
+                alt.Tooltip("denominazione_regione", title=alt_title),
+                alt.Tooltip(f"{feature}", title=formatter(feature)),
+                alt.Tooltip("data", title="Data", type="temporal"),
+            ],
+        )
+        .configure_legend(
+            fillColor="white", strokeWidth=3, strokeColor="#f63366", cornerRadius=5, padding=10, orient="top-left",
+        )
+        .configure_scale(continuousPadding=padding)
+        .properties(width=width, height=height)
+        .interactive()
+    )
