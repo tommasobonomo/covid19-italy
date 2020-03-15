@@ -32,4 +32,33 @@ def get_features(data: pd.DataFrame) -> List[str]:
 
 
 def formatter(name: str) -> str:
-    return " ".join(name.capitalize().split("_"))
+    if name == "people_in_ICU":
+        return "People in ICU"
+    else:
+        return " ".join(name.capitalize().split("_"))
+
+
+def dataframe_translator(data: pd.DataFrame) -> pd.DataFrame:
+    """
+    Translates Italian columns into English
+    """
+
+    feature_mapping = {
+        "ricoverati_con_sintomi": "hospitalised_with_symptoms",
+        "terapia_intensiva": "people_in_ICU",
+        "totale_ospedalizzati": "total_hospitalised",
+        "isolamento_domiciliare": "people_in_domestic_isolation",
+        "totale_attualmente_positivi": "total_of_current_positives",
+        "nuovi_attualmente_positivi": "new_current_positives",
+        "dimessi_guariti": "people_discharged_and_recovered",
+        "deceduti": "deaths",
+        "totale_casi": "total_cases",
+        "tamponi": "total_tests",
+    }
+
+    data.columns = [
+        feature_mapping[feature] if feature in feature_mapping else feature
+        for feature in data.columns
+    ]
+
+    return data
