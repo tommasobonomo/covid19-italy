@@ -3,26 +3,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
-
-@st.cache
-def get_data() -> pd.DataFrame:
-    """
-    Gets data from the GitHub repository of the Protezione Civile
-    Keeps only date, region and total of cases
-    """
-    data = pd.read_csv(
-        "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni.csv"
-    )
-    # Remove the time and just focus on the date
-    data["data"] = pd.to_datetime(
-        pd.to_datetime(data["data"]).apply(lambda x: x.date())
-    )
-    return data
-
-
-def formatter(name: str) -> str:
-    return " ".join(name.capitalize().split("_"))
-
+from utils import get_data, formatter
 
 data = get_data()
 
