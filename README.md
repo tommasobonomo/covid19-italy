@@ -2,15 +2,24 @@
 
 Quick streamlit dashboard to visualise the impact of COVID-19 in Italy
 
-## Demo
+## Demos
 
-Check out this [link](http://covid19italy.herokuapp.com/), it is quite a bit slow as it's hosted on Heroku's free tier
+* Check out this [link](http://covid19italy.herokuapp.com/), it is quite a bit slow as it's hosted on Heroku's free tier.
+* This other [link](https://covid19italy.crisidev.org/) is available on a more powerful machine.
 
 ## Install and run
 
 - Clone the repository
 - `pip install -r requirements.txt`
-- `streamlit run app.py`
+- `PORT=8501 ./setup.sh`
+- `streamlit run src/COVID-19-Italy.py`
+
+## Docker
+A docker image for x86 is available [here](https://hub.docker.com/r/crisidev/covid19-italia):
+
+```sh
+docker run -p 8501:8501 crisidev/covid19-italia:linux-x86
+```
 
 ## Attribution
 
