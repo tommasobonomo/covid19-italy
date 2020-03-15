@@ -43,6 +43,11 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     st.altair_chart(general_chart)
 
     st.markdown("### Growth factor")
+    st.markdown(
+        "The growth factor is the multiplier of the exponential growth curve, calculated as "
+        "(cases(n+1)-cases(n))/cases(n). For example with 300 registered cases yesterday and 400 "
+        "today, the growth factor is 1.33, since 400/300=1.33."
+    )
     growth_chart = generate_global_chart(general, f"crescita_{feature}", general_scale, "Month and day")
     st.write(growth_chart)
 

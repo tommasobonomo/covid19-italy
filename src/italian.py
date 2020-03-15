@@ -34,6 +34,11 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     st.altair_chart(general_chart)
 
     st.markdown("### Fattore crescita")
+    st.markdown(
+        "Il fattore di crescita e' il moltiplicatore della curva esponenziale di crescita, calcolato come "
+        "(casi(n+1)-casi(n))/casi(n). Ad esempio se ieri sono stati registrati 300 casi e oggi 400, il fattore "
+        "di crescita sara' 1.33, visto che 400/300=1.33."
+    )
     growth_chart = generate_global_chart(general, f"crescita_{feature}", general_scale, "Mese e giorno")
     st.write(growth_chart)
 
