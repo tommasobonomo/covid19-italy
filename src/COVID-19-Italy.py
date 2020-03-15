@@ -25,3 +25,5 @@ elif language == "Italiano":
     data_rate = st.sidebar.radio(label="Possibili visualizzazioni", options=["totale", "giorno per giorno"])
     mode = "total" if data_rate == "totale" else "day-to-day"
     italian_line_plots(data, mode=mode)
+
+st.sidebar.title("To contribute or view the code, please see [github](https://github.com/tommasobonomo/covid19-italy)")
