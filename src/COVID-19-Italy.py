@@ -5,7 +5,7 @@ from utils import get_data
 
 data = get_data()
 
-language = st.sidebar.radio(label="", options=["English", "Italiano"])
+language = st.sidebar.radio(label="", options=["Italiano", "English"])
 
 if language == "English":
     st.sidebar.markdown("# Possible visualisations")
@@ -27,4 +27,3 @@ elif language == "Italiano":
     )
     mode = "total" if data_rate == "totale" else "day-to-day"
     line_plots.italian_line_plots(data, mode=mode)
-
