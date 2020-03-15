@@ -2,12 +2,12 @@
 
 mkdir -p ~/.streamlit/
 
-echo "\
+echo -e "\
 [general]\n\
 email = \"tommaso.bonomo.97@gmail.com\"\n\
 " > ~/.streamlit/credentials.toml
 
-echo "\
+echo -e "\
 [server]\n\
 headless = true\n\
 enableCORS=false\n\
