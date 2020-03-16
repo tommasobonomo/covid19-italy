@@ -1,6 +1,7 @@
 import pandas as pd
 import altair as alt
 from typing import List
+import datetime
 
 
 def get_data() -> pd.DataFrame:
@@ -133,4 +134,43 @@ def generate_regional_chart(
         .configure_scale(continuousPadding=padding)
         .properties(width=width, height=height)
         .interactive()
+    )
+
+
+def generate_regions_choropleth(
+    data: pd.DataFrame,
+    feature: str,
+    date: datetime.date,
+    title: str,
+    mode: str,
+    width: int = 700,
+    height: int = 1000,
+) -> alt.Chart:
+    regions_shape = alt.topo_feature(
+        "https://raw.githubusercontent.com/openpolis/geojson-italy/master/topojson/limits_IT_regions.topo.json",
+        "regions",
+    )
+    filtered_data = data[["codice_regione", feature]]
+    return (
+        alt.Chart(regions_shape)
+        .mark_geoshape(stroke="black", strokeWidth=0.5)
+        .encode(
+            color=alt.Color(
+                f"{feature}:Q",
+                title=formatter(feature),
+                scale=alt.Scale(type="symlog", scheme="teals"),
+            ),
+            tooltip=[
+                alt.Tooltip("properties.reg_name:N", title=title),
+                alt.Tooltip(f"{feature}:Q", title=formatter(feature)),
+            ],
+        )
+        .transform_lookup(
+            "properties.reg_istat_code_num",
+            from_=alt.LookupData(
+                data=filtered_data, key="codice_regione", fields=[feature],
+            ),
+        )
+        .configure_view(strokeWidth=0)
+        .properties(width=width, height=height)
     )

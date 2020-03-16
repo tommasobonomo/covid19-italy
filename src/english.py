@@ -8,6 +8,7 @@ from utils import (
     formatter,
     generate_global_chart,
     generate_regional_chart,
+    generate_regions_choropleth,
     get_features,
 )
 
@@ -147,4 +148,31 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
 
 
 def english_map(data: pd.DataFrame, mode: str = "total") -> None:
-    pass
+    """Render chropleth of Italy with desired feature"""
+    english_data = dataframe_translator(data)
+
+    st.title("COVID-19 in Italy")
+
+    st.markdown("What indicator would you like to visualise?")
+    features = get_features(english_data)
+    feature = st.selectbox(
+        label="Choose...", options=features, format_func=formatter, index=8
+    )
+
+    chosen_date = st.date_input(label="Choose date:")
+    filtered_data = english_data[english_data["data"] == chosen_date]
+
+    if filtered_data.empty:
+        st.warning("No information is available for the selected date")
+    else:
+        choropleth = generate_regions_choropleth(
+            english_data, feature, chosen_date, "Region", mode
+        )
+        st.write(choropleth)
+
+    st.markdown(
+        "All the data displayed in this dashboard is provided by the Italian Ministry of Health "
+        "(Ministero della Salute) and elaborated by Dipartimento della Protezione Civile. This work is therefore "
+        "a derivative of [COVID-19 Italia - Monitoraggio situazione](https://github.com/pcm-dpc/COVID-19) licensed "
+        "under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
+    )
