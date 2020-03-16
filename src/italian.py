@@ -140,3 +140,7 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
         "situazione](https://github.com/pcm-dpc/COVID-19) che è liberamente utilizzabile sotto licenza "
         "[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
     )
+
+
+def italian_map(data: pd.DataFrame, mode: str = "total") -> None:
+    pass
