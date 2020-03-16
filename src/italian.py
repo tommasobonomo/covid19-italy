@@ -2,7 +2,13 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from utils import calculate_growth_factor, formatter, generate_global_chart, generate_regional_chart, get_features
+from utils import (
+    calculate_growth_factor,
+    formatter,
+    generate_global_chart,
+    generate_regional_chart,
+    get_features,
+)
 
 
 def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
@@ -13,7 +19,9 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
 
     st.markdown("Che dato vorresti visualizzare?")
     features = get_features(data)
-    feature = st.selectbox(label="Scegli...", options=features, format_func=formatter, index=8)
+    feature = st.selectbox(
+        label="Scegli...", options=features, format_func=formatter, index=8
+    )
     original_feature = feature
 
     # Group data by date and calculate log of interested feature
@@ -27,31 +35,50 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
 
     # Choose log scale or linear, defines what feature to use
     general_choice = st.radio(label="Scala", options=["lineare", "logaritmica"])
-    general_scale = alt.Scale(type="symlog") if general_choice == "logaritmica" else alt.Scale(type="linear")
+    general_scale = (
+        alt.Scale(type="symlog")
+        if general_choice == "logaritmica"
+        else alt.Scale(type="linear")
+    )
 
     st.markdown("## Dati generali")
-    general_chart = generate_global_chart(general, feature, general_scale, "Mese e giorno")
+    general_chart = generate_global_chart(
+        general, feature, general_scale, "Mese e giorno"
+    )
     st.altair_chart(general_chart)
 
     st.markdown("### Fattore crescita")
     st.markdown(
-        "Il fattore di crescita e' il moltiplicatore della curva esponenziale di crescita, calcolato come "
-        "(casi(n+1)-casi(n))/casi(n). Ad esempio se ieri sono stati registrati 300 casi e oggi 400, il fattore "
-        "di crescita sara' 1.33, visto che 400/300=1.33."
+        """
+        Il fattore di crescita è il moltiplicatore della curva esponenziale di crescita, calcolato come:
+        $$
+        \\frac{casi_{n+1} - casi_{n}}{casi_{n}}
+        $$
+        dove $casi_n$ indica il numero di casi per il giorno $n$. Ad esempio, se ieri fossero stati registrati 300 casi
+        e oggi 400, il fattore di crescita sarebbe 1.33, dato che $\\frac{400}{300} = 1.33$
+        """
     )
-    growth_chart = generate_global_chart(general, f"crescita_{feature}", general_scale, "Mese e giorno")
+    growth_chart = generate_global_chart(
+        general, f"crescita_{feature}", general_scale, "Mese e giorno"
+    )
     st.write(growth_chart)
 
     st.markdown("## Divisione per regione")
     # Get list of regions and select the ones of interest
     region_options = data["denominazione_regione"].unique().tolist()
     regions = st.multiselect(
-        label="Regioni", options=region_options, default=["Lombardia", "Veneto", "Emilia Romagna"],
+        label="Regioni",
+        options=region_options,
+        default=["Lombardia", "Veneto", "Emilia Romagna"],
     )
 
     # Group data by date and region, sum up every feature, filter ones in regions selection
-    total_regions = data.groupby(["data", "denominazione_regione"], as_index=False).sum()
-    selected_regions = total_regions[total_regions["denominazione_regione"].isin(regions)]
+    total_regions = data.groupby(
+        ["data", "denominazione_regione"], as_index=False
+    ).sum()
+    selected_regions = total_regions[
+        total_regions["denominazione_regione"].isin(regions)
+    ]
 
     if mode == "day-to-day":
         regions_raw = []
@@ -66,7 +93,9 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     calculate_growth_factor(selected_regions, features)
 
     st.markdown("### Dati generali")
-    regional_chart = generate_regional_chart(selected_regions, feature, general_scale, "Mese e giorno", "Regione")
+    regional_chart = generate_regional_chart(
+        selected_regions, feature, general_scale, "Mese e giorno", "Regione"
+    )
     if selected_regions.empty:
         st.warning("Nessuna regione selezionata!")
     else:
@@ -74,7 +103,11 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
 
     st.markdown("### Fattore crescita")
     regional_growth_chart = generate_regional_chart(
-        selected_regions, f"crescita_{feature}", general_scale, "Mese e giorno", "Regione"
+        selected_regions,
+        f"crescita_{feature}",
+        general_scale,
+        "Mese e giorno",
+        "Regione",
     )
     if selected_regions.empty:
         st.warning("Nessuna regione selezionata!")

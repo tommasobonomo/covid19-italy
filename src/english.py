@@ -22,7 +22,9 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
 
     st.markdown("What indicator would you like to visualise?")
     features = get_features(english_data)
-    feature = st.selectbox(label="Choose...", options=features, format_func=formatter, index=8)
+    feature = st.selectbox(
+        label="Choose...", options=features, format_func=formatter, index=8
+    )
     original_feature = feature
 
     # Group data by date and calculate diff if required
@@ -36,19 +38,32 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
 
     # Choose log scale or linear, defines what feature to use
     general_choice = st.radio(label="Scale", options=["linear", "logarithmic"])
-    general_scale = alt.Scale(type="symlog") if general_choice == "logarithmic" else alt.Scale(type="linear")
+    general_scale = (
+        alt.Scale(type="symlog")
+        if general_choice == "logarithmic"
+        else alt.Scale(type="linear")
+    )
 
     st.markdown("## General data")
-    general_chart = generate_global_chart(general, feature, general_scale, "Month and day")
+    general_chart = generate_global_chart(
+        general, feature, general_scale, "Month and day"
+    )
     st.altair_chart(general_chart)
 
     st.markdown("### Growth factor")
     st.markdown(
-        "The growth factor is the multiplier of the exponential growth curve, calculated as "
-        "(cases(n+1)-cases(n))/cases(n). For example with 300 registered cases yesterday and 400 "
-        "today, the growth factor is 1.33, since 400/300=1.33."
+        """
+        The growth factor is the multiplier of the exponential growth curve, calculated as:
+        $$
+        \\frac{cases_{n+1} - cases_{n}}{cases_{n}}
+        $$
+        where $cases_n$ stands for the number of cases registered on day $n$. For example, if 300 cases were registered
+        yesterday and 400 today, the growth factor would be 1.33, as $\\frac{400}{300} = 1.33$.
+        """
     )
-    growth_chart = generate_global_chart(general, f"crescita_{feature}", general_scale, "Month and day")
+    growth_chart = generate_global_chart(
+        general, f"crescita_{feature}", general_scale, "Month and day"
+    )
     st.write(growth_chart)
 
     st.markdown("## Situation in different regions")
@@ -56,12 +71,18 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     # Get list of regions and select the ones of interest
     region_options = english_data["denominazione_regione"].unique().tolist()
     regions = st.multiselect(
-        label="Regions", options=region_options, default=["Lombardia", "Veneto", "Emilia Romagna"],
+        label="Regions",
+        options=region_options,
+        default=["Lombardia", "Veneto", "Emilia Romagna"],
     )
 
     # Group data by date and region, sum up every feature, filter ones in regions selection
-    total_regions = english_data.groupby(["data", "denominazione_regione"], as_index=False).sum()
-    selected_regions = total_regions[total_regions["denominazione_regione"].isin(regions)]
+    total_regions = english_data.groupby(
+        ["data", "denominazione_regione"], as_index=False
+    ).sum()
+    selected_regions = total_regions[
+        total_regions["denominazione_regione"].isin(regions)
+    ]
     if mode == "day-to-day":
         regions_raw = []
         for _, region in selected_regions.groupby("denominazione_regione"):
@@ -75,7 +96,9 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     calculate_growth_factor(selected_regions, features)
 
     st.markdown("### General data")
-    regional_chart = generate_regional_chart(selected_regions, feature, general_scale, "Month and day", "Region")
+    regional_chart = generate_regional_chart(
+        selected_regions, feature, general_scale, "Month and day", "Region"
+    )
     if selected_regions.empty:
         st.warning("No region selected!")
     else:
@@ -83,7 +106,11 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
 
     st.markdown("### Growth factor")
     regional_growth_chart = generate_regional_chart(
-        selected_regions, f"crescita_{feature}", general_scale, "Month and day", "Region"
+        selected_regions,
+        f"crescita_{feature}",
+        general_scale,
+        "Month and day",
+        "Region",
     )
     if selected_regions.empty:
         st.warning("No region selected!")
