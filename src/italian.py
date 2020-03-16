@@ -90,9 +90,18 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
         regions_raw.append(region)
     selected_regions = pd.concat(regions_raw).reset_index(drop=True)
 
+    regional_choice = st.radio(
+        label="Scala regionale", options=["lineare", "logaritmica"]
+    )
+    regional_scale = (
+        alt.Scale(type="symlog")
+        if regional_choice == "logaritmica"
+        else alt.Scale(type="linear")
+    )
+
     st.markdown("### Dati generali")
     regional_chart = generate_regional_chart(
-        selected_regions, feature, general_scale, "Mese e giorno", "Regione"
+        selected_regions, feature, regional_scale, "Mese e giorno", "Regione"
     )
     if selected_regions.empty:
         st.warning("Nessuna regione selezionata!")
@@ -116,8 +125,10 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     st.subheader("Avvisi:")
     st.warning(
         """
+        - 07/03/2020: dati Brescia +300 esiti positivi
         - 10/03/2020: dati Regione Lombardia parziali.
         - 11/03/2020: dati Regione Abruzzo non pervenuti.
+        - 16/03/2020: dati P.A. Trento e Puglia non pervenuti.
         """
     )
 

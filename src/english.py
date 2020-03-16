@@ -94,9 +94,18 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
         regions_raw.append(region)
     selected_regions = pd.concat(regions_raw).reset_index(drop=True)
 
+    regional_choice = st.radio(
+        label="Regional scale", options=["linear", "logarithmic"]
+    )
+    regional_scale = (
+        alt.Scale(type="symlog")
+        if regional_choice == "logarithmic"
+        else alt.Scale(type="linear")
+    )
+
     st.markdown("### General data")
     regional_chart = generate_regional_chart(
-        selected_regions, feature, general_scale, "Month and day", "Region"
+        selected_regions, feature, regional_scale, "Month and day", "Region"
     )
     if selected_regions.empty:
         st.warning("No region selected!")
@@ -120,8 +129,10 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     st.subheader("Warnings:")
     st.warning(
         """
+        - 07/03/2020: data from Brescia +300 positive results
         - 10/03/2020: data from Lombardia is partial.
         - 11/03/2020: data from Abruzzo did not come through.
+        - 16/03/2020: data from P.A. Trento and Puglia did not come through.
         """
     )
 
