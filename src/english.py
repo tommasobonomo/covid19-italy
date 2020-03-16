@@ -34,7 +34,7 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
         general = general.dropna()
         feature = f"{feature}_delta"
         features.append(feature)
-    calculate_growth_factor(general, features)
+    general = calculate_growth_factor(general, features)
 
     # Choose log scale or linear, defines what feature to use
     general_choice = st.radio(label="Scale", options=["linear", "logarithmic"])
@@ -83,17 +83,16 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     selected_regions = total_regions[
         total_regions["denominazione_regione"].isin(regions)
     ]
-    if mode == "day-to-day":
-        regions_raw = []
-        for _, region in selected_regions.groupby("denominazione_regione"):
-            region = region.sort_values("data")
-            region[f"{original_feature}_delta"] = region[original_feature].diff()
-            regions_raw.append(region.dropna())
-        selected_regions = pd.concat(regions_raw).reset_index(drop=True)
-        feature = f"{original_feature}_delta"
-        features.append(feature)
 
-    calculate_growth_factor(selected_regions, features)
+    regions_raw = []
+    for _, region in selected_regions.groupby("denominazione_regione"):
+        region = region.sort_values("data")
+        if mode == "day-to-day":
+            region[f"{original_feature}_delta"] = region[original_feature].diff()
+            features.append(f"{original_feature}_delta")
+        region = calculate_growth_factor(region, features)
+        regions_raw.append(region)
+    selected_regions = pd.concat(regions_raw).reset_index(drop=True)
 
     st.markdown("### General data")
     regional_chart = generate_regional_chart(

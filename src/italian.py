@@ -31,7 +31,7 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
         general = general.dropna()
         feature = f"differenza_{feature}"
         features.append(feature)
-    calculate_growth_factor(general, features)
+    general = calculate_growth_factor(general, features)
 
     # Choose log scale or linear, defines what feature to use
     general_choice = st.radio(label="Scala", options=["lineare", "logaritmica"])
@@ -80,17 +80,15 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
         total_regions["denominazione_regione"].isin(regions)
     ]
 
-    if mode == "day-to-day":
-        regions_raw = []
-        for _, region in selected_regions.groupby("denominazione_regione"):
-            region = region.sort_values("data")
+    regions_raw = []
+    for _, region in selected_regions.groupby("denominazione_regione"):
+        region = region.sort_values("data")
+        if mode == "day-to-day":
             region[f"differenza_{original_feature}"] = region[original_feature].diff()
-            regions_raw.append(region.dropna())
-        selected_regions = pd.concat(regions_raw).reset_index(drop=True)
-        feature = f"differenza_{original_feature}"
-        features.append(feature)
-
-    calculate_growth_factor(selected_regions, features)
+            features.append(f"differenza_{original_feature}")
+        region = calculate_growth_factor(region, features)
+        regions_raw.append(region)
+    selected_regions = pd.concat(regions_raw).reset_index(drop=True)
 
     st.markdown("### Dati generali")
     regional_chart = generate_regional_chart(

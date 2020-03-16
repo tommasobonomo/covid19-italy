@@ -55,7 +55,9 @@ def dataframe_translator(data: pd.DataFrame) -> pd.DataFrame:
 
 def calculate_growth_factor(data: pd.DataFrame, features: List[str]):
     for feature in features:
-        data[f"crescita_{feature}"] = data[f"{feature}"].pct_change() + 1
+        data[f"{feature}_yesterday"] = data[feature].shift()
+        data[f"crescita_{feature}"] = data[feature] / data[f"{feature}_yesterday"]
+    return data
 
 
 def generate_global_chart(
