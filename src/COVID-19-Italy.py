@@ -1,8 +1,7 @@
 import streamlit as st
 
-from italian import italian_line_plots
-from english import english_line_plots
-import choropleth
+from italian import italian_line_plots, italian_map
+from english import english_line_plots, english_map
 from utils import get_data
 
 data = get_data()
@@ -18,7 +17,7 @@ if language == "English":
     )
     page_function_mapping = {
         "Temporal trend": english_line_plots,
-        "Geographical distribution": choropleth.english_map,
+        "Geographical distribution": english_map,
     }
 
     st.sidebar.markdown("# Available visualisations")
@@ -38,8 +37,8 @@ elif language == "Italiano":
         label="Pagina", options=["Andamento temporale", "Distribuzione geografica"]
     )
     page_function_mapping = {
-        "Andamento temporale": line_plots.italian_line_plots,
-        "Distribuzione geografica": choropleth.italian_map,
+        "Andamento temporale": italian_line_plots,
+        "Distribuzione geografica": italian_map,
     }
 
     # Visualisations choice

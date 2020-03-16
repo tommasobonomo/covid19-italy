@@ -144,3 +144,7 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
         "a derivative of [COVID-19 Italia - Monitoraggio situazione](https://github.com/pcm-dpc/COVID-19) licensed "
         "under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
     )
+
+
+def english_map(data: pd.DataFrame, mode: str = "total") -> None:
+    pass
