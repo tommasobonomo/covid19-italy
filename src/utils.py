@@ -1,4 +1,5 @@
 import pandas as pd
+import altair as alt
 from typing import List
 
 
@@ -62,3 +63,74 @@ def dataframe_translator(data: pd.DataFrame) -> pd.DataFrame:
     ]
 
     return data
+
+
+def calculate_growth_factor(data: pd.DataFrame, features: List[str]):
+    for feature in features:
+        data[f"{feature}_yesterday"] = data[feature].shift()
+        data[f"crescita_{feature}"] = data[feature] / data[f"{feature}_yesterday"]
+    return data
+
+
+def generate_global_chart(
+    data: pd.DataFrame,
+    feature: str,
+    scale: alt.Scale,
+    title: str,
+    padding: int = 5,
+    width: int = 700,
+    height: int = 500,
+):
+    return (
+        alt.Chart(data)
+        .mark_line(point=True)
+        .encode(
+            x=alt.X("data:T", title=title),
+            y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
+            tooltip=[
+                alt.Tooltip(f"{feature}", title=formatter(feature)),
+                alt.Tooltip("data", title="Data", type="temporal"),
+            ],
+        )
+        .configure_scale(continuousPadding=padding)
+        .properties(width=width, height=height)
+        .interactive()
+    )
+
+
+def generate_regional_chart(
+    data: pd.DataFrame,
+    feature: str,
+    scale: alt.Scale,
+    title: str,
+    alt_title: str,
+    padding: int = 5,
+    width: int = 700,
+    height: int = 500,
+    legend_position: str = "top-left",
+):
+    return (
+        alt.Chart(data)
+        .mark_line(point=True)
+        .encode(
+            x=alt.X("data:T", title=title),
+            y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
+            color=alt.Color("denominazione_regione:N", title=alt_title),
+            tooltip=[
+                alt.Tooltip("denominazione_regione", title=alt_title),
+                alt.Tooltip(f"{feature}", title=formatter(feature)),
+                alt.Tooltip("data", title="Data", type="temporal"),
+            ],
+        )
+        .configure_legend(
+            fillColor="white",
+            strokeWidth=3,
+            strokeColor="#f63366",
+            cornerRadius=5,
+            padding=10,
+            orient=legend_position,
+        )
+        .configure_scale(continuousPadding=padding)
+        .properties(width=width, height=height)
+        .interactive()
+    )
