@@ -106,6 +106,7 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
         general_scale,
         "Mese e giorno",
         "Regione",
+        legend_position="bottom-left",
     )
     if selected_regions.empty:
         st.warning("Nessuna regione selezionata!")

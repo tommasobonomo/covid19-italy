@@ -19,7 +19,16 @@ def get_features(data: pd.DataFrame) -> List[str]:
     """
     Gets features from data, i.e. all columns except data, stato, codice_regione, denominazione_regione, lat, long
     """
-    feature_data = data.drop(columns=["data", "stato", "codice_regione", "denominazione_regione", "lat", "long"])
+    feature_data = data.drop(
+        columns=[
+            "data",
+            "stato",
+            "codice_regione",
+            "denominazione_regione",
+            "lat",
+            "long",
+        ]
+    )
     return feature_data.columns.tolist()
 
 
@@ -48,7 +57,10 @@ def dataframe_translator(data: pd.DataFrame) -> pd.DataFrame:
         "tamponi": "total_tests",
     }
 
-    data.columns = [feature_mapping[feature] if feature in feature_mapping else feature for feature in data.columns]
+    data.columns = [
+        feature_mapping[feature] if feature in feature_mapping else feature
+        for feature in data.columns
+    ]
 
     return data
 
@@ -95,6 +107,7 @@ def generate_regional_chart(
     padding: int = 5,
     width: int = 700,
     height: int = 500,
+    legend_position: str = "top-left",
 ):
     return (
         alt.Chart(data)
@@ -110,7 +123,12 @@ def generate_regional_chart(
             ],
         )
         .configure_legend(
-            fillColor="white", strokeWidth=3, strokeColor="#f63366", cornerRadius=5, padding=10, orient="top-left",
+            fillColor="white",
+            strokeWidth=3,
+            strokeColor="#f63366",
+            cornerRadius=5,
+            padding=10,
+            orient=legend_position,
         )
         .configure_scale(continuousPadding=padding)
         .properties(width=width, height=height)
