@@ -55,7 +55,7 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
         """
         The growth factor is the multiplier of the exponential growth curve, calculated as:
         $$
-        \\frac{cases_{n+1} - cases_{n}}{cases_{n}}
+        \\frac{cases_{n+1}}{cases_{n}}
         $$
         where $cases_n$ stands for the number of cases registered on day $n$. For example, if 300 cases were registered
         yesterday and 400 today, the growth factor would be 1.33, as $\\frac{400}{300} = 1.33$.

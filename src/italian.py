@@ -52,7 +52,7 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
         """
         Il fattore di crescita è il moltiplicatore della curva esponenziale di crescita, calcolato come:
         $$
-        \\frac{casi_{n+1} - casi_{n}}{casi_{n}}
+        \\frac{casi_{n+1}}{casi_{n}}
         $$
         dove $casi_n$ indica il numero di casi per il giorno $n$. Ad esempio, se ieri fossero stati registrati 300 casi
         e oggi 400, il fattore di crescita sarebbe 1.33, dato che $\\frac{400}{300} = 1.33$
