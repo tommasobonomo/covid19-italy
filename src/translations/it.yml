@@ -4,7 +4,8 @@ sidebar_github: "Per contribuire o visualizzare il codice, visita [github](https
 md_available_visualizations: "Visualizzaioni disponibili"
 md_visualizations_description: "Scegli se preferisci visualizzare il totale dell'indicatiore scelto o l'incremento/decremento giornaliero:"
 md_data_to_visualize: "Che dato vorresti visualizzare?"
-md_general_data: "Dati generali"
+md_national_data: "Dati nazionali"
+md_regional_data: "Dati regionali"
 md_growth_factor: "Fattore di crescita"
 md_per_region: "Divisione per regione"
 md_growth_factor_description_1: "Il fattore di crescita è il moltiplicatore della curva esponenziale di crescita, calcolato come:"
@@ -19,7 +20,8 @@ md_footer: |
 
 label_visualizations: "Visualizzazioni disponibili"
 label_choose: "Scegli..."
-label_scale: Scala
+label_national_scale: Scala Nazionale
+label_regional_scale: Scala Regionale
 label_regions: Regioni
 
 opt_total: totale
