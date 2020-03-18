@@ -129,6 +129,8 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
         - 10/03/2020: dati Regione Lombardia parziali.
         - 11/03/2020: dati Regione Abruzzo non pervenuti.
         - 16/03/2020: dati P.A. Trento e Puglia non pervenuti.
+        - 17/03/2020: dati Provincia di Rimini non aggiornati.
+        - 18/03/2020: dati Regione Campania e Provincia di Parma non pervenuti.
         """
     )
 

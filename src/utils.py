@@ -83,7 +83,7 @@ def generate_global_chart(
 ):
     return (
         alt.Chart(data)
-        .mark_line(point=True)
+        .mark_line(point={"size": 70})
         .encode(
             x=alt.X("data:T", title=title),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
@@ -111,7 +111,7 @@ def generate_regional_chart(
 ):
     return (
         alt.Chart(data)
-        .mark_line(point=True)
+        .mark_line(point={"size": 70})
         .encode(
             x=alt.X("data:T", title=title),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),

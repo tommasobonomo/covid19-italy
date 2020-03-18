@@ -133,6 +133,8 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
         - 10/03/2020: data from Lombardia is partial.
         - 11/03/2020: data from Abruzzo did not come through.
         - 16/03/2020: data from P.A. Trento and Puglia did not come through.
+        - 17/03/2020: data from the Province of Rimini is not updated.
+        - 18/03/2020: data from Campania and Province of Parma did not come through.
         """
     )
 
