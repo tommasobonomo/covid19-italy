@@ -1,0 +1,54 @@
+title: "COVID-19 in Italia"
+sidebar_github: "Per contribuire o visualizzare il codice, visita [github](https://github.com/tommasobonomo/covid19-italy)"
+
+md_available_visualizations: "Visualizzaioni disponibili"
+md_visualizations_description: "Scegli se preferisci visualizzare il totale dell'indicatiore scelto o l'incremento/decremento giornaliero:"
+md_data_to_visualize: "Che dato vorresti visualizzare?"
+md_general_data: "Dati generali"
+md_growth_factor: "Fattore di crescita"
+md_per_region: "Divisione per regione"
+md_growth_factor_description_1: "Il fattore di crescita è il moltiplicatore della curva esponenziale di crescita, calcolato come:"
+md_growth_factor_description_2: "
+  dove $casi_n$ indica il numero di casi per il giorno $n$. Ad esempio, se ieri fossero stati registrati 300 casi
+  e oggi 400, il fattore di crescita sarebbe 1.33, dato che $\\frac{400}{300} = 1.33$."
+md_footer: |
+  Tutti i dati visualizzati in questa dashboard provengono dal Ministero della Salute e sono forniti dal
+  Dipartimento della Protezione Civile. Questo progetto è quindi un derivato di [COVID-19 Italia - Monitoraggio
+  situazione](https://github.com/pcm-dpc/COVID-19) che è liberamente utilizzabile sotto licenza
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+label_visualizations: "Visualizzazioni disponibili"
+label_choose: "Scegli..."
+label_scale: Scala
+label_regions: Regioni
+
+opt_total: totale
+opt_day_to_day: "giorno per giorno"
+opt_linear: lineare
+opt_logarithmic: logaritmica
+
+feature_hospitalized_with_symptoms: "Ricoverati con sintomi"
+feature_people_in_icu: "Terapia intensiva"
+feature_total_hospitalized: "Totale ospedalizzati"
+feature_people_in_domestic_isolation: "Isolamento domiciliare"
+feature_total_of_current_positives: "Totale attualmente positivi"
+feature_new_current_positives: "Nuovi attualmente positivi"
+feature_people_discharged_and_recovered: "Dimessi guariti"
+feature_deaths: "Deceduti"
+feature_total_cases: "Totale casi"
+feature_total_tests: "Tamponi"
+
+suffix_delta: Differenza
+suffix_growth: Crescita
+
+axis_month_day: "Mese e giorno"
+axis_region: Regione
+
+str_date: Data
+str_warnings: "Avvisi:"
+str_cases: casi
+
+warnings_no_sel_region: "Nessuna regione selezionata!"
+warnings_updates: |
+  - 10/03/2020: dati Regione Lombardia parziali.
+  - 11/03/2020: dati Regione Abruzzo non pervenuti.

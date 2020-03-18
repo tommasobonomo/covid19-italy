@@ -1,0 +1,54 @@
+title: "COVID-19 in Italy"
+sidebar_github: "To contribute or view the code, please see [github](https://github.com/tommasobonomo/covid19-italy)"
+
+md_available_visualizations: "Available visualizations"
+md_visualizations_description: "Choose if you prefer to visualize the total of the chosen indicator or the day-to-day increment or decrement:"
+md_data_to_visualize: "What indicator would you like to visualize?"
+md_general_data: "General data"
+md_growth_factor: "Growth factor"
+md_per_region: "Situation in different regions"
+md_growth_factor_description_1: "The growth factor is the multiplier of the exponential growth curve, calculated as:"
+md_growth_factor_description_2: "
+  where $cases_n$ stands for the number of cases registered on day $n$. For example, if 300 cases were registered
+  yesterday and 400 today, the growth factor would be 1.33, as $\\frac{400}{300} = 1.33$."
+md_footer: |
+  All the data displayed in this dashboard is provided by the Italian Ministry of Health
+  (Ministero della Salute) and elaborated by Dipartimento della Protezione Civile. This work is therefore
+  a derivative of [COVID-19 Italia - Monitoraggio situazione](https://github.com/pcm-dpc/COVID-19) licensed
+  under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+label_visualizations: "Available visualizations"
+label_choose: "Choose..."
+label_scale: Scale
+label_regions: Regions
+
+opt_total: total
+opt_day_to_day: "day to day"
+opt_linear: linear
+opt_logarithmic: logarithmic
+
+feature_hospitalized_with_symptoms: "Hospitalized with symptoms"
+feature_people_in_icu: "People in ICU"
+feature_total_hospitalized: "Total hospitalized"
+feature_people_in_domestic_isolation: "People in domestic isolation"
+feature_total_of_current_positives: "Total of current positives"
+feature_new_current_positives: "New current positives"
+feature_people_discharged_and_recovered: "People discharged and recovered"
+feature_deaths: "Deaths"
+feature_total_cases: "Total cases"
+feature_total_tests: "Tests"
+
+suffix_delta: Delta
+suffix_growth: Growth
+
+axis_month_day: "Month and day"
+axis_region: Region
+
+str_date: Date
+str_warnings: "Warnings:"
+str_cases: cases
+
+warnings_no_sel_region: "No selected region!"
+warnings_updates: |
+  - 10/03/2020: data from Lombardia is partial.
+  - 11/03/2020: data from Abruzzo did not come through.

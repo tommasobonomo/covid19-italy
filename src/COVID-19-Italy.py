@@ -1,29 +1,31 @@
 import streamlit as st
 
-from italian import italian_line_plots
-from english import english_line_plots
-from utils import get_data
+from plots import line_plots
+from translation import Languages, Translate
 
-data = get_data()
+langs = Languages()
 
 st.sidebar.title("Language")
-language = st.sidebar.radio(label="", options=["Italiano", "English"])
+language = st.sidebar.radio(label="", options=langs.get_array(), index=1)
 
-if language == "English":
-    st.sidebar.markdown("# Available visualisations")
-    st.sidebar.markdown(
-        "Choose if you prefer to visualise the total of the chosen indicator or the day-to-day increment or decrement:"
-    )
-    data_rate = st.sidebar.radio(label="Available visualisations", options=["total", "day-to-day"])
-    english_line_plots(data, mode=data_rate)
+t = Translate(language)
 
-elif language == "Italiano":
-    st.sidebar.markdown("# Possibili visualizzazioni")
-    st.sidebar.markdown(
-        "Scegli se preferisci visualizzare il dato totale o il relativo cambiamento rispetto al giorno precedente:"
-    )
-    data_rate = st.sidebar.radio(label="Possibili visualizzazioni", options=["totale", "giorno per giorno"])
-    mode = "total" if data_rate == "totale" else "day-to-day"
-    italian_line_plots(data, mode=mode)
+st.sidebar.markdown(f"# {t.md_available_visualizations}")
+st.sidebar.markdown(t.md_visualizations_description)
+data_rate = st.sidebar.radio(label=t.label_visualizations,
+                             options=[t.opt_total,
+                                      t.opt_day_to_day])
+st.sidebar.title(t.sidebar_github)
 
-st.sidebar.title("To contribute or view the code, please see [github](https://github.com/tommasobonomo/covid19-italy)")
+if data_rate == t.opt_total:
+    data_rate = "total"
+else:
+    if data_rate == t.opt_day_to_day:
+        data_rate = "day-to-day"
+
+line_plots(mode=data_rate, lang=language)
+
+st.subheader(t.str_warnings)
+st.warning(t.warnings_updates)
+
+st.markdown(t.md_footer)

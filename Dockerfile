@@ -11,7 +11,12 @@ COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
 COPY . /app/
-RUN PORT=8501 /app/setup.sh
-EXPOSE 8501
+
+WORKDIR /app/src
+
+ENV PORT 8501
+
+RUN /app/setup.sh
+EXPOSE ${PORT}
 
 CMD ["streamlit", "run", "/app/src/COVID-19-Italy.py"]
