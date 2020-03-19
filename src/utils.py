@@ -1,7 +1,6 @@
 import pandas as pd
 import altair as alt
 from typing import List
-import datetime
 
 
 def get_data() -> pd.DataFrame:
@@ -140,7 +139,6 @@ def generate_regional_chart(
 def generate_regions_choropleth(
     data: pd.DataFrame,
     feature: str,
-    date: datetime.date,
     title: str,
     mode: str,
     width: int = 700,
@@ -150,15 +148,25 @@ def generate_regions_choropleth(
         "https://raw.githubusercontent.com/openpolis/geojson-italy/master/topojson/limits_IT_regions.topo.json",
         "regions",
     )
-    filtered_data = data[["codice_regione", feature]]
-    return (
+
+    filtered_data = data
+    filtered_data.loc[:, "data"] = filtered_data["data"].apply(lambda x: x.isoformat())
+    filtered_data = filtered_data.where(filtered_data[feature] != 0, 1e-3)
+
+    base_chart = (
+        alt.Chart(regions_shape)
+        .mark_geoshape(stroke="black", strokeWidth=0.5, color="white")
+        .encode(tooltip=[alt.Tooltip("properties.reg_name:N", title=title)])
+    )
+
+    color_chart = (
         alt.Chart(regions_shape)
         .mark_geoshape(stroke="black", strokeWidth=0.5)
         .encode(
             color=alt.Color(
                 f"{feature}:Q",
                 title=formatter(feature),
-                scale=alt.Scale(type="symlog", scheme="teals"),
+                scale=alt.Scale(type="log", scheme="teals"),
             ),
             tooltip=[
                 alt.Tooltip("properties.reg_name:N", title=title),
@@ -171,6 +179,12 @@ def generate_regions_choropleth(
                 data=filtered_data, key="codice_regione", fields=[feature],
             ),
         )
+    )
+
+    final_chart = (
+        (base_chart + color_chart)
         .configure_view(strokeWidth=0)
         .properties(width=width, height=height)
     )
+
+    return final_chart
