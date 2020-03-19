@@ -1,6 +1,7 @@
 import altair as alt
 import pandas as pd
 import streamlit as st
+import datetime
 
 from utils import (
     calculate_growth_factor,
@@ -159,15 +160,26 @@ def english_map(data: pd.DataFrame, mode: str = "total") -> None:
         label="Choose...", options=features, format_func=formatter, index=8
     )
 
-    chosen_date = st.date_input(label="Choose date:")
-    filtered_data = english_data[english_data["data"] == chosen_date]
+    # Date selection
+    filtered_data = data
+    filtered_data["days_passed"] = filtered_data["data"].apply(
+        lambda x: (x - datetime.date(2020, 2, 24)).days
+    )
+    n_days = filtered_data["days_passed"].unique().shape[0] - 1
+
+    st.markdown(
+        "Choose what date to visualise as the number of days elapsed since the first data collection, on 24th February:"
+    )
+    chosen_n_days = st.slider("Days:", min_value=0, max_value=n_days, value=n_days,)
+    st.markdown(
+        f"Chosen date: {datetime.date(2020, 2, 24) + datetime.timedelta(days=chosen_n_days)}"
+    )
+    filtered_data = data[data["days_passed"] == chosen_n_days]
 
     if filtered_data.empty:
         st.warning("No information is available for the selected date")
     else:
-        choropleth = generate_regions_choropleth(
-            english_data, feature, chosen_date, "Region", mode
-        )
+        choropleth = generate_regions_choropleth(filtered_data, feature, "Region", mode)
         st.write(choropleth)
 
     st.markdown(
