@@ -1,33 +1,21 @@
-# Translations template for covid19italy.
-# Copyright (C) 2020 Tommaso Bonomo
-# This file is distributed under the same license as the covid19italy project.
-# Tommaso Bonomo <tommaso.bonomo.97@gmail.com>, 2020.
+# Translations template for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.2\n"
-"Report-Msgid-Bugs-To: tommaso.bonomo.97@gmail.com\n"
-"POT-Creation-Date: 2020-03-21 11:48+0100\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-03-21 13:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: tommaso.bonomo.97@gmail.com\n"
-"Language-Team: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
-
-#: src/COVID-19-Italy.py:15
-msgid "Language"
-msgstr ""
-
-#: src/COVID-19-Italy.py:16 src/COVID-19-Italy.py:18
-msgid "English"
-msgstr ""
-
-#: src/COVID-19-Italy.py:16 src/COVID-19-Italy.py:20
-msgid "Italiano"
-msgstr ""
 
 #: src/COVID-19-Italy.py:26 src/COVID-19-Italy.py:28
 msgid "Page"
@@ -43,5 +31,161 @@ msgstr ""
 
 #: src/COVID-19-Italy.py:38
 msgid "Source code can be found at "
+msgstr ""
+
+#: src/COVID-19-Italy.py:42
+msgid "Warnings:"
+msgstr ""
+
+#: src/COVID-19-Italy.py:44
+msgid ""
+"\n"
+"    - 07/03/2020: data from Brescia +300 positive results\n"
+"    - 10/03/2020: data from Lombardia is partial.\n"
+"    - 11/03/2020: data from Abruzzo did not come through.\n"
+"    - 16/03/2020: data from P.A. Trento and Puglia did not come through.\n"
+"    - 17/03/2020: data from the Province of Rimini is not updated.\n"
+"    - 18/03/2020: data from Campania and Province of Parma did not come "
+"through.\n"
+"    "
+msgstr ""
+
+#: src/COVID-19-Italy.py:57
+msgid ""
+"All the data displayed in this dashboard is provided by the Italian "
+"Ministry of Health (Ministero della Salute) and elaborated by "
+"Dipartimento della Protezione Civile. This work is therefore a derivative"
+" of [COVID-19 Italia - Monitoraggio situazione](https://github.com/pcm-"
+"dpc/COVID-19) licensed under [CC BY "
+"4.0](https://creativecommons.org/licenses/by/4.0/)"
+msgstr ""
+
+#: src/maps.py:20 src/trends.py:22
+msgid "COVID-19 in Italy"
+msgstr ""
+
+#: src/maps.py:22 src/trends.py:24
+msgid "What indicator would you like to visualise?"
+msgstr ""
+
+#: src/maps.py:25 src/trends.py:27
+msgid "Choose..."
+msgstr ""
+
+#: src/maps.py:34
+msgid ""
+"Choose what date to visualise as the number of days elapsed since the "
+"first data collection, on 24th February:"
+msgstr ""
+
+#: src/maps.py:38
+msgid "Days:"
+msgstr ""
+
+#: src/maps.py:45
+msgid "No information is available for the selected date"
+msgstr ""
+
+#: src/maps.py:47 src/trends.py:112 src/trends.py:122
+msgid "Region"
+msgstr ""
+
+#: src/trends.py:31
+msgid "growth_factor"
+msgstr ""
+
+#: src/trends.py:37
+msgid "Scale"
+msgstr ""
+
+#: src/trends.py:37 src/trends.py:98
+msgid "linear"
+msgstr ""
+
+#: src/trends.py:37 src/trends.py:38 src/trends.py:98 src/trends.py:100
+msgid "logarithmic"
+msgstr ""
+
+#: src/trends.py:44 src/trends.py:106
+msgid "General data"
+msgstr ""
+
+#: src/trends.py:46 src/trends.py:65 src/trends.py:111 src/trends.py:121
+msgid "Month and day"
+msgstr ""
+
+#: src/trends.py:50 src/trends.py:116
+msgid "Growth factor"
+msgstr ""
+
+#: src/trends.py:52
+msgid ""
+"\n"
+"        The growth factor is the multiplier of the exponential growth "
+"curve, calculated as:\n"
+"        $$\n"
+"        \\frac{cases_{n+1}}{cases_{n}}\n"
+"        $$\n"
+"        where $cases_n$ stands for the number of cases registered on day "
+"$n$. For example, if 300 cases were registered\n"
+"        yesterday and 400 today, the growth factor would be 1.33, as "
+"$\\frac{400}{300} = 1.33$.\n"
+"        "
+msgstr ""
+
+#: src/trends.py:69
+msgid "Situation in different regions"
+msgstr ""
+
+#: src/trends.py:74
+msgid "Regions"
+msgstr ""
+
+#: src/trends.py:88
+msgid "No region selected!"
+msgstr ""
+
+#: src/trends.py:98
+msgid "Regional Scale"
+msgstr ""
+
+#: src/utils.py:51
+msgid "ricoverati_con_sintomi"
+msgstr ""
+
+#: src/utils.py:52
+msgid "terapia_intensiva"
+msgstr ""
+
+#: src/utils.py:53
+msgid "totale_ospedalizzati"
+msgstr ""
+
+#: src/utils.py:54
+msgid "isolamento_domiciliare"
+msgstr ""
+
+#: src/utils.py:55
+msgid "totale_attualmente_positivi"
+msgstr ""
+
+#: src/utils.py:56
+msgid "nuovi_attualmente_positivi"
+msgstr ""
+
+#: src/utils.py:57
+msgid "dimessi_guariti"
+msgstr ""
+
+#: src/utils.py:58
+msgid "deceduti"
+msgstr ""
+
+#: src/utils.py:59
+msgid "totale_casi"
+msgstr ""
+
+#: src/utils.py:60
+msgid "tamponi"
 msgstr ""
 
