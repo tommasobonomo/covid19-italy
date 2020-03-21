@@ -14,7 +14,7 @@ from utils import (
 )
 
 
-def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
+def english_line_plots(data: pd.DataFrame) -> None:
     """
     Render line plots with all text in English. Takes a data argument that usually comes from utils.get_data()
     """
@@ -27,15 +27,9 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     feature = st.selectbox(
         label="Choose...", options=features, format_func=formatter, index=8
     )
-    original_feature = feature
 
     # Group data by date and calculate diff if required
     general = english_data.groupby("data", as_index=False).sum()
-    if mode == "day-to-day":
-        general[f"{feature}_delta"] = general[feature].diff()
-        general = general.dropna()
-        feature = f"{feature}_delta"
-        features.append(feature)
     general = calculate_growth_factor(general, features)
 
     # Choose log scale or linear, defines what feature to use
@@ -89,9 +83,6 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     regions_raw = []
     for _, region in selected_regions.groupby("denominazione_regione"):
         region = region.sort_values("data")
-        if mode == "day-to-day":
-            region[f"{original_feature}_delta"] = region[original_feature].diff()
-            features.append(f"{original_feature}_delta")
         region = calculate_growth_factor(region, features)
         regions_raw.append(region)
     selected_regions = pd.concat(regions_raw).reset_index(drop=True)
@@ -148,7 +139,7 @@ def english_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     )
 
 
-def english_map(data: pd.DataFrame, mode: str = "total") -> None:
+def english_map(data: pd.DataFrame) -> None:
     """Render chropleth of Italy with desired feature"""
     english_data = dataframe_translator(data)
 
@@ -179,7 +170,7 @@ def english_map(data: pd.DataFrame, mode: str = "total") -> None:
     if filtered_data.empty:
         st.warning("No information is available for the selected date")
     else:
-        choropleth = generate_regions_choropleth(filtered_data, feature, "Region", mode)
+        choropleth = generate_regions_choropleth(filtered_data, feature, "Region")
         st.write(choropleth)
 
     st.markdown(

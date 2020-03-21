@@ -137,12 +137,7 @@ def generate_regional_chart(
 
 
 def generate_regions_choropleth(
-    data: pd.DataFrame,
-    feature: str,
-    title: str,
-    mode: str,
-    width: int = 700,
-    height: int = 1000,
+    data: pd.DataFrame, feature: str, title: str, width: int = 700, height: int = 1000,
 ) -> alt.Chart:
     regions_shape = alt.topo_feature(
         "https://raw.githubusercontent.com/openpolis/geojson-italy/master/topojson/limits_IT_regions.topo.json",

@@ -13,7 +13,7 @@ from utils import (
 )
 
 
-def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
+def italian_line_plots(data: pd.DataFrame) -> None:
     """
     Render line plots with all text in Italian. Takes a data argument that usually comes from utils.get_data()
     """
@@ -24,15 +24,9 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     feature = st.selectbox(
         label="Scegli...", options=features, format_func=formatter, index=8
     )
-    original_feature = feature
 
     # Group data by date and calculate log of interested feature
     general = data.groupby("data", as_index=False).sum()
-    if mode == "day-to-day":
-        general[f"differenza_{feature}"] = general[feature].diff()
-        general = general.dropna()
-        feature = f"differenza_{feature}"
-        features.append(feature)
     general = calculate_growth_factor(general, features)
 
     # Choose log scale or linear, defines what feature to use
@@ -85,9 +79,6 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     regions_raw = []
     for _, region in selected_regions.groupby("denominazione_regione"):
         region = region.sort_values("data")
-        if mode == "day-to-day":
-            region[f"differenza_{original_feature}"] = region[original_feature].diff()
-            features.append(f"differenza_{original_feature}")
         region = calculate_growth_factor(region, features)
         regions_raw.append(region)
     selected_regions = pd.concat(regions_raw).reset_index(drop=True)
@@ -144,7 +135,7 @@ def italian_line_plots(data: pd.DataFrame, mode: str = "total") -> None:
     )
 
 
-def italian_map(data: pd.DataFrame, mode: str = "total") -> None:
+def italian_map(data: pd.DataFrame) -> None:
     """Render chropleth of Italy with desired factor"""
 
     st.title("COVID-19 in Italia")
@@ -174,9 +165,7 @@ def italian_map(data: pd.DataFrame, mode: str = "total") -> None:
     if filtered_data.empty:
         st.warning("Nessuna informazione disponibile per la data selezionata")
     else:
-        choropleth = generate_regions_choropleth(
-            filtered_data, feature, "Regione", mode
-        )
+        choropleth = generate_regions_choropleth(filtered_data, feature, "Regione")
         st.write(choropleth)
 
     st.markdown(

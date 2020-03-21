@@ -1,4 +1,6 @@
 import streamlit as st
+import pandas as pd
+from typing import Dict, Callable
 
 from italian import italian_line_plots, italian_map
 from english import english_line_plots, english_map
@@ -15,20 +17,12 @@ if language == "English":
     page = st.sidebar.selectbox(
         label="Page", options=["Temporal trend", "Geographical distribution"]
     )
-    page_function_mapping = {
+    page_function_mapping: Dict[str, Callable[[pd.DataFrame], None]] = {
         "Temporal trend": english_line_plots,
         "Geographical distribution": english_map,
     }
 
-    st.sidebar.markdown("# Available visualisations")
-    st.sidebar.markdown(
-        "Choose if you prefer to visualise the total of the chosen indicator or the day-to-day increment or decrement:"
-    )
-    data_rate = st.sidebar.radio(
-        label="Available visualisations", options=["total", "day-to-day"]
-    )
-
-    page_function_mapping[page](data, mode=data_rate)
+    page_function_mapping[page](data)
 
 elif language == "Italiano":
     # Page choice
@@ -36,23 +30,13 @@ elif language == "Italiano":
     page = st.sidebar.selectbox(
         label="Pagina", options=["Andamento temporale", "Distribuzione geografica"]
     )
-    page_function_mapping = {
+    page_function_mapping: Dict[str, Callable[[pd.DataFrame], None]] = {
         "Andamento temporale": italian_line_plots,
         "Distribuzione geografica": italian_map,
     }
 
-    # Visualisations choice
-    st.sidebar.markdown("# Possibili visualizzazioni")
-    st.sidebar.markdown(
-        "Scegli se preferisci visualizzare il dato totale o il relativo cambiamento rispetto al giorno precedente:"
-    )
-    data_rate = st.sidebar.radio(
-        label="Possibili visualizzazioni", options=["totale", "giorno per giorno"]
-    )
-    mode = "total" if data_rate == "totale" else "day-to-day"
-    page_function_mapping[page](data, mode=mode)
+    page_function_mapping[page](data)
 
 st.sidebar.title(
     "To contribute or view the code, please see [github](https://github.com/tommasobonomo/covid19-italy)"
 )
-
