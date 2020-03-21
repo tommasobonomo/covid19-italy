@@ -148,10 +148,8 @@ def generate_regions_choropleth(
         "https://raw.githubusercontent.com/openpolis/geojson-italy/master/topojson/limits_IT_regions.topo.json",
         "regions",
     )
-
-    filtered_data = data
-    filtered_data.loc[:, "data"] = filtered_data["data"].apply(lambda x: x.isoformat())
-    filtered_data = filtered_data.where(filtered_data[feature] != 0, 1e-3)
+    data.loc[:, "data"] = data["data"].apply(lambda x: x.isoformat())
+    data = data[data[feature] > 0]
 
     base_chart = (
         alt.Chart(regions_shape)
@@ -175,9 +173,7 @@ def generate_regions_choropleth(
         )
         .transform_lookup(
             "properties.reg_istat_code_num",
-            from_=alt.LookupData(
-                data=filtered_data, key="codice_regione", fields=[feature],
-            ),
+            from_=alt.LookupData(data=data, key="codice_regione", fields=[feature],),
         )
     )
 

@@ -17,7 +17,7 @@ from utils import (
 def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     """Renders line plots, both general and regional, of data argument. Usually it is the resulting DataFrame from the website of the Protezione civile."""
     _ = lang.gettext
-    data = dataframe_translator(data, lang)
+    data.loc[:, :] = dataframe_translator(data, lang)
 
     st.title(_("COVID-19 in Italy"))
 
@@ -90,7 +90,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
         regions_raw = []
         for region_name, region in selected_regions.groupby("denominazione_regione"):
             region = region.sort_values("data")
-            region = calculate_growth_factor(region, features)
+            region = calculate_growth_factor(region, features, prefix=gf_prefix)
             regions_raw.append(region)
         selected_regions = pd.concat(regions_raw).reset_index(drop=True)
 

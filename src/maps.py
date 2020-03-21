@@ -15,7 +15,7 @@ from utils import (
 def choropleth_maps(data: pd.DataFrame, lang: NullTranslations) -> None:
     """Render choropleth maps of Italy, selecting feature and day"""
     _ = lang.gettext
-    data = dataframe_translator(data, lang)
+    data.loc[:, :] = dataframe_translator(data, lang)
 
     st.title(_("COVID-19 in Italy"))
 
@@ -37,7 +37,10 @@ def choropleth_maps(data: pd.DataFrame, lang: NullTranslations) -> None:
     )
     chosen_n_days = st.slider(_("Days:"), min_value=0, max_value=n_days, value=n_days,)
     st.markdown(
-        f"{_('Chosen date')}: {datetime.date(2020, 2, 24) + datetime.timedelta(days=chosen_n_days)}"
+        (
+            _("Chosen date: ")
+            + f"{datetime.date(2020, 2, 24) + datetime.timedelta(days=chosen_n_days)}"
+        )
     )
     day_data = data[data["days_passed"] == chosen_n_days]
 
