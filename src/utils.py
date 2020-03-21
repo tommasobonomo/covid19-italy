@@ -35,8 +35,8 @@ def get_features(data: pd.DataFrame) -> List[str]:
 
 
 def formatter(name: str) -> str:
-    if name == "people_in_ICU":
-        return "People in ICU"
+    if name == "hospitalised_in_ICU":
+        return "Hospitalised in ICU"
     else:
         return " ".join(name.capitalize().split("_"))
 
@@ -56,6 +56,7 @@ def dataframe_translator(data: pd.DataFrame, lang: NullTranslations) -> pd.DataF
         "nuovi_attualmente_positivi": _("nuovi_attualmente_positivi"),
         "dimessi_guariti": _("dimessi_guariti"),
         "deceduti": _("deceduti"),
+        "totale_casi": _("totale_casi"),
         "tamponi": _("tamponi"),
     }
 
@@ -93,7 +94,7 @@ def generate_global_chart(
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
             tooltip=[
                 alt.Tooltip(f"{feature}", title=formatter(feature)),
-                alt.Tooltip("data", title="Data", type="temporal"),
+                alt.Tooltip("data", title=x_title, type="temporal"),
             ],
         )
         .configure_scale(continuousPadding=padding)
