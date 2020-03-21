@@ -24,6 +24,10 @@ if language == "English":
 
     page_function_mapping[page](data)
 
+    st.sidebar.markdown(
+        "Source code can be found at [GitHub](https://github.com/tommasobonomo/covid19-italy)."
+    )
+
 elif language == "Italiano":
     # Page choice
     st.sidebar.markdown("# Pagina")
@@ -37,6 +41,6 @@ elif language == "Italiano":
 
     page_function_mapping[page](data)
 
-st.sidebar.title(
-    "To contribute or view the code, please see [github](https://github.com/tommasobonomo/covid19-italy)"
-)
+    st.sidebar.markdown(
+        "Il codice sorgente è visibile su [GitHub](https://github.com/tommasobonomo/covid19-italy)."
+    )
