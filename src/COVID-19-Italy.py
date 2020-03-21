@@ -37,3 +37,26 @@ st.sidebar.markdown(
     _("Source code can be found at ")
     + "[GitHub](https://github.com/tommasobonomo/covid19-italy)."
 )
+
+st.subheader(_("Warnings:"))
+st.warning(
+    _(
+        """
+    - 07/03/2020: data from Brescia +300 positive results
+    - 10/03/2020: data from Lombardia is partial.
+    - 11/03/2020: data from Abruzzo did not come through.
+    - 16/03/2020: data from P.A. Trento and Puglia did not come through.
+    - 17/03/2020: data from the Province of Rimini is not updated.
+    - 18/03/2020: data from Campania and Province of Parma did not come through.
+    """
+    )
+)
+
+st.markdown(
+    _(
+        "All the data displayed in this dashboard is provided by the Italian Ministry of Health "
+        "(Ministero della Salute) and elaborated by Dipartimento della Protezione Civile. This work is therefore "
+        "a derivative of [COVID-19 Italia - Monitoraggio situazione](https://github.com/pcm-dpc/COVID-19) licensed "
+        "under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
+    )
+)
