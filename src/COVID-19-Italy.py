@@ -5,6 +5,7 @@ from typing import Dict, Callable
 
 from utils import get_data
 from trends import line_plots
+from maps import choropleth_maps
 
 data = get_data()
 
@@ -28,7 +29,7 @@ page = st.sidebar.selectbox(
 )
 page_function_mapping: Dict[str, Callable[[pd.DataFrame, NullTranslations], None]] = {
     _("Temporal trend"): line_plots,
-    _("Geographical distribution"): None,
+    _("Geographical distribution"): choropleth_maps,
 }
 
 page_function_mapping[page](data, lang)
