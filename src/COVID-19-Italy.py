@@ -1,58 +1,63 @@
 import streamlit as st
+import pandas as pd
+from gettext import translation, NullTranslations
+from typing import Dict, Callable
 
-from italian import italian_line_plots, italian_map
-from english import english_line_plots, english_map
 from utils import get_data
+from trends import line_plots
+from maps import choropleth_maps
 
 data = get_data()
 
 st.sidebar.title("Language")
-language = st.sidebar.radio(label="", options=["Italiano", "English"])
+language = st.sidebar.radio(label="", options=["English", "Italiano"])
 
-if language == "English":
-    # Page choice
-    st.sidebar.markdown("# Page")
-    page = st.sidebar.selectbox(
-        label="Page", options=["Temporal trend", "Geographical distribution"]
-    )
-    page_function_mapping = {
-        "Temporal trend": english_line_plots,
-        "Geographical distribution": english_map,
-    }
+if language == "Italiano":
+    lang = translation("messages", localedir="locale", languages=["it_IT"])
+    lang.install()
+    _ = lang.gettext
+else:
+    # language == "English" is the default
+    lang = translation("messages", localedir="locale", languages=["en_GB"])
+    lang.install()
+    _ = lang.gettext
 
-    st.sidebar.markdown("# Available visualisations")
-    st.sidebar.markdown(
-        "Choose if you prefer to visualise the total of the chosen indicator or the day-to-day increment or decrement:"
-    )
-    data_rate = st.sidebar.radio(
-        label="Available visualisations", options=["total", "day-to-day"]
-    )
+# Page choice
+st.sidebar.title(_("Page"))
+page = st.sidebar.selectbox(
+    label=_("Page"), options=[_("Temporal trend"), _("Geographical distribution")]
+)
+page_function_mapping: Dict[str, Callable[[pd.DataFrame, NullTranslations], None]] = {
+    _("Temporal trend"): line_plots,
+    _("Geographical distribution"): choropleth_maps,
+}
 
-    page_function_mapping[page](data, mode=data_rate)
+page_function_mapping[page](data, lang)
 
-elif language == "Italiano":
-    # Page choice
-    st.sidebar.markdown("# Pagina")
-    page = st.sidebar.selectbox(
-        label="Pagina", options=["Andamento temporale", "Distribuzione geografica"]
-    )
-    page_function_mapping = {
-        "Andamento temporale": italian_line_plots,
-        "Distribuzione geografica": italian_map,
-    }
-
-    # Visualisations choice
-    st.sidebar.markdown("# Possibili visualizzazioni")
-    st.sidebar.markdown(
-        "Scegli se preferisci visualizzare il dato totale o il relativo cambiamento rispetto al giorno precedente:"
-    )
-    data_rate = st.sidebar.radio(
-        label="Possibili visualizzazioni", options=["totale", "giorno per giorno"]
-    )
-    mode = "total" if data_rate == "totale" else "day-to-day"
-    page_function_mapping[page](data, mode=mode)
-
-st.sidebar.title(
-    "To contribute or view the code, please see [github](https://github.com/tommasobonomo/covid19-italy)"
+st.sidebar.markdown(
+    _("Source code can be found at ")
+    + "[GitHub](https://github.com/tommasobonomo/covid19-italy)."
 )
 
+st.subheader(_("Warnings:"))
+st.warning(
+    _(
+        """
+    - 07/03/2020: data from Brescia +300 positive results
+    - 10/03/2020: data from Lombardia is partial.
+    - 11/03/2020: data from Abruzzo did not come through.
+    - 16/03/2020: data from P.A. Trento and Puglia did not come through.
+    - 17/03/2020: data from the Province of Rimini is not updated.
+    - 18/03/2020: data from Campania and Province of Parma did not come through.
+    """
+    )
+)
+
+st.markdown(
+    _(
+        "All the data displayed in this dashboard is provided by the Italian Ministry of Health "
+        "(Ministero della Salute) and elaborated by Dipartimento della Protezione Civile. This work is therefore "
+        "a derivative of [COVID-19 Italia - Monitoraggio situazione](https://github.com/pcm-dpc/COVID-19) licensed "
+        "under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
+    )
+)

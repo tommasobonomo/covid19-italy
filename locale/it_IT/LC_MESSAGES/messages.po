@@ -1,0 +1,224 @@
+# Italian (Italy) translations for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-03-21 14:07+0100\n"
+"PO-Revision-Date: 2020-03-21 11:50+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it_IT\n"
+"Language-Team: it_IT <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: src/COVID-19-Italy.py:26 src/COVID-19-Italy.py:28
+msgid "Page"
+msgstr "Pagina"
+
+#: src/COVID-19-Italy.py:28 src/COVID-19-Italy.py:31
+msgid "Temporal trend"
+msgstr "Andamento temporale"
+
+#: src/COVID-19-Italy.py:28 src/COVID-19-Italy.py:32
+msgid "Geographical distribution"
+msgstr "Distribuzione geografica"
+
+#: src/COVID-19-Italy.py:38
+msgid "Source code can be found at "
+msgstr "Il codice sorgente può essere visualizzato visitando "
+
+#: src/COVID-19-Italy.py:42
+msgid "Warnings:"
+msgstr "Avvertenze:"
+
+#: src/COVID-19-Italy.py:44
+msgid ""
+"\n"
+"    - 07/03/2020: data from Brescia +300 positive results\n"
+"    - 10/03/2020: data from Lombardia is partial.\n"
+"    - 11/03/2020: data from Abruzzo did not come through.\n"
+"    - 16/03/2020: data from P.A. Trento and Puglia did not come through.\n"
+"    - 17/03/2020: data from the Province of Rimini is not updated.\n"
+"    - 18/03/2020: data from Campania and Province of Parma did not come "
+"through.\n"
+"    "
+msgstr ""
+"\n"
+"    - 07/03/2020: dati Brescia +300 esiti positivi\n"
+"    - 10/03/2020: dati Regione Lombardia parziali.\n"
+"    - 11/03/2020: dati Regione Abruzzo non pervenuti.\n"
+"    - 16/03/2020: dati P.A. Trento e Puglia non pervenuti.\n"
+"    - 17/03/2020: dati Provincia di Rimini non aggiornati.\n"
+"    - 18/03/2020: dati Provincia di Parma non pervenuti.\n"
+"    - 18/03/2020: dati Regione Campania non pervenuti.\n"
+"    "
+
+#: src/COVID-19-Italy.py:57
+msgid ""
+"All the data displayed in this dashboard is provided by the Italian "
+"Ministry of Health (Ministero della Salute) and elaborated by "
+"Dipartimento della Protezione Civile. This work is therefore a derivative"
+" of [COVID-19 Italia - Monitoraggio situazione](https://github.com/pcm-"
+"dpc/COVID-19) licensed under [CC BY "
+"4.0](https://creativecommons.org/licenses/by/4.0/)"
+msgstr ""
+"Tutti i dati visualizzati in questa dashboard provengono dal Ministero "
+"della Salute e sono forniti dal Dipartimento della Protezione Civile. "
+"Questo progetto è quindi un derivato di [COVID-19 Italia - Monitoraggio "
+"situazione](https://github.com/pcm-dpc/COVID-19) che è liberamente "
+"utilizzabile sotto licenza [CC BY "
+"4.0](https://creativecommons.org/licenses/by/4.0/)"
+
+#: src/maps.py:20 src/trends.py:22
+msgid "COVID-19 in Italy"
+msgstr "COVID-19 in Italia"
+
+#: src/maps.py:22 src/trends.py:24
+msgid "What indicator would you like to visualise?"
+msgstr "Che dato vorresti visualizzare?"
+
+#: src/maps.py:25 src/trends.py:27
+msgid "Choose..."
+msgstr "Scegli..."
+
+#: src/maps.py:34
+msgid ""
+"Choose what date to visualise as the number of days elapsed since the "
+"first data collection, on 24th February:"
+msgstr ""
+"Scegli che data visualizzare come numero di giorni dalla prima accolta "
+"dati, il 24 febbraio:"
+
+#: src/maps.py:38
+msgid "Days:"
+msgstr "Giorni:"
+
+#: src/maps.py:41
+msgid "Chosen date: "
+msgstr "Data scelta: "
+
+#: src/maps.py:48
+msgid "No information is available for the selected date"
+msgstr "Nessuna informazione disponibile per la data selezionata"
+
+#: src/maps.py:50 src/trends.py:112 src/trends.py:122
+msgid "Region"
+msgstr "Regione"
+
+#: src/trends.py:31
+msgid "growth_factor"
+msgstr "fattore_crescita"
+
+#: src/trends.py:37
+msgid "Scale"
+msgstr "Scala"
+
+#: src/trends.py:37 src/trends.py:98
+msgid "linear"
+msgstr "lineare"
+
+#: src/trends.py:37 src/trends.py:38 src/trends.py:98 src/trends.py:100
+msgid "logarithmic"
+msgstr "logaritmica"
+
+#: src/trends.py:44 src/trends.py:106
+msgid "General data"
+msgstr "Dati generali"
+
+#: src/trends.py:46 src/trends.py:65 src/trends.py:111 src/trends.py:121
+msgid "Month and day"
+msgstr "Mese e giorno"
+
+#: src/trends.py:50 src/trends.py:116
+msgid "Growth factor"
+msgstr "Fattore di crescita"
+
+#: src/trends.py:52
+msgid ""
+"\n"
+"        The growth factor is the multiplier of the exponential growth "
+"curve, calculated as:\n"
+"        $$\n"
+"        \\frac{cases_{n+1}}{cases_{n}}\n"
+"        $$\n"
+"        where $cases_n$ stands for the number of cases registered on day "
+"$n$. For example, if 300 cases were registered\n"
+"        yesterday and 400 today, the growth factor would be 1.33, as "
+"$\\frac{400}{300} = 1.33$.\n"
+"        "
+msgstr ""
+"\n"
+"        Il fattore di crescita è il moltiplicatore della curva "
+"esponenziale di crescita, calcolato come:\n"
+"        $$\n"
+"        \\frac{casi_{n+1}}{casi_{n}}\n"
+"        $$\n"
+"        dove $casi_n$ indica il numero di casi per il giorno $n$. Ad "
+"esempio, se ieri fossero stati registrati 300 casi\n"
+"        e oggi 400, il fattore di crescita sarebbe 1.33, dato che "
+"$\\frac{400}{300} = 1.33$\n"
+"        "
+
+#: src/trends.py:69
+msgid "Situation in different regions"
+msgstr "Divisione per regione"
+
+#: src/trends.py:74
+msgid "Regions"
+msgstr "Regione"
+
+#: src/trends.py:88
+msgid "No region selected!"
+msgstr "Nessuna regione selezionata!"
+
+#: src/trends.py:98
+msgid "Regional Scale"
+msgstr "Scala regionale"
+
+#: src/utils.py:51
+msgid "ricoverati_con_sintomi"
+msgstr ""
+
+#: src/utils.py:52
+msgid "terapia_intensiva"
+msgstr ""
+
+#: src/utils.py:53
+msgid "totale_ospedalizzati"
+msgstr ""
+
+#: src/utils.py:54
+msgid "isolamento_domiciliare"
+msgstr ""
+
+#: src/utils.py:55
+msgid "totale_attualmente_positivi"
+msgstr ""
+
+#: src/utils.py:56
+msgid "nuovi_attualmente_positivi"
+msgstr ""
+
+#: src/utils.py:57
+msgid "dimessi_guariti"
+msgstr ""
+
+#: src/utils.py:58
+msgid "deceduti"
+msgstr ""
+
+#: src/utils.py:59
+msgid "totale_casi"
+msgstr ""
+
+#: src/utils.py:60
+msgid "tamponi"
+msgstr ""
+
