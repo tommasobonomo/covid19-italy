@@ -2,6 +2,8 @@ import pandas as pd
 import altair as alt
 from typing import List
 
+from gettext import NullTranslations
+
 
 def get_data() -> pd.DataFrame:
     """
@@ -39,22 +41,22 @@ def formatter(name: str) -> str:
         return " ".join(name.capitalize().split("_"))
 
 
-def dataframe_translator(data: pd.DataFrame) -> pd.DataFrame:
+def dataframe_translator(data: pd.DataFrame, lang: NullTranslations) -> pd.DataFrame:
     """
-    Translates Italian columns into English
+    Translates original column features into language defined
     """
+    _ = lang.gettext
 
     feature_mapping = {
-        "ricoverati_con_sintomi": "hospitalised_with_symptoms",
-        "terapia_intensiva": "people_in_ICU",
-        "totale_ospedalizzati": "total_hospitalised",
-        "isolamento_domiciliare": "people_in_domestic_isolation",
-        "totale_attualmente_positivi": "total_of_current_positives",
-        "nuovi_attualmente_positivi": "new_current_positives",
-        "dimessi_guariti": "people_discharged_and_recovered",
-        "deceduti": "deaths",
-        "totale_casi": "total_cases",
-        "tamponi": "total_tests",
+        "ricoverati_con_sintomi": _("ricoverati_con_sintomi"),
+        "terapia_intensiva": _("terapia_intensiva"),
+        "totale_ospedalizzati": _("totale_ospedalizzati"),
+        "isolamento_domiciliare": _("isolamento_domiciliare"),
+        "totale_attualmente_positivi": _("totale_attualmente_positivi"),
+        "nuovi_attualmente_positivi": _("nuovi_attualmente_positivi"),
+        "dimessi_guariti": _("dimessi_guariti"),
+        "deceduti": _("deceduti"),
+        "tamponi": _("tamponi"),
     }
 
     data.columns = [
@@ -65,10 +67,12 @@ def dataframe_translator(data: pd.DataFrame) -> pd.DataFrame:
     return data
 
 
-def calculate_growth_factor(data: pd.DataFrame, features: List[str]):
+def calculate_growth_factor(
+    data: pd.DataFrame, features: List[str], prefix: str = "growth_factor"
+):
     for feature in features:
         data[f"{feature}_yesterday"] = data[feature].shift()
-        data[f"crescita_{feature}"] = data[feature] / data[f"{feature}_yesterday"]
+        data[f"{prefix}_{feature}"] = data[feature] / data[f"{feature}_yesterday"]
     return data
 
 
@@ -76,7 +80,7 @@ def generate_global_chart(
     data: pd.DataFrame,
     feature: str,
     scale: alt.Scale,
-    title: str,
+    x_title: str,
     padding: int = 5,
     width: int = 700,
     height: int = 500,
@@ -85,7 +89,7 @@ def generate_global_chart(
         alt.Chart(data)
         .mark_line(point={"size": 70})
         .encode(
-            x=alt.X("data:T", title=title),
+            x=alt.X("data:T", title=x_title),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
             tooltip=[
                 alt.Tooltip(f"{feature}", title=formatter(feature)),
@@ -102,8 +106,8 @@ def generate_regional_chart(
     data: pd.DataFrame,
     feature: str,
     scale: alt.Scale,
-    title: str,
-    alt_title: str,
+    x_title: str,
+    color_title: str,
     padding: int = 5,
     width: int = 700,
     height: int = 500,
@@ -113,13 +117,13 @@ def generate_regional_chart(
         alt.Chart(data)
         .mark_line(point={"size": 70})
         .encode(
-            x=alt.X("data:T", title=title),
+            x=alt.X("data:T", title=x_title),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
-            color=alt.Color("denominazione_regione:N", title=alt_title),
+            color=alt.Color("denominazione_regione:N", title=color_title),
             tooltip=[
-                alt.Tooltip("denominazione_regione", title=alt_title),
+                alt.Tooltip("denominazione_regione", title=color_title),
                 alt.Tooltip(f"{feature}", title=formatter(feature)),
-                alt.Tooltip("data", title="Data", type="temporal"),
+                alt.Tooltip("data", title=x_title, type="temporal"),
             ],
         )
         .configure_legend(
