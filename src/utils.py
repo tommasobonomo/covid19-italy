@@ -154,21 +154,29 @@ def generate_regional_chart(
 
 
 def generate_regions_choropleth(
-    data: pd.DataFrame, feature: str, title: str, width: int = 700, height: int = 1000,
+    data: pd.DataFrame,
+    feature: str,
+    title: str,
+    width: int = 700,
+    height: int = 1000,
+    log_scale: bool = True,
 ) -> alt.Chart:
     regions_shape = alt.topo_feature(
         "https://raw.githubusercontent.com/openpolis/geojson-italy/master/topojson/limits_IT_regions.topo.json",
         "regions",
     )
-    data.loc[:, "data"] = data["data"].apply(lambda x: x.isoformat())
-    data = data[data[feature] > 0]
+    chart_data = data[data[feature] > 0][[feature, "codice_regione"]]
 
     base_chart = (
         alt.Chart(regions_shape)
         .mark_geoshape(stroke="black", strokeWidth=0.5, color="white")
         .encode(tooltip=[alt.Tooltip("properties.reg_name:N", title=title)])
     )
-
+    scale = (
+        alt.Scale(type="log", scheme="teals")
+        if log_scale
+        else alt.Scale(type="linear", scheme="teals")
+    )
     color_chart = (
         alt.Chart(regions_shape)
         .mark_geoshape(stroke="black", strokeWidth=0.5)
@@ -176,16 +184,19 @@ def generate_regions_choropleth(
             color=alt.Color(
                 f"{feature}:Q",
                 title=formatter(feature),
-                scale=alt.Scale(type="log", scheme="teals"),
+                scale=scale,
+                legend=alt.Legend(labelLimit=50),
             ),
             tooltip=[
                 alt.Tooltip("properties.reg_name:N", title=title),
-                alt.Tooltip(f"{feature}:Q", title=formatter(feature)),
+                alt.Tooltip(f"{feature}:Q", title=formatter(feature), format=".4~f"),
             ],
         )
         .transform_lookup(
             "properties.reg_istat_code_num",
-            from_=alt.LookupData(data=data, key="codice_regione", fields=[feature],),
+            from_=alt.LookupData(
+                data=chart_data, key="codice_regione", fields=[feature],
+            ),
         )
     )
 
