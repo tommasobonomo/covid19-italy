@@ -9,6 +9,7 @@ from utils import (
     get_features,
     formatter,
     calculate_growth_factor,
+    regional_growth_factor,
     generate_global_chart,
     generate_regional_chart,
 )
@@ -87,13 +88,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     if selected_regions.empty:
         st.warning(_("No region selected!"))
     else:
-        regions_raw = []
-        for region_name, region in selected_regions.groupby("denominazione_regione"):
-            region = region.sort_values("data")
-            region = calculate_growth_factor(region, features, prefix=gf_prefix)
-            regions_raw.append(region)
-        selected_regions = pd.concat(regions_raw).reset_index(drop=True)
-
+        selected_regions = regional_growth_factor(selected_regions, features, gf_prefix)
         regional_choice = st.radio(
             label=_("Regional Scale"), options=[_("linear"), _("logarithmic")]
         )

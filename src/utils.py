@@ -70,10 +70,22 @@ def dataframe_translator(data: pd.DataFrame, lang: NullTranslations) -> pd.DataF
 
 def calculate_growth_factor(
     data: pd.DataFrame, features: List[str], prefix: str = "growth_factor"
-):
+) -> pd.DataFrame:
     for feature in features:
         data[f"{feature}_yesterday"] = data[feature].shift()
         data[f"{prefix}_{feature}"] = data[feature] / data[f"{feature}_yesterday"]
+    return data
+
+
+def regional_growth_factor(
+    data: pd.DataFrame, features: List[str], prefix: str = "growth_factor"
+) -> pd.DataFrame:
+    regions_raw = []
+    for region_name, region in data.groupby("denominazione_regione"):
+        region = region.sort_values("data")
+        region = calculate_growth_factor(region, features, prefix=prefix)
+        regions_raw.append(region)
+    data = pd.concat(regions_raw).reset_index(drop=True)
     return data
 
 
