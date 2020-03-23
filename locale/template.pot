@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-21 14:07+0100\n"
+"POT-Creation-Date: 2020-03-23 16:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,69 +60,77 @@ msgid ""
 "4.0](https://creativecommons.org/licenses/by/4.0/)"
 msgstr ""
 
-#: src/maps.py:20 src/trends.py:22
+#: src/maps.py:25 src/trends.py:23
 msgid "COVID-19 in Italy"
 msgstr ""
 
-#: src/maps.py:22 src/trends.py:24
+#: src/maps.py:27 src/trends.py:25
 msgid "What indicator would you like to visualise?"
 msgstr ""
 
-#: src/maps.py:25 src/trends.py:27
+#: src/maps.py:30 src/trends.py:28
 msgid "Choose..."
 msgstr ""
 
-#: src/maps.py:34
+#: src/maps.py:33
+msgid "Growth factor of feature"
+msgstr ""
+
+#: src/maps.py:35
+msgid "GF"
+msgstr ""
+
+#: src/maps.py:50
 msgid ""
 "Choose what date to visualise as the number of days elapsed since the "
 "first data collection, on 24th February:"
 msgstr ""
 
-#: src/maps.py:38
+#: src/maps.py:55
 msgid "Days:"
 msgstr ""
 
-#: src/maps.py:41
+#: src/maps.py:59
 msgid "Chosen date: "
 msgstr ""
 
-#: src/maps.py:48
+#: src/maps.py:66
 msgid "No information is available for the selected date"
 msgstr ""
 
-#: src/maps.py:50 src/trends.py:112 src/trends.py:122
+#: src/maps.py:69 src/trends.py:107 src/trends.py:117
 msgid "Region"
 msgstr ""
 
-#: src/trends.py:31
+#: src/trends.py:32
 msgid "growth_factor"
 msgstr ""
 
-#: src/trends.py:37
+#: src/trends.py:38
 msgid "Scale"
 msgstr ""
 
-#: src/trends.py:37 src/trends.py:98
+#: src/trends.py:38 src/trends.py:93
 msgid "linear"
 msgstr ""
 
-#: src/trends.py:37 src/trends.py:38 src/trends.py:98 src/trends.py:100
+#: src/trends.py:38 src/trends.py:39 src/trends.py:93 src/trends.py:95
 msgid "logarithmic"
 msgstr ""
 
-#: src/trends.py:44 src/trends.py:106
+#: src/trends.py:45 src/trends.py:101
 msgid "General data"
 msgstr ""
 
-#: src/trends.py:46 src/trends.py:65 src/trends.py:111 src/trends.py:121
+#: src/trends.py:47 src/trends.py:66 src/trends.py:106 src/trends.py:116
 msgid "Month and day"
 msgstr ""
 
-#: src/trends.py:50 src/trends.py:116
+#: src/trends.py:51 src/trends.py:111
 msgid "Growth factor"
 msgstr ""
 
-#: src/trends.py:52
+#: src/trends.py:53
 msgid ""
 "\n"
 "        The growth factor is the multiplier of the exponential growth "
@@ -137,19 +145,19 @@ msgid ""
 "        "
 msgstr ""
 
-#: src/trends.py:69
+#: src/trends.py:70
 msgid "Situation in different regions"
 msgstr ""
 
-#: src/trends.py:74
+#: src/trends.py:75
 msgid "Regions"
 msgstr ""
 
-#: src/trends.py:88
+#: src/trends.py:89
 msgid "No region selected!"
 msgstr ""
 
-#: src/trends.py:98
+#: src/trends.py:93
 msgid "Regional Scale"
 msgstr ""
 
