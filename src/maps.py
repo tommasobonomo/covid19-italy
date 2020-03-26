@@ -23,7 +23,7 @@ def choropleth_maps(data: pd.DataFrame, lang: NullTranslations) -> None:
     st.title(_("COVID-19 in Italy"))
 
     map_scale = st.radio(
-        label=_("What scale would you like to visualise?"),
+        label=_("What resolution would you like to visualise?"),
         options=[_("Province"), _("Region")],
     )
     is_region = map_scale == _("Region")
@@ -47,11 +47,15 @@ def choropleth_maps(data: pd.DataFrame, lang: NullTranslations) -> None:
             log_scale = True
     else:
         data = get_province_data()
+        data.columns = [
+            _("totale_casi") if feature == "totale_casi" else feature
+            for feature in data.columns
+        ]
         feature = _("totale_casi")
 
         st.markdown(
             _(
-                "Only total cases and their growth factor are available at the province scale."
+                "Only total cases and their growth factor are available at the province resolution."
             )
         )
         feature_str = st.selectbox(
