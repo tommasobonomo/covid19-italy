@@ -29,6 +29,8 @@ def get_features(data: pd.DataFrame) -> List[str]:
             "denominazione_regione",
             "lat",
             "long",
+            "note_it",
+            "note_en",
         ]
     )
     return feature_data.columns.tolist()
