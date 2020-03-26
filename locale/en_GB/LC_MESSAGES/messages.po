@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-23 16:36+0100\n"
+"POT-Creation-Date: 2020-03-26 20:32+0100\n"
 "PO-Revision-Date: 2020-03-21 11:50+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_GB\n"
@@ -61,46 +61,77 @@ msgid ""
 "4.0](https://creativecommons.org/licenses/by/4.0/)"
 msgstr ""
 
-#: src/maps.py:25 src/trends.py:23
+#: src/maps.py:23 src/trends.py:23
 msgid "COVID-19 in Italy"
 msgstr ""
 
-#: src/maps.py:27 src/trends.py:25
+#: src/maps.py:26
+msgid "What resolution would you like to visualise?"
+msgstr ""
+
+#: src/maps.py:27
+msgid "Province"
+msgstr ""
+
+#: src/maps.py:27 src/maps.py:29 src/maps.py:101 src/trends.py:107
+#: src/trends.py:117
+msgid "Region"
+msgstr ""
+
+#: src/maps.py:32 src/trends.py:25
 msgid "What indicator would you like to visualise?"
 msgstr ""
 
-#: src/maps.py:30 src/trends.py:28
+#: src/maps.py:35 src/trends.py:28
 msgid "Choose..."
 msgstr ""
 
-#: src/maps.py:33
+#: src/maps.py:38
 msgid "Growth factor of feature"
 msgstr ""
 
-#: src/maps.py:35
+#: src/maps.py:40 src/maps.py:66
 msgid "GF"
 msgstr ""
 
-#: src/maps.py:50
+#: src/maps.py:51 src/maps.py:54 src/maps.py:67 src/utils.py:94
+msgid "totale_casi"
+msgstr "total_cases"
+
+#: src/maps.py:57
+msgid ""
+"Only total cases and their growth factor are available at the province "
+"resolution."
+msgstr ""
+
+#: src/maps.py:62
+msgid "What feature would you like to visualise?"
+msgstr ""
+
+#: src/maps.py:63
+msgid "Total cases"
+msgstr ""
+
+#: src/maps.py:63 src/maps.py:65
+msgid "Growth factor of total cases"
+msgstr ""
+
+#: src/maps.py:82
 msgid ""
 "Choose what date to visualise as the number of days elapsed since the "
 "first data collection, on 24th February:"
 msgstr ""
 
-#: src/maps.py:55
+#: src/maps.py:87
 msgid "Days:"
 msgstr ""
 
-#: src/maps.py:59
+#: src/maps.py:91
 msgid "Chosen date: "
 msgstr ""
 
-#: src/maps.py:66
+#: src/maps.py:98
 msgid "No information is available for the selected date"
-msgstr ""
-
-#: src/maps.py:69 src/trends.py:107 src/trends.py:117
-msgid "Region"
 msgstr ""
 
 #: src/trends.py:32
@@ -162,43 +193,48 @@ msgstr ""
 msgid "Regional Scale"
 msgstr ""
 
-#: src/utils.py:51
+#: src/utils.py:86
 msgid "ricoverati_con_sintomi"
 msgstr "hospitalised_with_symptoms"
 
-#: src/utils.py:52
+#: src/utils.py:87
 msgid "terapia_intensiva"
 msgstr "hospitalised_in_ICU"
 
-#: src/utils.py:53
+#: src/utils.py:88
 msgid "totale_ospedalizzati"
 msgstr "total_hospitalised"
 
-#: src/utils.py:54
+#: src/utils.py:89
 msgid "isolamento_domiciliare"
 msgstr "home confinement"
 
-#: src/utils.py:55
+#: src/utils.py:90
 msgid "totale_attualmente_positivi"
 msgstr "total_currently_positive"
 
-#: src/utils.py:56
+#: src/utils.py:91
 msgid "nuovi_attualmente_positivi"
 msgstr "new_currently_positive"
 
-#: src/utils.py:57
+#: src/utils.py:92
 msgid "dimessi_guariti"
 msgstr "discharged_and_recovered"
 
-#: src/utils.py:58
+#: src/utils.py:93
 msgid "deceduti"
 msgstr "deaths"
 
-#: src/utils.py:59
-msgid "totale_casi"
-msgstr "total_cases"
-
-#: src/utils.py:60
+#: src/utils.py:95
 msgid "tamponi"
 msgstr "total_tests"
+
+#~ msgid "What scale would you like to visualise?"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Only total cases and their growth "
+#~ "factor are available at the province "
+#~ "scale."
+#~ msgstr ""
 

@@ -17,6 +17,16 @@ def get_data() -> pd.DataFrame:
     return data
 
 
+def get_province_data() -> pd.DataFrame:
+    """Gets data from the GitHub repository of the Protezione Civile regarding provinces"""
+    data = pd.read_csv(
+        "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province.csv"
+    )
+    # Remove the time and just focus on the date
+    data["data"] = pd.to_datetime(data["data"]).apply(lambda x: x.date())
+    return data
+
+
 def get_features(data: pd.DataFrame) -> List[str]:
     """
     Gets features from data, i.e. all columns except data, stato, codice_regione, denominazione_regione, lat, long
@@ -34,6 +44,29 @@ def get_features(data: pd.DataFrame) -> List[str]:
         ]
     )
     return feature_data.columns.tolist()
+
+
+def get_features_provinces(data: pd.DataFrame) -> List[str]:
+    """
+    Gets features from data, i.e. all columns except data, stato, codice_regione, denominazione_regione, lat, long
+    """
+    columns = set(data.columns.tolist())
+    features = columns.difference(
+        [
+            "data",
+            "stato",
+            "codice_regione",
+            "denominazione_regione",
+            "lat",
+            "long",
+            "note_it",
+            "note_en",
+            "sigla_provincia",
+            "denominazione_provincia",
+            "codice_provincia",
+        ]
+    )
+    return list(features)
 
 
 def formatter(name: str) -> str:
@@ -88,6 +121,18 @@ def regional_growth_factor(
         region = calculate_growth_factor(region, features, prefix=prefix)
         regions_raw.append(region)
     data = pd.concat(regions_raw).reset_index(drop=True)
+    return data
+
+
+def provincial_growth_factor(
+    data: pd.DataFrame, features: List[str], prefix: str = "growth_factor"
+) -> pd.DataFrame:
+    provinces_raw = []
+    for province_name, province in data.groupby("denominazione_provincia"):
+        province = province.sort_values("data")
+        province = calculate_growth_factor(province, features, prefix=prefix)
+        provinces_raw.append(province)
+    data = pd.concat(provinces_raw).reset_index(drop=True)
     return data
 
 
@@ -162,17 +207,29 @@ def generate_regions_choropleth(
     width: int = 700,
     height: int = 1000,
     log_scale: bool = True,
+    is_region: bool = True,
 ) -> alt.Chart:
-    regions_shape = alt.topo_feature(
-        "https://raw.githubusercontent.com/openpolis/geojson-italy/master/topojson/limits_IT_regions.topo.json",
-        "regions",
-    )
-    chart_data = data[data[feature] > 0][[feature, "codice_regione"]]
+    if is_region:
+        shape = alt.topo_feature(
+            "https://raw.githubusercontent.com/openpolis/geojson-italy/master/topojson/limits_IT_regions.topo.json",
+            "regions",
+        )
+    else:
+        shape = alt.topo_feature(
+            "https://raw.githubusercontent.com/openpolis/geojson-italy/master/topojson/limits_IT_provinces.topo.json",
+            "provinces",
+        )
+
+    area_name = "reg_name" if is_region else "prov_name"
+    lookup_in_shape = "reg_istat_code_num" if is_region else "prov_istat_code_num"
+    lookup_in_df = "codice_regione" if is_region else "codice_provincia"
+
+    chart_data = data[data[feature] > 0][[feature, lookup_in_df]]
 
     base_chart = (
-        alt.Chart(regions_shape)
+        alt.Chart(shape)
         .mark_geoshape(stroke="black", strokeWidth=0.5, color="white")
-        .encode(tooltip=[alt.Tooltip("properties.reg_name:N", title=title)])
+        .encode(tooltip=[alt.Tooltip(f"properties.{area_name}:N", title=title)])
     )
     scale = (
         alt.Scale(type="log", scheme="teals")
@@ -180,7 +237,7 @@ def generate_regions_choropleth(
         else alt.Scale(type="linear", scheme="teals")
     )
     color_chart = (
-        alt.Chart(regions_shape)
+        alt.Chart(shape)
         .mark_geoshape(stroke="black", strokeWidth=0.5)
         .encode(
             color=alt.Color(
@@ -190,15 +247,13 @@ def generate_regions_choropleth(
                 legend=alt.Legend(labelLimit=50),
             ),
             tooltip=[
-                alt.Tooltip("properties.reg_name:N", title=title),
+                alt.Tooltip(f"properties.{area_name}:N", title=title),
                 alt.Tooltip(f"{feature}:Q", title=formatter(feature), format=".4~f"),
             ],
         )
         .transform_lookup(
-            "properties.reg_istat_code_num",
-            from_=alt.LookupData(
-                data=chart_data, key="codice_regione", fields=[feature],
-            ),
+            f"properties.{lookup_in_shape}",
+            from_=alt.LookupData(data=chart_data, key=lookup_in_df, fields=[feature],),
         )
     )
 
