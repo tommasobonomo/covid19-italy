@@ -265,3 +265,34 @@ def generate_regions_choropleth(
     )
 
     return final_chart
+
+
+def generate_trajectory_chart(
+    data: pd.DataFrame,
+    feature_x: str,
+    feature_y: str,
+    is_log_scale: bool = True,
+    padding: int = 5,
+    width: int = 700,
+    height: int = 500,
+):
+    scale = (
+        alt.Scale(type="log") if is_log_scale else alt.Scale(type="linear", zero=False)
+    )
+
+    return (
+        alt.Chart(data)
+        .mark_line(point={"size": 70})
+        .encode(
+            x=alt.X(f"{feature_x}:Q", title=formatter(feature_x), scale=scale),
+            y=alt.Y(f"{feature_y}:Q", title=formatter(feature_y), scale=scale),
+            tooltip=[
+                alt.Tooltip(f"{feature_x}", title=formatter(feature_x), format=".2~f"),
+                alt.Tooltip(f"{feature_y}", title=formatter(feature_y), format=".2~f"),
+                alt.Tooltip("data", type="temporal"),
+            ],
+        )
+        .configure_scale(continuousPadding=padding)
+        .properties(width=width, height=height)
+        .interactive()
+    )
