@@ -3,7 +3,7 @@ import pandas as pd
 from gettext import translation, NullTranslations
 from typing import Dict, Callable
 
-from utils import get_data
+from utils import get_data, dataframe_translator
 from trends import line_plots
 from maps import choropleth_maps
 
@@ -21,6 +21,10 @@ else:
     lang = translation("messages", localedir="locale", languages=["en_GB"])
     lang.install()
     _ = lang.gettext
+
+# Translate dataframe to given language
+# Features are derived directly from dataframe columns, following the tidy format of dataframes
+data.loc[:, :] = dataframe_translator(data, lang)
 
 # Page choice
 st.sidebar.title(_("Page"))

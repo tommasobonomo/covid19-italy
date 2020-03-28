@@ -5,7 +5,6 @@ import datetime
 from gettext import NullTranslations
 
 from utils import (
-    dataframe_translator,
     get_features,
     formatter,
     generate_regions_choropleth,
@@ -18,7 +17,6 @@ from utils import (
 def choropleth_maps(data: pd.DataFrame, lang: NullTranslations) -> None:
     """Render choropleth maps of Italy, selecting feature and day"""
     _ = lang.gettext
-    data.loc[:, :] = dataframe_translator(data, lang)
 
     st.title(_("COVID-19 in Italy"))
 

@@ -5,7 +5,6 @@ import streamlit as st
 from gettext import NullTranslations
 
 from utils import (
-    dataframe_translator,
     get_features,
     formatter,
     calculate_growth_factor,
@@ -18,7 +17,6 @@ from utils import (
 def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     """Renders line plots, both general and regional, of data argument. Usually it is the resulting DataFrame from the website of the Protezione civile."""
     _ = lang.gettext
-    data.loc[:, :] = dataframe_translator(data, lang)
 
     st.title(_("COVID-19 in Italy"))
 
