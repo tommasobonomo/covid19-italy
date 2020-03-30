@@ -267,6 +267,18 @@ def generate_regions_choropleth(
     return final_chart
 
 
+def average_over_days(
+    data: pd.DataFrame, categorical_columns: List[str], avg_days: int = 5
+) -> pd.DataFrame:
+    """Returns an average over the latest avg_days days of all values in data"""
+    data = data.sort_values(by="data", ascending=False, axis=0).reset_index(drop=True)
+    grouped_categorical = (
+        data[categorical_columns].groupby(data.index // avg_days).first()
+    )
+    grouped_numerical = data.groupby(data.index // avg_days).mean()
+    return pd.concat([grouped_categorical, grouped_numerical], axis=1)
+
+
 def generate_trajectory_chart(
     data: pd.DataFrame,
     feature_x: str,

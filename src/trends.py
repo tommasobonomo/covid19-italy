@@ -68,20 +68,14 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     st.markdown(("## " + _("Situation in different regions")))
 
     # Get list of regions and select the ones of interest
-    region_options = data["denominazione_regione"].unique().tolist()
+    region_options = data["denominazione_regione"].sort_values().unique().tolist()
     regions = st.multiselect(
         label=_("Regions"),
         options=region_options,
         default=["Lombardia", "Veneto", "Emilia-Romagna"],
     )
-
-    # Group data by date and region, sum up every feature, filter ones in regions selection
-    total_regions = data.groupby(
-        ["data", "denominazione_regione"], as_index=False
-    ).sum()
-    selected_regions = total_regions[
-        total_regions["denominazione_regione"].isin(regions)
-    ]
+    # Filter regions in selection
+    selected_regions = data[data["denominazione_regione"].isin(regions)]
 
     if selected_regions.empty:
         st.warning(_("No region selected!"))
