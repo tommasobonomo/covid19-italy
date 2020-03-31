@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-26 20:32+0100\n"
+"POT-Creation-Date: 2020-03-31 21:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,7 +93,7 @@ msgstr ""
 msgid "GF"
 msgstr ""
 
-#: src/maps.py:51 src/maps.py:54 src/maps.py:67 src/utils.py:94
+#: src/maps.py:51 src/maps.py:54 src/maps.py:67 src/utils.py:95
 msgid "totale_casi"
 msgstr ""
 
@@ -209,22 +209,26 @@ msgid "isolamento_domiciliare"
 msgstr ""
 
 #: src/utils.py:90
-msgid "totale_attualmente_positivi"
+msgid "totale_positivi"
 msgstr ""
 
 #: src/utils.py:91
-msgid "nuovi_attualmente_positivi"
+msgid "variazione_totale_positivi"
 msgstr ""
 
 #: src/utils.py:92
-msgid "dimessi_guariti"
+msgid "nuovi_positivi"
 msgstr ""
 
 #: src/utils.py:93
+msgid "dimessi_guariti"
+msgstr ""
+
+#: src/utils.py:94
 msgid "deceduti"
 msgstr ""
 
-#: src/utils.py:95
+#: src/utils.py:96
 msgid "tamponi"
 msgstr ""
 

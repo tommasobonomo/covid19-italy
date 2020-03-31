@@ -25,7 +25,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     st.markdown(_("What indicator would you like to visualise?"))
     features = get_features(data)
     feature = st.selectbox(
-        label=_("Choose..."), options=features, format_func=formatter, index=8
+        label=_("Choose..."), options=features, format_func=formatter, index=9
     )
 
     # Group data by date
@@ -74,7 +74,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     regions = st.multiselect(
         label=_("Regions"),
         options=region_options,
-        default=["Lombardia", "Veneto", "Emilia Romagna"],
+        default=["Lombardia", "Veneto", "Emilia-Romagna"],
     )
 
     # Group data by date and region, sum up every feature, filter ones in regions selection

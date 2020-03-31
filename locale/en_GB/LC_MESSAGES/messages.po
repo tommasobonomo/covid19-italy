@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-26 20:32+0100\n"
+"POT-Creation-Date: 2020-03-31 21:13+0200\n"
 "PO-Revision-Date: 2020-03-21 11:50+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_GB\n"
@@ -94,7 +94,7 @@ msgstr ""
 msgid "GF"
 msgstr ""
 
-#: src/maps.py:51 src/maps.py:54 src/maps.py:67 src/utils.py:94
+#: src/maps.py:51 src/maps.py:54 src/maps.py:67 src/utils.py:95
 msgid "totale_casi"
 msgstr "total_cases"
 
@@ -210,31 +210,25 @@ msgid "isolamento_domiciliare"
 msgstr "home confinement"
 
 #: src/utils.py:90
-msgid "totale_attualmente_positivi"
-msgstr "total_currently_positive"
+msgid "totale_positivi"
+msgstr "total_positive"
 
 #: src/utils.py:91
-msgid "nuovi_attualmente_positivi"
-msgstr "new_currently_positive"
+msgid "variazione_totale_positivi"
+msgstr "variation_total_positive"
 
 #: src/utils.py:92
+msgid "nuovi_positivi"
+msgstr "new_positive"
+
+#: src/utils.py:93
 msgid "dimessi_guariti"
 msgstr "discharged_and_recovered"
 
-#: src/utils.py:93
+#: src/utils.py:94
 msgid "deceduti"
 msgstr "deaths"
 
-#: src/utils.py:95
+#: src/utils.py:96
 msgid "tamponi"
 msgstr "total_tests"
-
-#~ msgid "What scale would you like to visualise?"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Only total cases and their growth "
-#~ "factor are available at the province "
-#~ "scale."
-#~ msgstr ""
-
