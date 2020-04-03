@@ -283,16 +283,14 @@ def generate_trajectory_chart(
     data: pd.DataFrame,
     feature_x: str,
     feature_y: str,
-    is_log_scale: bool = True,
+    colour_code_column: str = None,
     padding: int = 5,
     width: int = 700,
     height: int = 500,
 ):
-    scale = (
-        alt.Scale(type="log") if is_log_scale else alt.Scale(type="linear", zero=False)
-    )
 
-    return (
+    scale = alt.Scale(type="log")
+    chart = (
         alt.Chart(data)
         .mark_line(point={"size": 70})
         .encode(
@@ -304,7 +302,13 @@ def generate_trajectory_chart(
                 alt.Tooltip("data", type="temporal"),
             ],
         )
-        .configure_scale(continuousPadding=padding)
+    )
+
+    if colour_code_column:
+        chart = chart.encode(color=colour_code_column)
+
+    return (
+        chart.configure_scale(continuousPadding=padding)
         .properties(width=width, height=height)
         .interactive()
     )
