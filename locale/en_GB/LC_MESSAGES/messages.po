@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-31 21:13+0200\n"
+"POT-Creation-Date: 2020-04-03 16:37+0200\n"
 "PO-Revision-Date: 2020-03-21 11:50+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_GB\n"
@@ -18,27 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: src/COVID-19-Italy.py:26 src/COVID-19-Italy.py:28
+#: src/COVID-19-Italy.py:32 src/COVID-19-Italy.py:34
 msgid "Page"
 msgstr "Page"
 
-#: src/COVID-19-Italy.py:28 src/COVID-19-Italy.py:31
+#: src/COVID-19-Italy.py:36 src/COVID-19-Italy.py:42
 msgid "Temporal trend"
 msgstr "Temporal trend"
 
-#: src/COVID-19-Italy.py:28 src/COVID-19-Italy.py:32
+#: src/COVID-19-Italy.py:37 src/COVID-19-Italy.py:43
+msgid "Trajectory of cases"
+msgstr ""
+
+#: src/COVID-19-Italy.py:38 src/COVID-19-Italy.py:44
 msgid "Geographical distribution"
 msgstr "Geographical distribution"
 
-#: src/COVID-19-Italy.py:38
+#: src/COVID-19-Italy.py:50
 msgid "Source code can be found at "
 msgstr "Source code can be found at "
 
-#: src/COVID-19-Italy.py:42
+#: src/COVID-19-Italy.py:54
 msgid "Warnings:"
 msgstr ""
 
-#: src/COVID-19-Italy.py:44
+#: src/COVID-19-Italy.py:56
 msgid ""
 "\n"
 "    - 07/03/2020: data from Brescia +300 positive results\n"
@@ -51,7 +55,7 @@ msgid ""
 "    "
 msgstr ""
 
-#: src/COVID-19-Italy.py:57
+#: src/COVID-19-Italy.py:69
 msgid ""
 "All the data displayed in this dashboard is provided by the Italian "
 "Ministry of Health (Ministero della Salute) and elaborated by "
@@ -61,108 +65,172 @@ msgid ""
 "4.0](https://creativecommons.org/licenses/by/4.0/)"
 msgstr ""
 
-#: src/maps.py:23 src/trends.py:23
+#: src/maps.py:21 src/trends.py:21
 msgid "COVID-19 in Italy"
 msgstr ""
 
-#: src/maps.py:26
+#: src/maps.py:24
 msgid "What resolution would you like to visualise?"
 msgstr ""
 
-#: src/maps.py:27
+#: src/maps.py:25
 msgid "Province"
 msgstr ""
 
-#: src/maps.py:27 src/maps.py:29 src/maps.py:101 src/trends.py:107
-#: src/trends.py:117
+#: src/maps.py:25 src/maps.py:27 src/maps.py:99 src/trends.py:99
+#: src/trends.py:109
 msgid "Region"
 msgstr ""
 
-#: src/maps.py:32 src/trends.py:25
+#: src/maps.py:30 src/trends.py:23
 msgid "What indicator would you like to visualise?"
 msgstr ""
 
-#: src/maps.py:35 src/trends.py:28
+#: src/maps.py:33 src/trends.py:26
 msgid "Choose..."
 msgstr ""
 
-#: src/maps.py:38
+#: src/maps.py:36
 msgid "Growth factor of feature"
 msgstr ""
 
-#: src/maps.py:40 src/maps.py:66
+#: src/maps.py:38 src/maps.py:64
 msgid "GF"
 msgstr ""
 
-#: src/maps.py:51 src/maps.py:54 src/maps.py:67 src/utils.py:95
+#: src/maps.py:49 src/maps.py:52 src/maps.py:65 src/trajectory.py:31
+#: src/trajectory.py:52 src/trajectory.py:82 src/trajectory.py:89
+#: src/utils.py:95
 msgid "totale_casi"
 msgstr "total_cases"
 
-#: src/maps.py:57
+#: src/maps.py:55
 msgid ""
 "Only total cases and their growth factor are available at the province "
 "resolution."
 msgstr ""
 
-#: src/maps.py:62
+#: src/maps.py:60
 msgid "What feature would you like to visualise?"
 msgstr ""
 
-#: src/maps.py:63
+#: src/maps.py:61
 msgid "Total cases"
 msgstr ""
 
-#: src/maps.py:63 src/maps.py:65
+#: src/maps.py:61 src/maps.py:63
 msgid "Growth factor of total cases"
 msgstr ""
 
-#: src/maps.py:82
+#: src/maps.py:80
 msgid ""
 "Choose what date to visualise as the number of days elapsed since the "
 "first data collection, on 24th February:"
 msgstr ""
 
-#: src/maps.py:87
+#: src/maps.py:85
 msgid "Days:"
 msgstr ""
 
-#: src/maps.py:91
+#: src/maps.py:89
 msgid "Chosen date: "
 msgstr ""
 
-#: src/maps.py:98
+#: src/maps.py:96
 msgid "No information is available for the selected date"
 msgstr ""
 
-#: src/trends.py:32
+#: src/trajectory.py:12
+msgid "# COVID-19 in Italy - Trajectory of cases"
+msgstr ""
+
+#: src/trajectory.py:13
+msgid "Show details"
+msgstr ""
+
+#: src/trajectory.py:16
+msgid ""
+"\n"
+"        This visualisation is heavily inspired by [this "
+"video](https://www.youtube.com/watch?v=54XLXg4fYsc) by MinutePhysics.\n"
+"        It plots the new positive cases (total cases of today - total "
+"cases of yesterday) against the total number of cases.\n"
+"        When the phenomenon is following an exponential trajectory, this "
+"graph will represent it as a diagonal line.\n"
+"        This way of visualising the trajectory of the spread is useful as"
+" it highlights when the trajectory of cases stops being exponential and "
+"starts slowing down, resulting in a flat line.\n"
+"        Eventually, as there are less and less new cases, the trajectory "
+"becomes a vertical line.\n"
+"        The same graph for many countries in the world can be found at "
+"[this link](https://aatishb.com/covidtrends/).\n"
+"\n"
+"        Please watch the video above for more details.\n"
+"        "
+msgstr ""
+
+#: src/trajectory.py:31 src/trajectory.py:52 src/trajectory.py:83
+#: src/trajectory.py:90 src/utils.py:92
+msgid "nuovi_positivi"
+msgstr "new_positive"
+
+#: src/trajectory.py:31
+msgid "denominazione_regione"
+msgstr ""
+
+#: src/trajectory.py:39
+msgid "Days to average over"
+msgstr ""
+
+#: src/trajectory.py:42
+msgid ""
+"This slider selects the number of days to average over. This means that "
+"it bins the data in intervals of the selected value backwards from today "
+"and takes the average. It is necessary to reduce variability of each day,"
+" but can be turned off selecting 1."
+msgstr ""
+
+#: src/trajectory.py:55
+msgid "## Regional breakdown"
+msgstr ""
+
+#: src/trajectory.py:60 src/trends.py:73
+msgid "Regions"
+msgstr ""
+
+#: src/trajectory.py:68 src/trends.py:81
+msgid "No region selected!"
+msgstr ""
+
+#: src/trends.py:30
 msgid "growth_factor"
 msgstr ""
 
-#: src/trends.py:38
+#: src/trends.py:36
 msgid "Scale"
 msgstr ""
 
-#: src/trends.py:38 src/trends.py:93
+#: src/trends.py:36 src/trends.py:85
 msgid "linear"
 msgstr ""
 
-#: src/trends.py:38 src/trends.py:39 src/trends.py:93 src/trends.py:95
+#: src/trends.py:36 src/trends.py:37 src/trends.py:85 src/trends.py:87
 msgid "logarithmic"
 msgstr ""
 
-#: src/trends.py:45 src/trends.py:101
+#: src/trends.py:43 src/trends.py:93
 msgid "General data"
 msgstr ""
 
-#: src/trends.py:47 src/trends.py:66 src/trends.py:106 src/trends.py:116
+#: src/trends.py:45 src/trends.py:64 src/trends.py:98 src/trends.py:108
 msgid "Month and day"
 msgstr ""
 
-#: src/trends.py:51 src/trends.py:111
+#: src/trends.py:49 src/trends.py:103
 msgid "Growth factor"
 msgstr ""
 
-#: src/trends.py:53
+#: src/trends.py:51
 msgid ""
 "\n"
 "        The growth factor is the multiplier of the exponential growth "
@@ -177,19 +245,11 @@ msgid ""
 "        "
 msgstr ""
 
-#: src/trends.py:70
+#: src/trends.py:68
 msgid "Situation in different regions"
 msgstr ""
 
-#: src/trends.py:75
-msgid "Regions"
-msgstr ""
-
-#: src/trends.py:89
-msgid "No region selected!"
-msgstr ""
-
-#: src/trends.py:93
+#: src/trends.py:85
 msgid "Regional Scale"
 msgstr ""
 
@@ -217,10 +277,6 @@ msgstr "total_positive"
 msgid "variazione_totale_positivi"
 msgstr "variation_total_positive"
 
-#: src/utils.py:92
-msgid "nuovi_positivi"
-msgstr "new_positive"
-
 #: src/utils.py:93
 msgid "dimessi_guariti"
 msgstr "discharged_and_recovered"
@@ -232,3 +288,4 @@ msgstr "deaths"
 #: src/utils.py:96
 msgid "tamponi"
 msgstr "total_tests"
+
