@@ -3,9 +3,11 @@ import pandas as pd
 from gettext import translation, NullTranslations
 from typing import Dict, Callable
 
-from utils import get_data
+from utils import get_data, dataframe_translator
 from trends import line_plots
+from trajectory import trajectory_cases
 from maps import choropleth_maps
+
 
 data = get_data()
 
@@ -22,17 +24,37 @@ else:
     lang.install()
     _ = lang.gettext
 
+# Translate dataframe to given language
+# Features are derived directly from dataframe columns, following the tidy format of dataframes
+data.loc[:, :] = dataframe_translator(data, lang)
+
 # Page choice
 st.sidebar.title(_("Page"))
 page = st.sidebar.selectbox(
-    label=_("Page"), options=[_("Temporal trend"), _("Geographical distribution")]
+    label=_("Page"),
+    options=[
+        _("Temporal trend"),
+        _("Trajectory of cases"),
+        _("Geographical distribution"),
+    ],
 )
 page_function_mapping: Dict[str, Callable[[pd.DataFrame, NullTranslations], None]] = {
     _("Temporal trend"): line_plots,
+    _("Trajectory of cases"): trajectory_cases,
     _("Geographical distribution"): choropleth_maps,
 }
 
 page_function_mapping[page](data, lang)
+
+st.sidebar.markdown(
+    _(
+        """
+    **Please note**:
+
+    All line plots are interactive, you can zoom with scrolling and hover on data points for additional information."
+    """
+    )
+)
 
 st.sidebar.markdown(
     _("Source code can be found at ")

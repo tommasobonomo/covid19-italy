@@ -5,7 +5,6 @@ import streamlit as st
 from gettext import NullTranslations
 
 from utils import (
-    dataframe_translator,
     get_features,
     formatter,
     calculate_growth_factor,
@@ -18,9 +17,8 @@ from utils import (
 def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     """Renders line plots, both general and regional, of data argument. Usually it is the resulting DataFrame from the website of the Protezione civile."""
     _ = lang.gettext
-    data.loc[:, :] = dataframe_translator(data, lang)
 
-    st.title(_("COVID-19 in Italy"))
+    st.title(_("COVID-19 in Italy - Temporal trend"))
 
     st.markdown(_("What indicator would you like to visualise?"))
     features = get_features(data)
@@ -56,8 +54,9 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
         $$
         \\frac{cases_{n+1}}{cases_{n}}
         $$
-        where $cases_n$ stands for the number of cases registered on day $n$. For example, if 300 cases were registered
-        yesterday and 400 today, the growth factor would be 1.33, as $\\frac{400}{300} = 1.33$.
+        where $cases_n$ stands for the number of cases registered up to and including day $n$. For example,
+        if the total number of cases registered was 300 yesterday and 400 today, the growth factor would be
+        1.33, as $\\frac{400}{300} = 1.33$.
         """
         )
     )
@@ -70,20 +69,14 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     st.markdown(("## " + _("Situation in different regions")))
 
     # Get list of regions and select the ones of interest
-    region_options = data["denominazione_regione"].unique().tolist()
+    region_options = data["denominazione_regione"].sort_values().unique().tolist()
     regions = st.multiselect(
         label=_("Regions"),
         options=region_options,
         default=["Lombardia", "Veneto", "Emilia-Romagna"],
     )
-
-    # Group data by date and region, sum up every feature, filter ones in regions selection
-    total_regions = data.groupby(
-        ["data", "denominazione_regione"], as_index=False
-    ).sum()
-    selected_regions = total_regions[
-        total_regions["denominazione_regione"].isin(regions)
-    ]
+    # Filter regions in selection
+    selected_regions = data[data["denominazione_regione"].isin(regions)]
 
     if selected_regions.empty:
         st.warning(_("No region selected!"))

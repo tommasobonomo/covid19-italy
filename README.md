@@ -11,7 +11,6 @@ Quick streamlit dashboard to visualise the impact of COVID-19 in Italy
 
 - Clone the repository
 - `pip install -r requirements.txt`
-- `PORT=8501 ./setup.sh`
 - `streamlit run src/COVID-19-Italy.py`
 
 ## Docker
