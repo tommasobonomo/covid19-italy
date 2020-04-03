@@ -51,7 +51,7 @@ st.sidebar.markdown(
         """
     **Please note**:
 
-    All line plots are interactive, you can zoom with scrolling and hover on data points for additional information."
+    All line plots are interactive, you can zoom with scrolling and hover on data points for additional information.
     """
     )
 )
@@ -65,12 +65,15 @@ st.subheader(_("Warnings:"))
 st.warning(
     _(
         """
-    - 07/03/2020: data from Brescia +300 positive results
-    - 10/03/2020: data from Lombardia is partial.
-    - 11/03/2020: data from Abruzzo did not come through.
-    - 16/03/2020: data from P.A. Trento and Puglia did not come through.
-    - 17/03/2020: data from the Province of Rimini is not updated.
-    - 18/03/2020: data from Campania and Province of Parma did not come through.
+    - 29/03/2020: dati Regione Emilia-Romagna parziali (dato tampone non aggiornato).
+    - 26/03/2020: dati Regione Piemonte parziali (-50 deceduti - comunicazione tardiva).
+    - 18/03/2020: dati Regione Campania non pervenuti.
+    - 18/03/2020: dati Provincia di Parma non pervenuti.
+    - 17/03/2020: dati Provincia di Rimini non aggiornati.
+    - 16/03/2020: dati P.A. Trento e Puglia non pervenuti.
+    - 11/03/2020: dati Regione Abruzzo non pervenuti.
+    - 10/03/2020: dati Regione Lombardia parziali.
+    - 07/03/2020: dati Brescia +300 esiti positivi
     """
     )
 )

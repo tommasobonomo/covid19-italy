@@ -4,8 +4,8 @@ Quick streamlit dashboard to visualise the impact of COVID-19 in Italy
 
 ## Demos
 
-* Check out this [link](http://covid19italy.herokuapp.com/), it is quite a bit slow as it's hosted on Heroku's free tier.
-* This other [link](https://covid19italy.crisidev.org/) is available on a more powerful machine.
+* Deployed on Heroku at this [link](http://covid19italy.herokuapp.com/).
+* This other [deployment](https://covid19italy.crisidev.org/) is hosted by @crisidev on a more powerful machine.
 
 ## Install and run
 
