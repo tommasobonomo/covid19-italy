@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-03 16:37+0200\n"
+"POT-Creation-Date: 2020-04-03 17:06+0200\n"
 "PO-Revision-Date: 2020-03-21 11:50+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: it_IT\n"
@@ -35,14 +35,30 @@ msgid "Geographical distribution"
 msgstr "Distribuzione geografica"
 
 #: src/COVID-19-Italy.py:50
+msgid ""
+"\n"
+"    **Please note**:\n"
+"\n"
+"    All line plots are interactive, you can zoom with scrolling and hover"
+" on data points for additional information.\"\n"
+"    "
+msgstr ""
+"\n"
+"    **Nota bene**:\n"
+"\n"
+"    Tutti i grafici a linea sono interattivi, è possibile fare zoom tramite"
+" scrolling e spostare il mouse su i vari punti per vedere ulteriori dettagli.\"\n"
+"    "
+
+#: src/COVID-19-Italy.py:60
 msgid "Source code can be found at "
 msgstr "Il codice sorgente può essere visualizzato visitando "
 
-#: src/COVID-19-Italy.py:54
+#: src/COVID-19-Italy.py:64
 msgid "Warnings:"
 msgstr "Avvertenze:"
 
-#: src/COVID-19-Italy.py:56
+#: src/COVID-19-Italy.py:66
 msgid ""
 "\n"
 "    - 07/03/2020: data from Brescia +300 positive results\n"
@@ -64,7 +80,7 @@ msgstr ""
 "    - 18/03/2020: dati Regione Campania non pervenuti.\n"
 "    "
 
-#: src/COVID-19-Italy.py:69
+#: src/COVID-19-Italy.py:79
 msgid ""
 "All the data displayed in this dashboard is provided by the Italian "
 "Ministry of Health (Ministero della Salute) and elaborated by "
@@ -80,9 +96,9 @@ msgstr ""
 "utilizzabile sotto licenza [CC BY "
 "4.0](https://creativecommons.org/licenses/by/4.0/)"
 
-#: src/maps.py:21 src/trends.py:21
-msgid "COVID-19 in Italy"
-msgstr "COVID-19 in Italia"
+#: src/maps.py:21
+msgid "COVID-19 in Italy - Geographical distribution"
+msgstr "COVID-19 in Italia - Distribuzione geografica"
 
 #: src/maps.py:24
 msgid "What resolution would you like to visualise?"
@@ -92,8 +108,8 @@ msgstr "Che risoluzione vorresti visualizzare?"
 msgid "Province"
 msgstr "Province"
 
-#: src/maps.py:25 src/maps.py:27 src/maps.py:99 src/trends.py:99
-#: src/trends.py:109
+#: src/maps.py:25 src/maps.py:27 src/maps.py:99 src/trends.py:100
+#: src/trends.py:110
 msgid "Region"
 msgstr "Regioni"
 
@@ -188,20 +204,20 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"       Questa visualizzazione è ispirata a [questo video]"
-"(https://www.youtube.com/watch?v=54XLXg4fYsc) di MinutePhysics.\n"
+"       Questa visualizzazione è ispirata a [questo "
+"video](https://www.youtube.com/watch?v=54XLXg4fYsc) di MinutePhysics.\n"
 "       Confronta i nuovi casi positivi (totale casi di oggi - totale casi"
 " di ieri) contro il numero totale di casi.\n"
-"       Quando il fenomeno segue un andamento esponenziale, questo grafico "
-"consisterà in una linea diagonale.\n"
+"       Quando il fenomeno segue un andamento esponenziale, questo grafico"
+" consisterà in una linea diagonale.\n"
 "       Questo modo di visualizzare l'andamento del contagio risulta utile"
-" in quanto evidenzia quando l'andamento smette di mostrare un comportamento"
-" esponenziale e comincia a rallentare, risultando in una linea piatta nel "
-"grafico.\n"
-"       A un certo punto, mano a mano che si verificano sempre meno nuovi casi,"
-" la traiettoria diventerà una linea verticale.\n"
-"       Lo stesso grafico su scala globale può essere consultato a [questo link]"
-"(https://aatishb.com/covidtrends/).\n"
+" in quanto evidenzia quando l'andamento smette di mostrare un "
+"comportamento esponenziale e comincia a rallentare, risultando in una "
+"linea piatta nel grafico.\n"
+"       A un certo punto, mano a mano che si verificano sempre meno nuovi "
+"casi, la traiettoria diventerà una linea verticale.\n"
+"       Lo stesso grafico su scala globale può essere consultato a [questo"
+" link](https://aatishb.com/covidtrends/).\n"
 "\n"
 "       Consultare il video sopracitato per maggiori dettagli.\n"
 "       "
@@ -226,23 +242,28 @@ msgid ""
 "and takes the average. It is necessary to reduce variability of each day,"
 " but can be turned off selecting 1."
 msgstr ""
-"Questo slider seleziona il numero di giorni su cui calcolare la media. Questo"
-" significa che aggrega i dati in intervalli di lunghezza pari al valore "
-"selezionato e ne calcola la media, cominciando dalla data corrente e ripercorrendo"
-" all'indietro i giorni. È necessario per ridurre la variabilità giornaliera,"
-" ma può essere disattivato selezionando un valore pari a 1."
+"Questo slider seleziona il numero di giorni su cui calcolare la media. "
+"Questo significa che aggrega i dati in intervalli di lunghezza pari al "
+"valore selezionato e ne calcola la media, cominciando dalla data corrente"
+" e ripercorrendo all'indietro i giorni. È necessario per ridurre la "
+"variabilità giornaliera, ma può essere disattivato selezionando un valore"
+" pari a 1."
 
 #: src/trajectory.py:55
 msgid "## Regional breakdown"
 msgstr "## Ripartizione regionale"
 
-#: src/trajectory.py:60 src/trends.py:73
+#: src/trajectory.py:60 src/trends.py:74
 msgid "Regions"
 msgstr "Regione"
 
-#: src/trajectory.py:68 src/trends.py:81
+#: src/trajectory.py:68 src/trends.py:82
 msgid "No region selected!"
 msgstr "Nessuna regione selezionata!"
+
+#: src/trends.py:21
+msgid "COVID-19 in Italy - Temporal trend"
+msgstr "COVID-19 in Italia - Andamento temporale"
 
 #: src/trends.py:30
 msgid "growth_factor"
@@ -252,23 +273,23 @@ msgstr "fattore_crescita"
 msgid "Scale"
 msgstr "Scala"
 
-#: src/trends.py:36 src/trends.py:85
+#: src/trends.py:36 src/trends.py:86
 msgid "linear"
 msgstr "lineare"
 
-#: src/trends.py:36 src/trends.py:37 src/trends.py:85 src/trends.py:87
+#: src/trends.py:36 src/trends.py:37 src/trends.py:86 src/trends.py:88
 msgid "logarithmic"
 msgstr "logaritmica"
 
-#: src/trends.py:43 src/trends.py:93
+#: src/trends.py:43 src/trends.py:94
 msgid "General data"
 msgstr "Dati generali"
 
-#: src/trends.py:45 src/trends.py:64 src/trends.py:98 src/trends.py:108
+#: src/trends.py:45 src/trends.py:65 src/trends.py:99 src/trends.py:109
 msgid "Month and day"
 msgstr "Mese e giorno"
 
-#: src/trends.py:49 src/trends.py:103
+#: src/trends.py:49 src/trends.py:104
 msgid "Growth factor"
 msgstr "Fattore di crescita"
 
@@ -280,29 +301,33 @@ msgid ""
 "        $$\n"
 "        \\frac{cases_{n+1}}{cases_{n}}\n"
 "        $$\n"
-"        where $cases_n$ stands for the number of cases registered on day "
-"$n$. For example, if 300 cases were registered\n"
-"        yesterday and 400 today, the growth factor would be 1.33, as "
-"$\\frac{400}{300} = 1.33$.\n"
+"        where $cases_n$ stands for the number of cases registered up to "
+"and including day $n$. For example,\n"
+"        if the total number of cases registered was 300 yesterday and 400"
+" today, the growth factor would be\n"
+"        1.33, as $\\frac{400}{300} = 1.33$.\n"
 "        "
 msgstr ""
 "\n"
-"        Il fattore di crescita è il moltiplicatore della curva "
-"esponenziale di crescita, calcolato come:\n"
+"        Il fattore di crescita è "
+"il moltiplicatore della curva esponenziale "
+"di crescita, calcolato come:\n"
 "        $$\n"
 "        \\frac{casi_{n+1}}{casi_{n}}\n"
 "        $$\n"
-"        dove $casi_n$ indica il numero di casi per il giorno $n$. Ad "
-"esempio, se ieri fossero stati registrati 300 casi\n"
-"        e oggi 400, il fattore di crescita sarebbe 1.33, dato che "
+"        dove $casi_n$ indica il numero"
+" di casi registrati prima di e includendo il giorno $n$. Ad"
+" esempio, se ieri i casi registrati totali fossero stati 300\n"
+"        e oggi 400, il fattore di"
+" crescita sarebbe 1.33, dato che "
 "$\\frac{400}{300} = 1.33$\n"
 "        "
 
-#: src/trends.py:68
+#: src/trends.py:69
 msgid "Situation in different regions"
 msgstr "Divisione per regione"
 
-#: src/trends.py:85
+#: src/trends.py:86
 msgid "Regional Scale"
 msgstr "Scala regionale"
 
@@ -341,4 +366,3 @@ msgstr ""
 #: src/utils.py:96
 msgid "tamponi"
 msgstr ""
-

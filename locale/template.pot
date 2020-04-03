@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-03 16:37+0200\n"
+"POT-Creation-Date: 2020-04-03 17:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,14 +34,24 @@ msgid "Geographical distribution"
 msgstr ""
 
 #: src/COVID-19-Italy.py:50
+msgid ""
+"\n"
+"    **Please note**:\n"
+"\n"
+"    All line plots are interactive, you can zoom with scrolling and hover"
+" on data points for additional information.\"\n"
+"    "
+msgstr ""
+
+#: src/COVID-19-Italy.py:60
 msgid "Source code can be found at "
 msgstr ""
 
-#: src/COVID-19-Italy.py:54
+#: src/COVID-19-Italy.py:64
 msgid "Warnings:"
 msgstr ""
 
-#: src/COVID-19-Italy.py:56
+#: src/COVID-19-Italy.py:66
 msgid ""
 "\n"
 "    - 07/03/2020: data from Brescia +300 positive results\n"
@@ -54,7 +64,7 @@ msgid ""
 "    "
 msgstr ""
 
-#: src/COVID-19-Italy.py:69
+#: src/COVID-19-Italy.py:79
 msgid ""
 "All the data displayed in this dashboard is provided by the Italian "
 "Ministry of Health (Ministero della Salute) and elaborated by "
@@ -64,8 +74,8 @@ msgid ""
 "4.0](https://creativecommons.org/licenses/by/4.0/)"
 msgstr ""
 
-#: src/maps.py:21 src/trends.py:21
-msgid "COVID-19 in Italy"
+#: src/maps.py:21
+msgid "COVID-19 in Italy - Geographical distribution"
 msgstr ""
 
 #: src/maps.py:24
@@ -76,8 +86,8 @@ msgstr ""
 msgid "Province"
 msgstr ""
 
-#: src/maps.py:25 src/maps.py:27 src/maps.py:99 src/trends.py:99
-#: src/trends.py:109
+#: src/maps.py:25 src/maps.py:27 src/maps.py:99 src/trends.py:100
+#: src/trends.py:110
 msgid "Region"
 msgstr ""
 
@@ -193,12 +203,16 @@ msgstr ""
 msgid "## Regional breakdown"
 msgstr ""
 
-#: src/trajectory.py:60 src/trends.py:73
+#: src/trajectory.py:60 src/trends.py:74
 msgid "Regions"
 msgstr ""
 
-#: src/trajectory.py:68 src/trends.py:81
+#: src/trajectory.py:68 src/trends.py:82
 msgid "No region selected!"
+msgstr ""
+
+#: src/trends.py:21
+msgid "COVID-19 in Italy - Temporal trend"
 msgstr ""
 
 #: src/trends.py:30
@@ -209,23 +223,23 @@ msgstr ""
 msgid "Scale"
 msgstr ""
 
-#: src/trends.py:36 src/trends.py:85
+#: src/trends.py:36 src/trends.py:86
 msgid "linear"
 msgstr ""
 
-#: src/trends.py:36 src/trends.py:37 src/trends.py:85 src/trends.py:87
+#: src/trends.py:36 src/trends.py:37 src/trends.py:86 src/trends.py:88
 msgid "logarithmic"
 msgstr ""
 
-#: src/trends.py:43 src/trends.py:93
+#: src/trends.py:43 src/trends.py:94
 msgid "General data"
 msgstr ""
 
-#: src/trends.py:45 src/trends.py:64 src/trends.py:98 src/trends.py:108
+#: src/trends.py:45 src/trends.py:65 src/trends.py:99 src/trends.py:109
 msgid "Month and day"
 msgstr ""
 
-#: src/trends.py:49 src/trends.py:103
+#: src/trends.py:49 src/trends.py:104
 msgid "Growth factor"
 msgstr ""
 
@@ -237,18 +251,19 @@ msgid ""
 "        $$\n"
 "        \\frac{cases_{n+1}}{cases_{n}}\n"
 "        $$\n"
-"        where $cases_n$ stands for the number of cases registered on day "
-"$n$. For example, if 300 cases were registered\n"
-"        yesterday and 400 today, the growth factor would be 1.33, as "
-"$\\frac{400}{300} = 1.33$.\n"
+"        where $cases_n$ stands for the number of cases registered up to "
+"and including day $n$. For example,\n"
+"        if the total number of cases registered was 300 yesterday and 400"
+" today, the growth factor would be\n"
+"        1.33, as $\\frac{400}{300} = 1.33$.\n"
 "        "
 msgstr ""
 
-#: src/trends.py:68
+#: src/trends.py:69
 msgid "Situation in different regions"
 msgstr ""
 
-#: src/trends.py:85
+#: src/trends.py:86
 msgid "Regional Scale"
 msgstr ""
 

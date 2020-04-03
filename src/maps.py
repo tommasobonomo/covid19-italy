@@ -18,7 +18,7 @@ def choropleth_maps(data: pd.DataFrame, lang: NullTranslations) -> None:
     """Render choropleth maps of Italy, selecting feature and day"""
     _ = lang.gettext
 
-    st.title(_("COVID-19 in Italy"))
+    st.title(_("COVID-19 in Italy - Geographical distribution"))
 
     map_scale = st.radio(
         label=_("What resolution would you like to visualise?"),

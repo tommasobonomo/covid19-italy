@@ -47,6 +47,16 @@ page_function_mapping: Dict[str, Callable[[pd.DataFrame, NullTranslations], None
 page_function_mapping[page](data, lang)
 
 st.sidebar.markdown(
+    _(
+        """
+    **Please note**:
+
+    All line plots are interactive, you can zoom with scrolling and hover on data points for additional information."
+    """
+    )
+)
+
+st.sidebar.markdown(
     _("Source code can be found at ")
     + "[GitHub](https://github.com/tommasobonomo/covid19-italy)."
 )
