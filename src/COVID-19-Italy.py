@@ -65,6 +65,8 @@ st.subheader(_("Warnings:"))
 st.warning(
     _(
         """
+    - 12/04/2020: dati P.A. Bolzano ricalcolati (ricalcolo dati guariti -110 rispetto a ieri).
+    - 10/04/2020: dati Regione Molise parziali (dato tamponi non aggiornato).
     - 29/03/2020: dati Regione Emilia-Romagna parziali (dato tampone non aggiornato).
     - 26/03/2020: dati Regione Piemonte parziali (-50 deceduti - comunicazione tardiva).
     - 18/03/2020: dati Regione Campania non pervenuti.
