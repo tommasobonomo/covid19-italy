@@ -13,7 +13,10 @@ def get_data() -> pd.DataFrame:
         "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni.csv"
     )
     # Remove the time and just focus on the date
-    data["data"] = pd.to_datetime(data["data"]).apply(lambda x: x.date())
+    filtered_date_column = data["data"][data["data"].str.len() == 19]
+    data["data"] = (
+        pd.to_datetime(filtered_date_column).apply(lambda x: x.date()).dropna()
+    )
     return data
 
 
@@ -23,7 +26,10 @@ def get_province_data() -> pd.DataFrame:
         "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province.csv"
     )
     # Remove the time and just focus on the date
-    data["data"] = pd.to_datetime(data["data"]).apply(lambda x: x.date())
+    filtered_date_column = data["data"][data["data"].str.len() == 19]
+    data["data"] = (
+        pd.to_datetime(filtered_date_column).apply(lambda x: x.date()).dropna()
+    )
     return data
 
 
