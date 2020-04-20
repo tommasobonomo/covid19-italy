@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-12 19:04+0200\n"
+"POT-Creation-Date: 2020-04-20 19:21+0200\n"
 "PO-Revision-Date: 2020-03-21 11:50+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: it_IT\n"
@@ -55,6 +55,8 @@ msgstr "Avvertenze:"
 #: src/COVID-19-Italy.py:66
 msgid ""
 "\n"
+"    - 15/04/2020: dati Regione Friuli Venezia Giulia ricalcolati "
+"(ricalcolo di isolamento domiciliare e dimessi/guariti)\n"
 "    - 12/04/2020: dati P.A. Bolzano ricalcolati (ricalcolo dati guariti "
 "-110 rispetto a ieri).\n"
 "    - 10/04/2020: dati Regione Molise parziali (dato tamponi non "
@@ -73,7 +75,7 @@ msgid ""
 "    "
 msgstr ""
 
-#: src/COVID-19-Italy.py:84
+#: src/COVID-19-Italy.py:85
 msgid ""
 "All the data displayed in this dashboard is provided by the Italian "
 "Ministry of Health (Ministero della Salute) and elaborated by "
@@ -124,7 +126,7 @@ msgstr "FC"
 
 #: src/maps.py:49 src/maps.py:52 src/maps.py:65 src/trajectory.py:31
 #: src/trajectory.py:52 src/trajectory.py:82 src/trajectory.py:89
-#: src/utils.py:95
+#: src/utils.py:101
 msgid "totale_casi"
 msgstr ""
 
@@ -216,7 +218,7 @@ msgstr ""
 "       "
 
 #: src/trajectory.py:31 src/trajectory.py:52 src/trajectory.py:83
-#: src/trajectory.py:90 src/utils.py:92
+#: src/trajectory.py:90 src/utils.py:98
 msgid "nuovi_positivi"
 msgstr ""
 
@@ -322,39 +324,39 @@ msgstr "Divisione per regione"
 msgid "Regional Scale"
 msgstr "Scala regionale"
 
-#: src/utils.py:86
+#: src/utils.py:92
 msgid "ricoverati_con_sintomi"
 msgstr ""
 
-#: src/utils.py:87
+#: src/utils.py:93
 msgid "terapia_intensiva"
 msgstr ""
 
-#: src/utils.py:88
+#: src/utils.py:94
 msgid "totale_ospedalizzati"
 msgstr ""
 
-#: src/utils.py:89
+#: src/utils.py:95
 msgid "isolamento_domiciliare"
 msgstr ""
 
-#: src/utils.py:90
+#: src/utils.py:96
 msgid "totale_positivi"
 msgstr ""
 
-#: src/utils.py:91
+#: src/utils.py:97
 msgid "variazione_totale_positivi"
 msgstr ""
 
-#: src/utils.py:93
+#: src/utils.py:99
 msgid "dimessi_guariti"
 msgstr ""
 
-#: src/utils.py:94
+#: src/utils.py:100
 msgid "deceduti"
 msgstr ""
 
-#: src/utils.py:96
+#: src/utils.py:102
 msgid "tamponi"
 msgstr ""
 
@@ -403,6 +405,30 @@ msgstr ""
 #~ "    "
 
 #~ msgid ""
+#~ "\n"
+#~ "    - 29/03/2020: dati Regione "
+#~ "Emilia-Romagna parziali (dato tampone non"
+#~ " aggiornato).\n"
+#~ "    - 26/03/2020: dati Regione Piemonte"
+#~ " parziali (-50 deceduti - comunicazione "
+#~ "tardiva).\n"
+#~ "    - 18/03/2020: dati Regione Campania non pervenuti.\n"
+#~ "    - 18/03/2020: dati Provincia di Parma non pervenuti.\n"
+#~ "    - 17/03/2020: dati Provincia di Rimini non aggiornati.\n"
+#~ "    - 16/03/2020: dati P.A. Trento e Puglia non pervenuti.\n"
+#~ "    - 11/03/2020: dati Regione Abruzzo non pervenuti.\n"
+#~ "    - 10/03/2020: dati Regione Lombardia parziali.\n"
+#~ "    - 07/03/2020: dati Brescia +300 esiti positivi\n"
+#~ "    "
+#~ msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "    - 12/04/2020: dati P.A. Bolzano "
+#~ "ricalcolati (ricalcolo dati guariti -110 "
+#~ "rispetto a ieri).\n"
+#~ "    - 10/04/2020: dati Regione Molise"
+#~ " parziali (dato tamponi non aggiornato)."
 #~ "\n"
 #~ "    - 29/03/2020: dati Regione "
 #~ "Emilia-Romagna parziali (dato tampone non"

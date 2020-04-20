@@ -65,6 +65,7 @@ st.subheader(_("Warnings:"))
 st.warning(
     _(
         """
+    - 15/04/2020: dati Regione Friuli Venezia Giulia ricalcolati (ricalcolo di isolamento domiciliare e dimessi/guariti)
     - 12/04/2020: dati P.A. Bolzano ricalcolati (ricalcolo dati guariti -110 rispetto a ieri).
     - 10/04/2020: dati Regione Molise parziali (dato tamponi non aggiornato).
     - 29/03/2020: dati Regione Emilia-Romagna parziali (dato tampone non aggiornato).
