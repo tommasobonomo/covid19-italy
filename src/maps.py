@@ -71,26 +71,13 @@ def choropleth_maps(data: pd.DataFrame, lang: NullTranslations) -> None:
             min_day = 0
             log_scale = True
 
-    # Date selection
-    data["days_passed"] = data["data"].apply(
-        lambda x: (x - datetime.date(2020, 2, 24)).days
+    # # Date selection
+    chosen_date = st.date_input(
+        label=_("Choose the day you are interested in:"),
+        min_value=(datetime.date(2020, 2, 24) + datetime.timedelta(days=min_day)),
+        max_value=datetime.date.today(),
     )
-    n_days = data["days_passed"].unique().shape[0] - 1
-    st.markdown(
-        _(
-            "Choose what date to visualise as the number of days elapsed since the first data collection, on 24th February:"
-        )
-    )
-    chosen_n_days = st.slider(
-        _("Days:"), min_value=min_day, max_value=n_days, value=n_days,
-    )
-    st.markdown(
-        (
-            _("Chosen date: ")
-            + f"{datetime.date(2020, 2, 24) + datetime.timedelta(days=chosen_n_days)}"
-        )
-    )
-    day_data = data[data["days_passed"] == chosen_n_days]
+    day_data = data[data["data"] == chosen_date]
 
     if day_data.empty:
         st.warning(_("No information is available for the selected date"))

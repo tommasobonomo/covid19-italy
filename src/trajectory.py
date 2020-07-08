@@ -34,9 +34,8 @@ def trajectory_cases(data: pd.DataFrame, lang: NullTranslations) -> None:
     data = data.sort_values(by="data", axis=0)
 
     # We must average the data, otherwise it just becomes untenable
-    n_days = data["data"].unique().shape[0]
     avg_days = st.slider(
-        label=_("Days to average over"), min_value=1, max_value=n_days // 4, value=5
+        label=_("Days to average over"), min_value=1, max_value=21, value=7
     )
     st.write(
         _(

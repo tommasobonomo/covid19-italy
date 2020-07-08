@@ -23,7 +23,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     st.markdown(_("What indicator would you like to visualise?"))
     features = get_features(data)
     feature = st.selectbox(
-        label=_("Choose..."), options=features, format_func=formatter, index=9
+        label=_("Choose..."), options=features, format_func=formatter, index=11
     )
 
     # Group data by date

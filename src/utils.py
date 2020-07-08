@@ -45,8 +45,7 @@ def get_features(data: pd.DataFrame) -> List[str]:
             "denominazione_regione",
             "lat",
             "long",
-            "note_it",
-            "note_en",
+            "note",
         ]
     )
     return feature_data.columns.tolist()
@@ -65,8 +64,7 @@ def get_features_provinces(data: pd.DataFrame) -> List[str]:
             "denominazione_regione",
             "lat",
             "long",
-            "note_it",
-            "note_en",
+            "note",
             "sigla_provincia",
             "denominazione_provincia",
             "codice_provincia",
@@ -98,8 +96,11 @@ def dataframe_translator(data: pd.DataFrame, lang: NullTranslations) -> pd.DataF
         "nuovi_positivi": _("nuovi_positivi"),
         "dimessi_guariti": _("dimessi_guariti"),
         "deceduti": _("deceduti"),
+        "casi_da_sospetto_diagnostico": _("casi_da_sospetto_diagnostico"),
+        "casi_da_screening": _("casi_da_screening"),
         "totale_casi": _("totale_casi"),
         "tamponi": _("tamponi"),
+        "casi_testati": _("casi_testati"),
     }
 
     data.columns = [
@@ -154,7 +155,7 @@ def generate_global_chart(
 ):
     return (
         alt.Chart(data)
-        .mark_line(point={"size": 70})
+        .mark_line(point={"size": 50})
         .encode(
             x=alt.X("data:T", title=x_title),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
@@ -182,7 +183,7 @@ def generate_regional_chart(
 ):
     return (
         alt.Chart(data)
-        .mark_line(point={"size": 70})
+        .mark_line(point={"size": 50})
         .encode(
             x=alt.X("data:T", title=x_title),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
