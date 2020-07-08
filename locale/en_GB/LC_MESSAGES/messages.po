@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-20 19:21+0200\n"
+"POT-Creation-Date: 2020-07-08 18:40+0200\n"
 "PO-Revision-Date: 2020-03-21 11:50+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_GB\n"
@@ -48,48 +48,18 @@ msgstr ""
 msgid "Source code can be found at "
 msgstr "Source code can be found at "
 
-#: src/COVID-19-Italy.py:64
-msgid "Warnings:"
-msgstr ""
-
-#: src/COVID-19-Italy.py:66
+#: src/COVID-19-Italy.py:65
 msgid ""
 "\n"
-"    - 15/04/2020: dati Regione Friuli Venezia Giulia ricalcolati "
-"(ricalcolo di isolamento domiciliare e dimessi/guariti)\n"
-"    - 12/04/2020: dati P.A. Bolzano ricalcolati (ricalcolo dati guariti "
-"-110 rispetto a ieri).\n"
-"    - 10/04/2020: dati Regione Molise parziali (dato tamponi non "
-"aggiornato).\n"
-"    - 29/03/2020: dati Regione Emilia-Romagna parziali (dato tampone non "
-"aggiornato).\n"
-"    - 26/03/2020: dati Regione Piemonte parziali (-50 deceduti - "
-"comunicazione tardiva).\n"
-"    - 18/03/2020: dati Regione Campania non pervenuti.\n"
-"    - 18/03/2020: dati Provincia di Parma non pervenuti.\n"
-"    - 17/03/2020: dati Provincia di Rimini non aggiornati.\n"
-"    - 16/03/2020: dati P.A. Trento e Puglia non pervenuti.\n"
-"    - 11/03/2020: dati Regione Abruzzo non pervenuti.\n"
-"    - 10/03/2020: dati Regione Lombardia parziali.\n"
-"    - 07/03/2020: dati Brescia +300 esiti positivi\n"
+"        There can be errors in the reported data. These are explained in "
+"the original repository, in\n"
+"        [Italian](https://github.com/pcm-"
+"dpc/COVID-19/blob/master/avvisi.md) and in [English](https://github.com"
+"/pcm-dpc/COVID-19/blob/master/avvisi_EN.md)\n"
 "    "
 msgstr ""
-"- 15/04/2020: data from Friuli Venezia Giulia recalculated (home confinement and"
-" discharged/recovered).\n"
-"- 12/04/2020: data from P.A. Bolzano recalculated (recovered numbers, "
-"-100 compared to yesterday).\n"
-"- 10/04/2020: data from Molise is partial (number of tests not updated).\n"
-"- 29/03/2020: data from Emilia-Romagna is partial (number of tests not updated).\n"
-"- 26/03/2020: data from Piemonte is partial (-50 deceased - late comunication).\n"
-"- 18/03/2020: data from Campania and Province of Parma did not come through.\n"
-"- 17/03/2020: data from the Province of Rimini is not updated.\n"
-"- 16/03/2020: data from P.A. Trento and Puglia did not come through.\n"
-"- 11/03/2020: data from Abruzzo did not come through.\n"
-"- 10/03/2020: data from Lombardia is partial.\n"
-"- 07/03/2020: data from Brescia +300 positive results.\n"
-"     "
 
-#: src/COVID-19-Italy.py:85
+#: src/COVID-19-Italy.py:74
 msgid ""
 "All the data displayed in this dashboard is provided by the Italian "
 "Ministry of Health (Ministero della Salute) and elaborated by "
@@ -111,7 +81,7 @@ msgstr ""
 msgid "Province"
 msgstr ""
 
-#: src/maps.py:25 src/maps.py:27 src/maps.py:99 src/trends.py:100
+#: src/maps.py:25 src/maps.py:27 src/maps.py:86 src/trends.py:100
 #: src/trends.py:110
 msgid "Region"
 msgstr ""
@@ -133,7 +103,7 @@ msgid "GF"
 msgstr ""
 
 #: src/maps.py:49 src/maps.py:52 src/maps.py:65 src/trajectory.py:31
-#: src/trajectory.py:52 src/trajectory.py:82 src/trajectory.py:89
+#: src/trajectory.py:51 src/trajectory.py:81 src/trajectory.py:88
 #: src/utils.py:101
 msgid "totale_casi"
 msgstr "total_cases"
@@ -156,21 +126,11 @@ msgstr ""
 msgid "Growth factor of total cases"
 msgstr ""
 
-#: src/maps.py:80
-msgid ""
-"Choose what date to visualise as the number of days elapsed since the "
-"first data collection, on 24th February:"
+#: src/maps.py:76
+msgid "Choose the day you are interested in:"
 msgstr ""
 
-#: src/maps.py:85
-msgid "Days:"
-msgstr ""
-
-#: src/maps.py:89
-msgid "Chosen date: "
-msgstr ""
-
-#: src/maps.py:96
+#: src/maps.py:83
 msgid "No information is available for the selected date"
 msgstr ""
 
@@ -203,8 +163,8 @@ msgid ""
 "        "
 msgstr ""
 
-#: src/trajectory.py:31 src/trajectory.py:52 src/trajectory.py:83
-#: src/trajectory.py:90 src/utils.py:98
+#: src/trajectory.py:31 src/trajectory.py:51 src/trajectory.py:82
+#: src/trajectory.py:89 src/utils.py:96
 msgid "nuovi_positivi"
 msgstr "new_positive"
 
@@ -212,11 +172,11 @@ msgstr "new_positive"
 msgid "denominazione_regione"
 msgstr ""
 
-#: src/trajectory.py:39
+#: src/trajectory.py:38
 msgid "Days to average over"
 msgstr ""
 
-#: src/trajectory.py:42
+#: src/trajectory.py:41
 msgid ""
 "This slider selects the number of days to average over. This means that "
 "it bins the data in intervals of the selected value backwards from today "
@@ -224,15 +184,15 @@ msgid ""
 " but can be turned off selecting 1."
 msgstr ""
 
-#: src/trajectory.py:55
+#: src/trajectory.py:54
 msgid "## Regional breakdown"
 msgstr ""
 
-#: src/trajectory.py:60 src/trends.py:74
+#: src/trajectory.py:59 src/trends.py:74
 msgid "Regions"
 msgstr ""
 
-#: src/trajectory.py:68 src/trends.py:82
+#: src/trajectory.py:67 src/trends.py:82
 msgid "No region selected!"
 msgstr ""
 
@@ -292,38 +252,50 @@ msgstr ""
 msgid "Regional Scale"
 msgstr ""
 
-#: src/utils.py:92
+#: src/utils.py:90
 msgid "ricoverati_con_sintomi"
 msgstr "hospitalised_with_symptoms"
 
-#: src/utils.py:93
+#: src/utils.py:91
 msgid "terapia_intensiva"
 msgstr "hospitalised_in_ICU"
 
-#: src/utils.py:94
+#: src/utils.py:92
 msgid "totale_ospedalizzati"
 msgstr "total_hospitalised"
 
-#: src/utils.py:95
+#: src/utils.py:93
 msgid "isolamento_domiciliare"
 msgstr "home_confinement"
 
-#: src/utils.py:96
+#: src/utils.py:94
 msgid "totale_positivi"
 msgstr "total_positive"
 
-#: src/utils.py:97
+#: src/utils.py:95
 msgid "variazione_totale_positivi"
 msgstr "variation_total_positive"
 
-#: src/utils.py:99
+#: src/utils.py:97
 msgid "dimessi_guariti"
 msgstr "discharged_and_recovered"
 
-#: src/utils.py:100
+#: src/utils.py:98
 msgid "deceduti"
 msgstr "deaths"
+
+#: src/utils.py:99
+msgid "casi_da_sospetto_diagnostico"
+msgstr "cases_from_clinical_activity"
+
+#: src/utils.py:100
+msgid "casi_da_screening"
+msgstr "cases_from_screenings"
 
 #: src/utils.py:102
 msgid "tamponi"
 msgstr "total_tests"
+
+#: src/utils.py:103
+msgid "casi_testati"
+msgstr "people_tested"

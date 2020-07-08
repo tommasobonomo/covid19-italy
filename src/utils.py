@@ -96,8 +96,11 @@ def dataframe_translator(data: pd.DataFrame, lang: NullTranslations) -> pd.DataF
         "nuovi_positivi": _("nuovi_positivi"),
         "dimessi_guariti": _("dimessi_guariti"),
         "deceduti": _("deceduti"),
+        "casi_da_sospetto_diagnostico": _("casi_da_sospetto_diagnostico"),
+        "casi_da_screening": _("casi_da_screening"),
         "totale_casi": _("totale_casi"),
         "tamponi": _("tamponi"),
+        "casi_testati": _("casi_testati"),
     }
 
     data.columns = [
