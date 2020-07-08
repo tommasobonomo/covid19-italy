@@ -61,22 +61,11 @@ st.sidebar.markdown(
     + "[GitHub](https://github.com/tommasobonomo/covid19-italy)."
 )
 
-st.subheader(_("Warnings:"))
-st.warning(
+st.markdown(
     _(
         """
-    - 15/04/2020: dati Regione Friuli Venezia Giulia ricalcolati (ricalcolo di isolamento domiciliare e dimessi/guariti)
-    - 12/04/2020: dati P.A. Bolzano ricalcolati (ricalcolo dati guariti -110 rispetto a ieri).
-    - 10/04/2020: dati Regione Molise parziali (dato tamponi non aggiornato).
-    - 29/03/2020: dati Regione Emilia-Romagna parziali (dato tampone non aggiornato).
-    - 26/03/2020: dati Regione Piemonte parziali (-50 deceduti - comunicazione tardiva).
-    - 18/03/2020: dati Regione Campania non pervenuti.
-    - 18/03/2020: dati Provincia di Parma non pervenuti.
-    - 17/03/2020: dati Provincia di Rimini non aggiornati.
-    - 16/03/2020: dati P.A. Trento e Puglia non pervenuti.
-    - 11/03/2020: dati Regione Abruzzo non pervenuti.
-    - 10/03/2020: dati Regione Lombardia parziali.
-    - 07/03/2020: dati Brescia +300 esiti positivi
+        There can be errors in the reported data. These are explained in the original repository, in
+        [Italian](https://github.com/pcm-dpc/COVID-19/blob/master/avvisi.md) and in [English](https://github.com/pcm-dpc/COVID-19/blob/master/avvisi_EN.md)
     """
     )
 )

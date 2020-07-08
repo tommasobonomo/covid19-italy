@@ -45,8 +45,7 @@ def get_features(data: pd.DataFrame) -> List[str]:
             "denominazione_regione",
             "lat",
             "long",
-            "note_it",
-            "note_en",
+            "note",
         ]
     )
     return feature_data.columns.tolist()
@@ -65,8 +64,7 @@ def get_features_provinces(data: pd.DataFrame) -> List[str]:
             "denominazione_regione",
             "lat",
             "long",
-            "note_it",
-            "note_en",
+            "note",
             "sigla_provincia",
             "denominazione_provincia",
             "codice_provincia",
