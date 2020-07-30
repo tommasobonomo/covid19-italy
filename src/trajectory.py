@@ -46,7 +46,7 @@ def trajectory_cases(data: pd.DataFrame, lang: NullTranslations) -> None:
     national = (
         data.drop(columns="denominazione_regione").groupby("data", as_index=False).sum()
     )
-    national = average_over_days(national, "data", avg_days)
+    national = average_over_days(national, ["data"], avg_days)
 
     chart = generate_trajectory_chart(national, _("totale_casi"), _("nuovi_positivi"))
     st.altair_chart(chart)

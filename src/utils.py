@@ -155,12 +155,12 @@ def generate_global_chart(
 ):
     return (
         alt.Chart(data)
-        .mark_line(point={"size": 50})
+        .mark_line(point={"size": 100})
         .encode(
             x=alt.X("data:T", title=x_title),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
             tooltip=[
-                alt.Tooltip(f"{feature}", title=formatter(feature)),
+                alt.Tooltip(f"{feature}", title=formatter(feature), format=".2~f"),
                 alt.Tooltip("data", title=x_title, type="temporal"),
             ],
         )
@@ -183,14 +183,14 @@ def generate_regional_chart(
 ):
     return (
         alt.Chart(data)
-        .mark_line(point={"size": 50})
+        .mark_line(point={"size": 100})
         .encode(
             x=alt.X("data:T", title=x_title),
             y=alt.Y(f"{feature}:Q", title=formatter(feature), scale=scale),
             color=alt.Color("denominazione_regione:N", title=color_title),
             tooltip=[
                 alt.Tooltip("denominazione_regione", title=color_title),
-                alt.Tooltip(f"{feature}", title=formatter(feature)),
+                alt.Tooltip(f"{feature}", title=formatter(feature), format=".2~f"),
                 alt.Tooltip("data", title=x_title, type="temporal"),
             ],
         )
@@ -275,7 +275,7 @@ def generate_regions_choropleth(
 
 
 def average_over_days(
-    data: pd.DataFrame, categorical_columns: List[str], avg_days: int = 5
+    data: pd.DataFrame, categorical_columns: List[str], avg_days: int = 7
 ) -> pd.DataFrame:
     """Returns an average over the latest avg_days days of all values in data"""
     data = data.sort_values(by="data", ascending=False, axis=0).reset_index(drop=True)
@@ -299,7 +299,7 @@ def generate_trajectory_chart(
     scale = alt.Scale(type="log")
     chart = (
         alt.Chart(data)
-        .mark_line(point={"size": 70})
+        .mark_line(point={"size": 100})
         .encode(
             x=alt.X(f"{feature_x}:Q", title=formatter(feature_x), scale=scale),
             y=alt.Y(f"{feature_y}:Q", title=formatter(feature_y), scale=scale),
