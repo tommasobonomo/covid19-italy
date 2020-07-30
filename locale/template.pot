@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-08 18:40+0200\n"
+"POT-Creation-Date: 2020-07-30 10:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,16 +80,16 @@ msgstr ""
 msgid "Province"
 msgstr ""
 
-#: src/maps.py:25 src/maps.py:27 src/maps.py:86 src/trends.py:100
-#: src/trends.py:110
+#: src/maps.py:25 src/maps.py:27 src/maps.py:92 src/trends.py:116
+#: src/trends.py:125
 msgid "Region"
 msgstr ""
 
-#: src/maps.py:30 src/trends.py:23
+#: src/maps.py:30 src/trends.py:22
 msgid "What indicator would you like to visualise?"
 msgstr ""
 
-#: src/maps.py:33 src/trends.py:26
+#: src/maps.py:33 src/trends.py:25
 msgid "Choose..."
 msgstr ""
 
@@ -125,11 +125,11 @@ msgstr ""
 msgid "Growth factor of total cases"
 msgstr ""
 
-#: src/maps.py:76
+#: src/maps.py:81
 msgid "Choose the day you are interested in:"
 msgstr ""
 
-#: src/maps.py:83
+#: src/maps.py:89
 msgid "No information is available for the selected date"
 msgstr ""
 
@@ -167,11 +167,11 @@ msgstr ""
 msgid "nuovi_positivi"
 msgstr ""
 
-#: src/trajectory.py:31
+#: src/trajectory.py:31 src/trends.py:102
 msgid "denominazione_regione"
 msgstr ""
 
-#: src/trajectory.py:38
+#: src/trajectory.py:38 src/trends.py:44 src/trends.py:92
 msgid "Days to average over"
 msgstr ""
 
@@ -187,67 +187,47 @@ msgstr ""
 msgid "## Regional breakdown"
 msgstr ""
 
-#: src/trajectory.py:59 src/trends.py:74
+#: src/trajectory.py:59 src/trends.py:68
 msgid "Regions"
 msgstr ""
 
-#: src/trajectory.py:67 src/trends.py:82
+#: src/trajectory.py:67 src/trends.py:76
 msgid "No region selected!"
 msgstr ""
 
-#: src/trends.py:21
+#: src/trends.py:20
 msgid "COVID-19 in Italy - Temporal trend"
 msgstr ""
 
-#: src/trends.py:30
-msgid "growth_factor"
-msgstr ""
-
-#: src/trends.py:36
+#: src/trends.py:32
 msgid "Scale"
 msgstr ""
 
-#: src/trends.py:36 src/trends.py:86
+#: src/trends.py:32 src/trends.py:79
 msgid "linear"
 msgstr ""
 
-#: src/trends.py:36 src/trends.py:37 src/trends.py:86 src/trends.py:88
+#: src/trends.py:32 src/trends.py:33 src/trends.py:79 src/trends.py:81
 msgid "logarithmic"
 msgstr ""
 
-#: src/trends.py:43 src/trends.py:94
+#: src/trends.py:39 src/trends.py:87
 msgid "General data"
 msgstr ""
 
-#: src/trends.py:45 src/trends.py:65 src/trends.py:99 src/trends.py:109
+#: src/trends.py:41 src/trends.py:89
+msgid "Average over days"
+msgstr ""
+
+#: src/trends.py:54 src/trends.py:59 src/trends.py:115 src/trends.py:124
 msgid "Month and day"
 msgstr ""
 
-#: src/trends.py:49 src/trends.py:104
-msgid "Growth factor"
-msgstr ""
-
-#: src/trends.py:51
-msgid ""
-"\n"
-"        The growth factor is the multiplier of the exponential growth "
-"curve, calculated as:\n"
-"        $$\n"
-"        \\frac{cases_{n+1}}{cases_{n}}\n"
-"        $$\n"
-"        where $cases_n$ stands for the number of cases registered up to "
-"and including day $n$. For example,\n"
-"        if the total number of cases registered was 300 yesterday and 400"
-" today, the growth factor would be\n"
-"        1.33, as $\\frac{400}{300} = 1.33$.\n"
-"        "
-msgstr ""
-
-#: src/trends.py:69
+#: src/trends.py:63
 msgid "Situation in different regions"
 msgstr ""
 
-#: src/trends.py:86
+#: src/trends.py:79
 msgid "Regional Scale"
 msgstr ""
 
