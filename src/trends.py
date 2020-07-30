@@ -84,8 +84,6 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
         else:
             regional_scale = alt.Scale(type="linear")
 
-        st.markdown(("### " + _("General data")))
-
         is_regional_average = st.checkbox(label=_("Average over days"), key="avg2")
         if is_regional_average:
             avg_days = st.slider(
