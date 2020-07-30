@@ -1,16 +1,16 @@
-import pandas as pd
-import streamlit as st
 import datetime
-
 from gettext import NullTranslations
 
+import pandas as pd
+import streamlit as st
+
 from utils import (
-    get_features,
     formatter,
     generate_regions_choropleth,
-    regional_growth_factor,
-    provincial_growth_factor,
+    get_features,
     get_province_data,
+    provincial_growth_factor,
+    regional_growth_factor,
 )
 
 
@@ -71,11 +71,17 @@ def choropleth_maps(data: pd.DataFrame, lang: NullTranslations) -> None:
             min_day = 0
             log_scale = True
 
-    # # Date selection
+    # Date selection
+    # Default date is today if after 18:00, yesterday otherwise
+    now = datetime.datetime.now()
+    default_date = (
+        now.date() if now.hour >= 18 else now.date() - datetime.timedelta(days=1)
+    )
     chosen_date = st.date_input(
         label=_("Choose the day you are interested in:"),
         min_value=(datetime.date(2020, 2, 24) + datetime.timedelta(days=min_day)),
         max_value=datetime.date.today(),
+        value=default_date,
     )
     day_data = data[data["data"] == chosen_date]
 
