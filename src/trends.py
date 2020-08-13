@@ -22,7 +22,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     st.markdown(_("What indicator would you like to visualise?"))
     features = get_features(data)
     feature = st.selectbox(
-        label=_("Choose..."), options=features, format_func=formatter, index=11
+        label=_("Choose..."), options=features, format_func=formatter, index=6
     )
 
     # Group data by date
@@ -38,7 +38,9 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
 
     st.markdown(("## " + _("General data")))
 
-    is_general_average = st.checkbox(label=_("Average over days"), key="avg1")
+    is_general_average = st.checkbox(
+        label=_("Average over days"), key="avg1", value=True
+    )
     if is_general_average:
         avg_days = st.slider(
             label=_("Days to average over"),
@@ -50,11 +52,9 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
         general_average = average_over_days(
             general[[feature, "data"]], categorical_columns=["data"], avg_days=avg_days
         )
-        general_average_chart = generate_global_chart(
-            general_average, feature, general_scale, _("Month and day")
-        )
-        st.altair_chart(general_average_chart)
-    else:
+
+        general = general_average
+
         general_chart = generate_global_chart(
             general, feature, general_scale, _("Month and day")
         )
