@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-30 09:59+0200\n"
+"POT-Creation-Date: 2020-08-14 14:02+0200\n"
 "PO-Revision-Date: 2020-03-21 11:50+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: it_IT\n"
@@ -101,16 +101,16 @@ msgstr "Che risoluzione vorresti visualizzare?"
 msgid "Province"
 msgstr "Province"
 
-#: src/maps.py:25 src/maps.py:27 src/maps.py:92 src/trends.py:116
-#: src/trends.py:125
+#: src/maps.py:25 src/maps.py:27 src/maps.py:92 src/trends.py:139
+#: src/trends.py:148
 msgid "Region"
 msgstr "Regioni"
 
-#: src/maps.py:30 src/trends.py:22
+#: src/maps.py:30 src/trends.py:40
 msgid "What indicator would you like to visualise?"
 msgstr "Che dato vorresti visualizzare?"
 
-#: src/maps.py:33 src/trends.py:25
+#: src/maps.py:33 src/trends.py:43
 msgid "Choose..."
 msgstr "Scegli..."
 
@@ -208,11 +208,11 @@ msgstr ""
 msgid "nuovi_positivi"
 msgstr ""
 
-#: src/trajectory.py:31 src/trends.py:102
+#: src/trajectory.py:31 src/trends.py:125
 msgid "denominazione_regione"
 msgstr ""
 
-#: src/trajectory.py:38 src/trends.py:44 src/trends.py:92
+#: src/trajectory.py:38 src/trends.py:61 src/trends.py:115
 msgid "Days to average over"
 msgstr "Giorni su cui calcolare la media"
 
@@ -234,47 +234,59 @@ msgstr ""
 msgid "## Regional breakdown"
 msgstr "## Ripartizione regionale"
 
-#: src/trajectory.py:59 src/trends.py:68
+#: src/trajectory.py:59 src/trends.py:91
 msgid "Regions"
 msgstr "Regione"
 
-#: src/trajectory.py:67 src/trends.py:76
+#: src/trajectory.py:67 src/trends.py:99
 msgid "No region selected!"
 msgstr "Nessuna regione selezionata!"
 
-#: src/trends.py:20
+#: src/trends.py:24
 msgid "COVID-19 in Italy - Temporal trend"
 msgstr "COVID-19 in Italia - Andamento temporale"
 
-#: src/trends.py:32
+#: src/trends.py:26
+msgid "14-day cases per 100.000:"
+msgstr "Casi delle ultime due settimane per 100.000:"
+
+#: src/trends.py:37
+msgid "new_positive"
+msgstr "nuovi_positivi"
+
+#: src/trends.py:47
 msgid "Scale"
 msgstr "Scala"
 
-#: src/trends.py:32 src/trends.py:79
+#: src/trends.py:47 src/trends.py:102
 msgid "linear"
 msgstr "lineare"
 
-#: src/trends.py:32 src/trends.py:33 src/trends.py:79 src/trends.py:81
+#: src/trends.py:47 src/trends.py:48 src/trends.py:102 src/trends.py:104
 msgid "logarithmic"
 msgstr "logaritmica"
 
-#: src/trends.py:39 src/trends.py:87
+#: src/trends.py:54
 msgid "General data"
 msgstr "Dati generali"
 
-#: src/trends.py:41 src/trends.py:89
+#: src/trends.py:57 src/trends.py:111
 msgid "Average over days"
 msgstr "Calcola la media su periodi di giorni"
 
-#: src/trends.py:54 src/trends.py:59 src/trends.py:115 src/trends.py:124
+#: src/trends.py:74 src/trends.py:138 src/trends.py:147
 msgid "Month and day"
 msgstr "Mese e giorno"
 
-#: src/trends.py:63
+#: src/trends.py:81
+msgid "Latest data on "
+msgstr "Dato più recente di "
+
+#: src/trends.py:86
 msgid "Situation in different regions"
 msgstr "Divisione per regione"
 
-#: src/trends.py:79
+#: src/trends.py:102
 msgid "Regional Scale"
 msgstr "Scala regionale"
 
@@ -325,3 +337,4 @@ msgstr ""
 #: src/utils.py:103
 msgid "casi_testati"
 msgstr ""
+

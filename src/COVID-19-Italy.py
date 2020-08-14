@@ -12,7 +12,7 @@ from maps import choropleth_maps
 data = get_data()
 
 st.sidebar.title("Language")
-language = st.sidebar.radio(label="", options=["English", "Italiano"])
+language = st.sidebar.radio(label="", options=["Italiano", "English"])
 
 if language == "Italiano":
     lang = translation("messages", localedir="locale", languages=["it_IT"])
