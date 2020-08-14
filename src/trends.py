@@ -1,3 +1,4 @@
+import datetime
 import altair as alt
 import pandas as pd
 import streamlit as st
@@ -42,9 +43,6 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
         label=_("Choose..."), options=features, format_func=formatter, index=6
     )
 
-    # Group data by date
-    general = data.groupby("data", as_index=False).sum()
-
     # Choose log scale or linear, defines what feature to use
     general_choice = st.radio(label=_("Scale"), options=[_("linear"), _("logarithmic")])
     if general_choice == _("logarithmic"):
@@ -72,10 +70,18 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
 
         general = general_average
 
-        general_chart = generate_global_chart(
-            general, feature, general_scale, _("Month and day")
-        )
-        st.altair_chart(general_chart)
+    general_chart = generate_global_chart(
+        general, feature, general_scale, _("Month and day")
+    )
+    st.altair_chart(general_chart)
+
+    todays_latest = general[general["data"] == today][feature].iloc[0]
+
+    st.markdown(
+        _("Latest data on ")
+        + f"**{formatter(feature).lower()}**: "
+        + f"{todays_latest:.2f}"
+    )
 
     st.markdown(("## " + _("Situation in different regions")))
 
@@ -101,7 +107,9 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
         else:
             regional_scale = alt.Scale(type="linear")
 
-        is_regional_average = st.checkbox(label=_("Average over days"), key="avg2")
+        is_regional_average = st.checkbox(
+            label=_("Average over days"), key="avg2", value=True
+        )
         if is_regional_average:
             avg_days = st.slider(
                 label=_("Days to average over"),
