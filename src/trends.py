@@ -25,23 +25,34 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
 
     st.markdown("### " + _("14-day cases per 100.000:"))
 
+    # Get today
     now = datetime.datetime.now()
-
     if now.hour >= 18:
         today = now.date()
     else:
         today = now.date() - datetime.timedelta(days=1)
 
+    # Filter for most recent 14 days and write calculation
     fourteen_day_new_positves = general[
         today - datetime.timedelta(days=14) < general["data"]
     ][_("new_positive")]
-    st.write(float(f"{fourteen_day_new_positves.sum() * 100000 / 60360000:.2f}"))
+    st.write(float(f"{fourteen_day_new_positves.sum() * 100000 / 60450414:.2f}"))
 
+    # Indicator chooser
     st.markdown(_("What indicator would you like to visualise?"))
     features = get_features(data)
     feature = st.selectbox(
         label=_("Choose..."), options=features, format_func=formatter, index=6
     )
+
+    # Add checkbox for diff with most recent data for an indicator
+    diff = st.checkbox(label=_("Difference with previous datapoint"))
+
+    if diff:
+        general = general.sort_values(by="data", ascending=True)
+        sorted_feature = general.reset_index(drop=True)[feature]
+        general[feature] = sorted_feature - sorted_feature.shift(1)
+        general = general.dropna()
 
     # Choose log scale or linear, defines what feature to use
     general_choice = st.radio(label=_("Scale"), options=[_("linear"), _("logarithmic")])
@@ -53,6 +64,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
 
     st.markdown(("## " + _("General data")))
 
+    # Average calculation if needed
     is_general_average = st.checkbox(
         label=_("Average over days"), key="avg1", value=True
     )
@@ -98,6 +110,14 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     if selected_regions.empty:
         st.warning(_("No region selected!"))
     else:
+
+        # if diff:
+        #     selected_regions = selected_regions.sort_values(by="data", ascending=True)
+        #     sorted_feature = selected_regions.reset_index(drop=True)[feature]
+        #     selected_regions[feature] = sorted_feature - sorted_feature.shift(1)
+        #     selected_regions = selected_regions.dropna()
+        #     st.write(selected_regions)
+
         regional_choice = st.radio(
             label=_("Regional Scale"), options=[_("linear"), _("logarithmic")]
         )
