@@ -286,6 +286,21 @@ def average_over_days(
     return pd.concat([grouped_categorical, grouped_numerical], axis=1)
 
 
+def diff_over_previous_datapoint(
+    data: pd.DataFrame, temporal_column: str, feature_column: str
+) -> pd.DataFrame:
+    """Returns the same dataframe except in `feature_column`, substituted with the difference between consecutive datapoints according to the `temporal_column`"""
+    # Sort by temporal column
+    data = data.sort_values(by=temporal_column, ascending=True)
+    sorted_feature = data.reset_index(drop=True)[feature_column]
+
+    # Calculate the difference with the shifted values
+    data[feature_column] = sorted_feature - sorted_feature.shift(1)
+
+    # Return all values except the first datapoint, which has obviously no values
+    return data.dropna()
+
+
 def generate_trajectory_chart(
     data: pd.DataFrame,
     feature_x: str,

@@ -7,6 +7,7 @@ from gettext import NullTranslations
 
 from utils import (
     average_over_days,
+    diff_over_previous_datapoint,
     get_features,
     formatter,
     generate_global_chart,
@@ -49,10 +50,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     diff = st.checkbox(label=_("Difference with previous datapoint"))
 
     if diff:
-        general = general.sort_values(by="data", ascending=True)
-        sorted_feature = general.reset_index(drop=True)[feature]
-        general[feature] = sorted_feature - sorted_feature.shift(1)
-        general = general.dropna()
+        general = diff_over_previous_datapoint(general, "data", feature)
 
     # Choose log scale or linear, defines what feature to use
     general_choice = st.radio(label=_("Scale"), options=[_("linear"), _("logarithmic")])
