@@ -48,7 +48,11 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
 
     # Add checkbox for diff with most recent data for an indicator
     diff = st.checkbox(label=_("Difference with previous datapoint"))
-
+    st.markdown(
+        _(
+            "By checking the above box, the indicator will be replaced by the difference of its value between two consecutive days. This helps in untangling cumulative data such as deaths and total tests."
+        )
+    )
     if diff:
         general = diff_over_previous_datapoint(general, "data", feature)
 
