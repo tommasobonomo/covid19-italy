@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-14 14:02+0200\n"
+"POT-Creation-Date: 2020-08-18 15:44+0200\n"
 "PO-Revision-Date: 2020-03-21 11:50+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_GB\n"
@@ -81,16 +81,16 @@ msgstr ""
 msgid "Province"
 msgstr ""
 
-#: src/maps.py:25 src/maps.py:27 src/maps.py:92 src/trends.py:139
-#: src/trends.py:148
+#: src/maps.py:25 src/maps.py:27 src/maps.py:92 src/trends.py:167
+#: src/trends.py:176
 msgid "Region"
 msgstr ""
 
-#: src/maps.py:30 src/trends.py:40
+#: src/maps.py:30 src/trends.py:43
 msgid "What indicator would you like to visualise?"
 msgstr ""
 
-#: src/maps.py:33 src/trends.py:43
+#: src/maps.py:33 src/trends.py:46
 msgid "Choose..."
 msgstr ""
 
@@ -168,11 +168,12 @@ msgstr ""
 msgid "nuovi_positivi"
 msgstr "new_positive"
 
-#: src/trajectory.py:31 src/trends.py:125
+#: src/trajectory.py:31 src/trends.py:103 src/trends.py:110 src/trends.py:111
+#: src/trends.py:120 src/trends.py:150 src/trends.py:153 src/trends.py:154
 msgid "denominazione_regione"
 msgstr ""
 
-#: src/trajectory.py:38 src/trends.py:61 src/trends.py:115
+#: src/trajectory.py:38 src/trends.py:75 src/trends.py:143
 msgid "Days to average over"
 msgstr ""
 
@@ -188,59 +189,70 @@ msgstr ""
 msgid "## Regional breakdown"
 msgstr ""
 
-#: src/trajectory.py:59 src/trends.py:91
+#: src/trajectory.py:59 src/trends.py:105
 msgid "Regions"
 msgstr ""
 
-#: src/trajectory.py:67 src/trends.py:99
+#: src/trajectory.py:67 src/trends.py:115
 msgid "No region selected!"
 msgstr ""
 
-#: src/trends.py:24
+#: src/trends.py:25
 msgid "COVID-19 in Italy - Temporal trend"
 msgstr ""
 
-#: src/trends.py:26
+#: src/trends.py:27
 msgid "14-day cases per 100.000:"
 msgstr ""
 
-#: src/trends.py:37
+#: src/trends.py:39
 msgid "new_positive"
 msgstr ""
 
-#: src/trends.py:47
+#: src/trends.py:50
+msgid "Difference with previous datapoint"
+msgstr ""
+
+#: src/trends.py:52
+msgid ""
+"By checking the above box, the indicator will be replaced by the "
+"difference of its value between two consecutive days. This helps in "
+"untangling cumulative data such as deaths and total tests."
+msgstr ""
+
+#: src/trends.py:60
 msgid "Scale"
 msgstr ""
 
-#: src/trends.py:47 src/trends.py:102
+#: src/trends.py:60 src/trends.py:130
 msgid "linear"
 msgstr ""
 
-#: src/trends.py:47 src/trends.py:48 src/trends.py:102 src/trends.py:104
+#: src/trends.py:60 src/trends.py:61 src/trends.py:130 src/trends.py:132
 msgid "logarithmic"
 msgstr ""
 
-#: src/trends.py:54
+#: src/trends.py:67
 msgid "General data"
 msgstr ""
 
-#: src/trends.py:57 src/trends.py:111
+#: src/trends.py:71 src/trends.py:139
 msgid "Average over days"
 msgstr ""
 
-#: src/trends.py:74 src/trends.py:138 src/trends.py:147
+#: src/trends.py:88 src/trends.py:166 src/trends.py:175
 msgid "Month and day"
 msgstr ""
 
-#: src/trends.py:81
+#: src/trends.py:95
 msgid "Latest data on "
 msgstr ""
 
-#: src/trends.py:86
+#: src/trends.py:100
 msgid "Situation in different regions"
 msgstr ""
 
-#: src/trends.py:102
+#: src/trends.py:130
 msgid "Regional Scale"
 msgstr ""
 
