@@ -96,25 +96,31 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     st.markdown(("## " + _("Situation in different regions")))
 
     # Get list of regions and select the ones of interest
-    region_options = data["denominazione_regione"].sort_values().unique().tolist()
+    region_options = data[_("denominazione_regione")].sort_values().unique().tolist()
     regions = st.multiselect(
         label=_("Regions"),
         options=region_options,
         default=["Lombardia", "Veneto", "Emilia-Romagna"],
     )
     # Filter regions in selection
-    selected_regions = data[data["denominazione_regione"].isin(regions)]
+    selected_regions = data[data[_("denominazione_regione")].isin(regions)][
+        ["data", _("denominazione_regione"), feature]
+    ]
 
     if selected_regions.empty:
         st.warning(_("No region selected!"))
     else:
 
-        # if diff:
-        #     selected_regions = selected_regions.sort_values(by="data", ascending=True)
-        #     sorted_feature = selected_regions.reset_index(drop=True)[feature]
-        #     selected_regions[feature] = sorted_feature - sorted_feature.shift(1)
-        #     selected_regions = selected_regions.dropna()
-        #     st.write(selected_regions)
+        if diff:
+            selected_regions = (
+                selected_regions.groupby([_("denominazione_regione")])
+                .apply(
+                    lambda group: diff_over_previous_datapoint(group, "data", feature)
+                )
+                .sort_values(by="data", ascending=True)
+                .reset_index(level=0, drop=True)
+                .reset_index(drop=True)
+            )
 
         regional_choice = st.radio(
             label=_("Regional Scale"), options=[_("linear"), _("logarithmic")]
@@ -137,11 +143,11 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
                 key="slider2",
             )
             regional_average = (
-                selected_regions.groupby(["denominazione_regione"], as_index=False)
+                selected_regions.groupby([_("denominazione_regione")], as_index=False)
                 .apply(
                     lambda group: average_over_days(
                         group[[feature, "data", _("denominazione_regione")]],
-                        ["data", "denominazione_regione"],
+                        ["data", _("denominazione_regione")],
                         avg_days,
                     )
                 )

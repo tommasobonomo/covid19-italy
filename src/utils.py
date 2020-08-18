@@ -291,14 +291,14 @@ def diff_over_previous_datapoint(
 ) -> pd.DataFrame:
     """Returns the same dataframe except in `feature_column`, substituted with the difference between consecutive datapoints according to the `temporal_column`"""
     # Sort by temporal column
-    data = data.sort_values(by=temporal_column, ascending=True)
-    sorted_feature = data.reset_index(drop=True)[feature_column]
+    data = data.sort_values(by=temporal_column, ascending=True).reset_index(drop=True)
+    sorted_feature = data[feature_column]
 
     # Calculate the difference with the shifted values
     data[feature_column] = sorted_feature - sorted_feature.shift(1)
 
     # Return all values except the first datapoint, which has obviously no values
-    return data.dropna()
+    return data
 
 
 def generate_trajectory_chart(
