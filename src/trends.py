@@ -14,6 +14,8 @@ from utils import (
     generate_regional_chart,
 )
 
+ITALIAN_POPULATION = 60450414
+
 
 def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     """Renders line plots, both general and regional, of data argument. Usually it is the resulting DataFrame from the website of the Protezione civile."""
@@ -27,17 +29,15 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     st.markdown("### " + _("14-day cases per 100.000:"))
 
     # Get today
-    now = datetime.datetime.now()
-    if now.hour >= 18:
-        today = now.date()
-    else:
-        today = now.date() - datetime.timedelta(days=1)
+    today = general["data"].sort_values(ascending=False).iloc[0]
 
     # Filter for most recent 14 days and write calculation
     fourteen_day_new_positves = general[
         today - datetime.timedelta(days=14) < general["data"]
     ][_("new_positive")]
-    st.write(float(f"{fourteen_day_new_positves.sum() * 100000 / 60450414:.2f}"))
+    st.write(
+        float(f"{fourteen_day_new_positves.sum() * 100000 / ITALIAN_POPULATION:.2f}")
+    )
 
     # Indicator chooser
     st.markdown(_("What indicator would you like to visualise?"))
