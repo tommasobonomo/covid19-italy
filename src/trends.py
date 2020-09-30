@@ -7,6 +7,7 @@ from gettext import NullTranslations
 
 from utils import (
     average_over_days,
+    calculate_positive_tests_ratio,
     diff_over_previous_datapoint,
     get_features,
     formatter,
@@ -22,8 +23,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     _ = lang.gettext
 
     # Group data by date
-    general = data.groupby("data", as_index=False).sum()
-
+    general = calculate_positive_tests_ratio(data.groupby("data", as_index=False).sum())
     st.title(_("COVID-19 in Italy - Temporal trend"))
 
     st.markdown("### " + _("14-day cases per 100.000:"))
@@ -41,7 +41,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
 
     # Indicator chooser
     st.markdown(_("What indicator would you like to visualise?"))
-    features = get_features(data)
+    features = get_features(general)
     feature = st.selectbox(
         label=_("Choose..."), options=features, format_func=formatter, index=6
     )

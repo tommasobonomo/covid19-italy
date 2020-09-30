@@ -5,6 +5,19 @@ from typing import List
 from gettext import NullTranslations
 
 
+def calculate_positive_tests_ratio(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Calculates new column that is the new positive to tests ratio
+    """
+    res_df = df
+    res_df["positivi_per_tampone_%"] = (
+        df["nuovi_positivi"].reset_index(drop=True)
+        / df["tamponi"].reset_index(drop=True)
+        * 100
+    )
+    return res_df
+
+
 def get_data() -> pd.DataFrame:
     """
     Gets data from the GitHub repository of the Protezione Civile
@@ -104,6 +117,7 @@ def dataframe_translator(data: pd.DataFrame, lang: NullTranslations) -> pd.DataF
         "totale_casi": _("totale_casi"),
         "tamponi": _("tamponi"),
         "casi_testati": _("casi_testati"),
+        "positivi_per_tampone_%": _("positivi_per_tampone_%"),
     }
 
     data.columns = [
@@ -264,7 +278,11 @@ def generate_regions_choropleth(
         )
         .transform_lookup(
             f"properties.{lookup_in_shape}",
-            from_=alt.LookupData(data=chart_data, key=lookup_in_df, fields=[feature],),
+            from_=alt.LookupData(
+                data=chart_data,
+                key=lookup_in_df,
+                fields=[feature],
+            ),
         )
     )
 
