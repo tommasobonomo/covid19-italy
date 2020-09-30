@@ -37,8 +37,11 @@ def get_features(data: pd.DataFrame) -> List[str]:
     """
     Gets features from data, i.e. all columns except data, stato, codice_regione, denominazione_regione, lat, long
     """
-    feature_data = data.drop(
-        columns=[
+    feature_columns = [
+        column
+        for column in data.columns
+        if column
+        not in [
             "data",
             "stato",
             "codice_regione",
@@ -47,8 +50,8 @@ def get_features(data: pd.DataFrame) -> List[str]:
             "long",
             "note",
         ]
-    )
-    return feature_data.columns.tolist()
+    ]
+    return feature_columns
 
 
 def get_features_provinces(data: pd.DataFrame) -> List[str]:
