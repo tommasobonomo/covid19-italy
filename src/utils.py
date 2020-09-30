@@ -5,14 +5,17 @@ from typing import List
 from gettext import NullTranslations
 
 
-def calculate_positive_tests_ratio(df: pd.DataFrame) -> pd.DataFrame:
+def calculate_positive_tests_ratio(
+    df: pd.DataFrame, lang: NullTranslations
+) -> pd.DataFrame:
     """
     Calculates new column that is the new positive to tests ratio
     """
+    _ = lang.gettext
     res_df = df
     res_df["positivi_per_tampone_%"] = (
-        df["nuovi_positivi"].reset_index(drop=True)
-        / df["tamponi"].reset_index(drop=True)
+        df[_("nuovi_positivi")].reset_index(drop=True)
+        / df[_("tamponi")].reset_index(drop=True)
         * 100
     )
     return res_df

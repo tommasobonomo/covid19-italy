@@ -23,7 +23,9 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     _ = lang.gettext
 
     # Group data by date
-    general = calculate_positive_tests_ratio(data.groupby("data", as_index=False).sum())
+    general = calculate_positive_tests_ratio(
+        data.groupby("data", as_index=False).sum(), lang
+    )
     st.title(_("COVID-19 in Italy - Temporal trend"))
 
     st.markdown("### " + _("14-day cases per 100.000:"))
@@ -107,9 +109,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
         default=["Lombardia", "Veneto", "Emilia-Romagna"],
     )
     # Filter regions in selection
-    selected_regions = data[data[_("denominazione_regione")].isin(regions)][
-        ["data", _("denominazione_regione"), feature]
-    ]
+    selected_regions = data[data[_("denominazione_regione")].isin(regions)]
 
     if selected_regions.empty:
         st.warning(_("No region selected!"))

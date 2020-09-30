@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-18 15:44+0200\n"
+"POT-Creation-Date: 2020-09-30 18:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,7 +103,7 @@ msgstr ""
 
 #: src/maps.py:49 src/maps.py:52 src/maps.py:65 src/trajectory.py:31
 #: src/trajectory.py:51 src/trajectory.py:81 src/trajectory.py:88
-#: src/utils.py:101
+#: src/utils.py:117
 msgid "totale_casi"
 msgstr ""
 
@@ -163,7 +163,7 @@ msgid ""
 msgstr ""
 
 #: src/trajectory.py:31 src/trajectory.py:51 src/trajectory.py:82
-#: src/trajectory.py:89 src/utils.py:96
+#: src/trajectory.py:89 src/utils.py:112
 msgid "nuovi_positivi"
 msgstr ""
 
@@ -196,15 +196,15 @@ msgstr ""
 msgid "No region selected!"
 msgstr ""
 
-#: src/trends.py:25
+#: src/trends.py:27
 msgid "COVID-19 in Italy - Temporal trend"
 msgstr ""
 
-#: src/trends.py:27
+#: src/trends.py:29
 msgid "14-day cases per 100.000:"
 msgstr ""
 
-#: src/trends.py:39
+#: src/trends.py:37
 msgid "new_positive"
 msgstr ""
 
@@ -255,51 +255,55 @@ msgstr ""
 msgid "Regional Scale"
 msgstr ""
 
-#: src/utils.py:90
+#: src/utils.py:106
 msgid "ricoverati_con_sintomi"
 msgstr ""
 
-#: src/utils.py:91
+#: src/utils.py:107
 msgid "terapia_intensiva"
 msgstr ""
 
-#: src/utils.py:92
+#: src/utils.py:108
 msgid "totale_ospedalizzati"
 msgstr ""
 
-#: src/utils.py:93
+#: src/utils.py:109
 msgid "isolamento_domiciliare"
 msgstr ""
 
-#: src/utils.py:94
+#: src/utils.py:110
 msgid "totale_positivi"
 msgstr ""
 
-#: src/utils.py:95
+#: src/utils.py:111
 msgid "variazione_totale_positivi"
 msgstr ""
 
-#: src/utils.py:97
+#: src/utils.py:113
 msgid "dimessi_guariti"
 msgstr ""
 
-#: src/utils.py:98
+#: src/utils.py:114
 msgid "deceduti"
 msgstr ""
 
-#: src/utils.py:99
+#: src/utils.py:115
 msgid "casi_da_sospetto_diagnostico"
 msgstr ""
 
-#: src/utils.py:100
+#: src/utils.py:116
 msgid "casi_da_screening"
 msgstr ""
 
-#: src/utils.py:102
+#: src/utils.py:118
 msgid "tamponi"
 msgstr ""
 
-#: src/utils.py:103
+#: src/utils.py:119
 msgid "casi_testati"
+msgstr ""
+
+#: src/utils.py:120
+msgid "positivi_per_tampone_%"
 msgstr ""
 
