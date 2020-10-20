@@ -13,11 +13,7 @@ def calculate_positive_tests_ratio(
     """
     _ = lang.gettext
     res_df = df
-    res_df["positivi_per_tampone_%"] = (
-        df[_("nuovi_positivi")].reset_index(drop=True)
-        / df[_("tamponi")].reset_index(drop=True)
-        * 100
-    )
+    res_df["positivi_per_tampone_%"] = df[_("nuovi_positivi")] / df[_("tamponi")] * 100
     return res_df
 
 

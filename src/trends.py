@@ -106,7 +106,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     regions = st.multiselect(
         label=_("Regions"),
         options=region_options,
-        default=["Lombardia", "Veneto", "Emilia-Romagna"],
+        default=["Lombardia", "Veneto", "Campania", "Lazio"],
     )
     # Filter regions in selection
     selected_regions = data[data[_("denominazione_regione")].isin(regions)]
@@ -114,6 +114,16 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     if selected_regions.empty:
         st.warning(_("No region selected!"))
     else:
+
+        # Need to handle positive test percentage in if
+        if feature == _("positivi_per_tampone_%"):
+            selected_regions = (
+                selected_regions.groupby([_("denominazione_regione")])
+                .apply(lambda group: calculate_positive_tests_ratio(group, lang))
+                .sort_values(by="data", ascending=True)
+                .reset_index(level=0, drop=True)
+                .reset_index(drop=True)
+            )
 
         if diff:
             selected_regions = (
