@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-18 15:44+0200\n"
+"POT-Creation-Date: 2020-10-20 19:14+0300\n"
 "PO-Revision-Date: 2020-03-21 11:50+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en_GB\n"
@@ -81,16 +81,16 @@ msgstr ""
 msgid "Province"
 msgstr ""
 
-#: src/maps.py:25 src/maps.py:27 src/maps.py:92 src/trends.py:167
-#: src/trends.py:176
+#: src/maps.py:25 src/maps.py:27 src/maps.py:92 src/trends.py:177
+#: src/trends.py:186
 msgid "Region"
 msgstr ""
 
-#: src/maps.py:30 src/trends.py:43
+#: src/maps.py:30 src/trends.py:45
 msgid "What indicator would you like to visualise?"
 msgstr ""
 
-#: src/maps.py:33 src/trends.py:46
+#: src/maps.py:33 src/trends.py:48
 msgid "Choose..."
 msgstr ""
 
@@ -104,7 +104,7 @@ msgstr ""
 
 #: src/maps.py:49 src/maps.py:52 src/maps.py:65 src/trajectory.py:31
 #: src/trajectory.py:51 src/trajectory.py:81 src/trajectory.py:88
-#: src/utils.py:101
+#: src/utils.py:116
 msgid "totale_casi"
 msgstr "total_cases"
 
@@ -164,16 +164,16 @@ msgid ""
 msgstr ""
 
 #: src/trajectory.py:31 src/trajectory.py:51 src/trajectory.py:82
-#: src/trajectory.py:89 src/utils.py:96
+#: src/trajectory.py:89 src/utils.py:16 src/utils.py:111
 msgid "nuovi_positivi"
 msgstr "new_positive"
 
-#: src/trajectory.py:31 src/trends.py:103 src/trends.py:110 src/trends.py:111
-#: src/trends.py:120 src/trends.py:150 src/trends.py:153 src/trends.py:154
+#: src/trajectory.py:31 src/trends.py:105 src/trends.py:112 src/trends.py:121
+#: src/trends.py:130 src/trends.py:160 src/trends.py:163 src/trends.py:164
 msgid "denominazione_regione"
 msgstr ""
 
-#: src/trajectory.py:38 src/trends.py:75 src/trends.py:143
+#: src/trajectory.py:38 src/trends.py:77 src/trends.py:153
 msgid "Days to average over"
 msgstr ""
 
@@ -189,7 +189,7 @@ msgstr ""
 msgid "## Regional breakdown"
 msgstr ""
 
-#: src/trajectory.py:59 src/trends.py:105
+#: src/trajectory.py:59 src/trends.py:107
 msgid "Regions"
 msgstr ""
 
@@ -197,11 +197,11 @@ msgstr ""
 msgid "No region selected!"
 msgstr ""
 
-#: src/trends.py:25
+#: src/trends.py:29
 msgid "COVID-19 in Italy - Temporal trend"
 msgstr ""
 
-#: src/trends.py:27
+#: src/trends.py:31
 msgid "14-day cases per 100.000:"
 msgstr ""
 
@@ -209,98 +209,102 @@ msgstr ""
 msgid "new_positive"
 msgstr ""
 
-#: src/trends.py:50
+#: src/trends.py:52
 msgid "Difference with previous datapoint"
 msgstr ""
 
-#: src/trends.py:52
+#: src/trends.py:54
 msgid ""
 "By checking the above box, the indicator will be replaced by the "
 "difference of its value between two consecutive days. This helps in "
 "untangling cumulative data such as deaths and total tests."
 msgstr ""
 
-#: src/trends.py:60
+#: src/trends.py:62
 msgid "Scale"
 msgstr ""
 
-#: src/trends.py:60 src/trends.py:130
+#: src/trends.py:62 src/trends.py:140
 msgid "linear"
 msgstr ""
 
-#: src/trends.py:60 src/trends.py:61 src/trends.py:130 src/trends.py:132
+#: src/trends.py:62 src/trends.py:63 src/trends.py:140 src/trends.py:142
 msgid "logarithmic"
 msgstr ""
 
-#: src/trends.py:67
+#: src/trends.py:69
 msgid "General data"
 msgstr ""
 
-#: src/trends.py:71 src/trends.py:139
+#: src/trends.py:73 src/trends.py:149
 msgid "Average over days"
 msgstr ""
 
-#: src/trends.py:88 src/trends.py:166 src/trends.py:175
+#: src/trends.py:90 src/trends.py:176 src/trends.py:185
 msgid "Month and day"
 msgstr ""
 
-#: src/trends.py:95
+#: src/trends.py:97
 msgid "Latest data on "
 msgstr ""
 
-#: src/trends.py:100
+#: src/trends.py:102
 msgid "Situation in different regions"
 msgstr ""
 
-#: src/trends.py:130
+#: src/trends.py:119 src/utils.py:119
+msgid "positivi_per_tampone_%"
+msgstr "positive_per_test_%"
+
+#: src/trends.py:140
 msgid "Regional Scale"
 msgstr ""
 
-#: src/utils.py:90
-msgid "ricoverati_con_sintomi"
-msgstr "hospitalised_with_symptoms"
-
-#: src/utils.py:91
-msgid "terapia_intensiva"
-msgstr "hospitalised_in_ICU"
-
-#: src/utils.py:92
-msgid "totale_ospedalizzati"
-msgstr "total_hospitalised"
-
-#: src/utils.py:93
-msgid "isolamento_domiciliare"
-msgstr "home_confinement"
-
-#: src/utils.py:94
-msgid "totale_positivi"
-msgstr "total_positive"
-
-#: src/utils.py:95
-msgid "variazione_totale_positivi"
-msgstr "variation_total_positive"
-
-#: src/utils.py:97
-msgid "dimessi_guariti"
-msgstr "discharged_and_recovered"
-
-#: src/utils.py:98
-msgid "deceduti"
-msgstr "deaths"
-
-#: src/utils.py:99
-msgid "casi_da_sospetto_diagnostico"
-msgstr "cases_from_clinical_activity"
-
-#: src/utils.py:100
-msgid "casi_da_screening"
-msgstr "cases_from_screenings"
-
-#: src/utils.py:102
+#: src/utils.py:16 src/utils.py:117
 msgid "tamponi"
 msgstr "total_tests"
 
-#: src/utils.py:103
+#: src/utils.py:105
+msgid "ricoverati_con_sintomi"
+msgstr "hospitalised_with_symptoms"
+
+#: src/utils.py:106
+msgid "terapia_intensiva"
+msgstr "hospitalised_in_ICU"
+
+#: src/utils.py:107
+msgid "totale_ospedalizzati"
+msgstr "total_hospitalised"
+
+#: src/utils.py:108
+msgid "isolamento_domiciliare"
+msgstr "home_confinement"
+
+#: src/utils.py:109
+msgid "totale_positivi"
+msgstr "total_positive"
+
+#: src/utils.py:110
+msgid "variazione_totale_positivi"
+msgstr "variation_total_positive"
+
+#: src/utils.py:112
+msgid "dimessi_guariti"
+msgstr "discharged_and_recovered"
+
+#: src/utils.py:113
+msgid "deceduti"
+msgstr "deaths"
+
+#: src/utils.py:114
+msgid "casi_da_sospetto_diagnostico"
+msgstr "cases_from_clinical_activity"
+
+#: src/utils.py:115
+msgid "casi_da_screening"
+msgstr "cases_from_screenings"
+
+#: src/utils.py:118
 msgid "casi_testati"
 msgstr "people_tested"
 

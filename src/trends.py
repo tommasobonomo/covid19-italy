@@ -7,6 +7,7 @@ from gettext import NullTranslations
 
 from utils import (
     average_over_days,
+    calculate_positive_tests_ratio,
     diff_over_previous_datapoint,
     get_features,
     formatter,
@@ -22,8 +23,9 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     _ = lang.gettext
 
     # Group data by date
-    general = data.groupby("data", as_index=False).sum()
-
+    general = calculate_positive_tests_ratio(
+        data.groupby("data", as_index=False).sum(), lang
+    )
     st.title(_("COVID-19 in Italy - Temporal trend"))
 
     st.markdown("### " + _("14-day cases per 100.000:"))
@@ -41,7 +43,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
 
     # Indicator chooser
     st.markdown(_("What indicator would you like to visualise?"))
-    features = get_features(data)
+    features = get_features(general)
     feature = st.selectbox(
         label=_("Choose..."), options=features, format_func=formatter, index=6
     )
@@ -104,16 +106,24 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     regions = st.multiselect(
         label=_("Regions"),
         options=region_options,
-        default=["Lombardia", "Veneto", "Emilia-Romagna"],
+        default=["Lombardia", "Veneto", "Campania", "Lazio"],
     )
     # Filter regions in selection
-    selected_regions = data[data[_("denominazione_regione")].isin(regions)][
-        ["data", _("denominazione_regione"), feature]
-    ]
+    selected_regions = data[data[_("denominazione_regione")].isin(regions)]
 
     if selected_regions.empty:
         st.warning(_("No region selected!"))
     else:
+
+        # Need to handle positive test percentage in if
+        if feature == _("positivi_per_tampone_%"):
+            selected_regions = (
+                selected_regions.groupby([_("denominazione_regione")])
+                .apply(lambda group: calculate_positive_tests_ratio(group, lang))
+                .sort_values(by="data", ascending=True)
+                .reset_index(level=0, drop=True)
+                .reset_index(drop=True)
+            )
 
         if diff:
             selected_regions = (
