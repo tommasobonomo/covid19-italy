@@ -12,11 +12,11 @@ def calculate_positive_tests_ratio(
     Calculates new column that is the new positive to tests ratio
     """
     _ = lang.gettext
-    res_df = df
-    res_df[_("positivi_per_tampone_%")] = (
-        df[_("nuovi_positivi")] / df[_("tamponi")] * 100
+    daily_tests_df = diff_over_previous_datapoint(df, "data", _("tamponi"))
+    daily_tests_df[_("positivi_per_tampone_%")] = (
+        daily_tests_df[_("nuovi_positivi")] / daily_tests_df[_("tamponi")] * 100
     )
-    return res_df
+    return daily_tests_df
 
 
 def get_data() -> pd.DataFrame:
@@ -320,7 +320,7 @@ def diff_over_previous_datapoint(
     data[feature_column] = sorted_feature - sorted_feature.shift(1)
 
     # Return all values except the first datapoint, which has obviously no values
-    return data
+    return data[1:].reset_index(drop=True)
 
 
 def generate_trajectory_chart(
