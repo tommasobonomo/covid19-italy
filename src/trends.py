@@ -75,7 +75,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     if is_general_average:
         avg_days = st.slider(
             label=_("Days to average over"),
-            min_value=2,
+            min_value=1,
             max_value=21,
             value=7,
             key="slider1",
@@ -151,7 +151,7 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
         if is_regional_average:
             avg_days = st.slider(
                 label=_("Days to average over"),
-                min_value=2,
+                min_value=1,
                 max_value=21,
                 value=7,
                 key="slider2",
