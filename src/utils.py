@@ -12,9 +12,9 @@ def calculate_positive_tests_ratio(
     Calculates new column that is the new positive to tests ratio
     """
     _ = lang.gettext
-    daily_tests_df = diff_over_previous_datapoint(df, "data", _("tamponi"))
+    daily_tests_df = diff_over_previous_datapoint(df, "data", _("casi_testati"))
     daily_tests_df[_("positivi_per_tampone_%")] = (
-        daily_tests_df[_("nuovi_positivi")] / daily_tests_df[_("tamponi")] * 100
+        daily_tests_df[_("nuovi_positivi")] / daily_tests_df[_("casi_testati")] * 100
     )
     return daily_tests_df
 
