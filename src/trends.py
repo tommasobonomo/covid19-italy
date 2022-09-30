@@ -1,18 +1,18 @@
 import datetime
+from gettext import NullTranslations
+
 import altair as alt
 import pandas as pd
 import streamlit as st
-
-from gettext import NullTranslations
 
 from utils import (
     average_over_days,
     calculate_positive_tests_ratio,
     diff_over_previous_datapoint,
-    get_features,
     formatter,
     generate_global_chart,
     generate_regional_chart,
+    get_features,
 )
 
 ITALIAN_POPULATION = 60450414
@@ -47,6 +47,11 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
     feature = st.selectbox(
         label=_("Choose..."), options=features, format_func=formatter, index=6
     )
+    if feature is None:
+        st.error(
+            "Feature unavailable. There has been some problem with retrieving data."
+        )
+        return
 
     # Add checkbox for diff with most recent data for an indicator
     diff = st.checkbox(label=_("Difference with previous datapoint"))
@@ -67,6 +72,18 @@ def line_plots(data: pd.DataFrame, lang: NullTranslations) -> None:
         general_scale = alt.Scale(type="linear")
 
     st.markdown(("## " + _("General data")))
+
+    # Cutoff to latest X days
+    total_number_of_days = general["data"].max() - general["data"].min()
+    number_cutoff_days = st.slider(
+        label=_("Number of past days to consider"),
+        key="cutoff",
+        value=365,
+        min_value=14,
+        max_value=total_number_of_days.days,
+    )
+    cutoff_date = general["data"].max() - datetime.timedelta(days=number_cutoff_days)
+    general = general[general["data"] >= cutoff_date]
 
     # Average calculation if needed
     is_general_average = st.checkbox(

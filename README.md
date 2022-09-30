@@ -1,12 +1,10 @@
 # COVID-19 in Italy
 
-Quick streamlit dashboard to visualise the impact of COVID-19 in Italy
+Quick Streamlit dashboard to visualise the impact of COVID-19 in Italy
 
 ## Demos
 
-* Hosted with Streamlit at this [link](https://share.streamlit.io/tommasobonomo/covid19-italy/src/COVID-19-Italy.py).
-* Deployed on Heroku at this [link](https://covid19italy.herokuapp.com/) (Heroku free tier).
-* This other [deployment](https://covid19italy.crisidev.org/) is hosted by @crisidev on a more powerful machine.
+Hosted with Streamlit at this [link](https://share.streamlit.io/tommasobonomo/covid19-italy/src/COVID-19-Italy.py).
 
 ## Install and run
 
@@ -15,10 +13,10 @@ Quick streamlit dashboard to visualise the impact of COVID-19 in Italy
 - `streamlit run src/COVID-19-Italy.py`
 
 ## Docker
-A docker image for x86 is available [here](https://hub.docker.com/r/crisidev/covid19-italia):
+A docker image for x86 is available here: [hub.docker.com/repository/docker/tommasobonomo/covid19-italy](https://hub.docker.com/repository/docker/tommasobonomo/covid19-italy):
 
 ```sh
-docker run -p 8501:8501 crisidev/covid19-italia:linux-x86
+docker run -p 8501:8501 tommasobonomo/covid19-italy
 ```
 
 ## Attribution
