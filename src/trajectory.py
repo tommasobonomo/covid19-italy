@@ -1,9 +1,9 @@
-import streamlit as st
-import pandas as pd
-
-from utils import generate_trajectory_chart, average_over_days
-
 from gettext import NullTranslations
+
+import pandas as pd
+import streamlit as st
+
+from utils import average_over_days, generate_trajectory_chart
 
 
 def trajectory_cases(data: pd.DataFrame, lang: NullTranslations) -> None:

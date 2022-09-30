@@ -1,8 +1,8 @@
-import pandas as pd
-import altair as alt
+from gettext import NullTranslations
 from typing import List
 
-from gettext import NullTranslations
+import altair as alt
+import pandas as pd
 
 
 def calculate_positive_tests_ratio(
@@ -184,7 +184,7 @@ def generate_global_chart(
         )
         .configure_scale(continuousPadding=padding)
         .properties(width=width, height=height)
-        .interactive()
+        .interactive(bind_y=False)
     )
 
 
@@ -222,7 +222,7 @@ def generate_regional_chart(
         )
         .configure_scale(continuousPadding=padding)
         .properties(width=width, height=height)
-        .interactive()
+        .interactive(bind_y=False)
     )
 
 
@@ -304,7 +304,7 @@ def average_over_days(
     grouped_categorical = (
         data[categorical_columns].groupby(data.index // avg_days).first()
     )
-    grouped_numerical = data.groupby(data.index // avg_days).mean()
+    grouped_numerical = data.groupby(data.index // avg_days).mean(numeric_only=True)
     return pd.concat([grouped_categorical, grouped_numerical], axis=1)
 
 
@@ -354,5 +354,5 @@ def generate_trajectory_chart(
     return (
         chart.configure_scale(continuousPadding=padding)
         .properties(width=width, height=height)
-        .interactive()
+        .interactive(bind_y=False)
     )

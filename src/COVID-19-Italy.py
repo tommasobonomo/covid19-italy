@@ -1,13 +1,13 @@
-import streamlit as st
+from gettext import NullTranslations, translation
+from typing import Callable, Dict
+
 import pandas as pd
-from gettext import translation, NullTranslations
-from typing import Dict, Callable
+import streamlit as st
 
-from utils import get_data, dataframe_translator
-from trends import line_plots
-from trajectory import trajectory_cases
 from maps import choropleth_maps
-
+from trajectory import trajectory_cases
+from trends import line_plots
+from utils import dataframe_translator, get_data
 
 data = get_data()
 
@@ -38,6 +38,8 @@ page = st.sidebar.selectbox(
         _("Geographical distribution"),
     ],
 )
+if page is None:
+    page = _("Temporal trend")
 page_function_mapping: Dict[str, Callable[[pd.DataFrame, NullTranslations], None]] = {
     _("Temporal trend"): line_plots,
     _("Trajectory of cases"): trajectory_cases,
